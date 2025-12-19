@@ -1,9 +1,11 @@
 import { useState, useCallback } from "react";
+import { useAuth } from "../context/useAuth";
 import type { LoginPayload, LoginResponse, UseLoginReturn } from "../types";
 
 export const useLogin = (): UseLoginReturn => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const { login: authLogin } = useAuth();
 
   const login = useCallback(
     async (payload: LoginPayload): Promise<LoginResponse> => {
@@ -31,6 +33,11 @@ export const useLogin = (): UseLoginReturn => {
         }
 
         const data: LoginResponse = await response.json();
+
+        if (data.success && data.data) {
+          authLogin(data.data.user, data.data.token);
+        }
+
         setLoading(false);
         return data;
       } catch (err) {
@@ -41,7 +48,7 @@ export const useLogin = (): UseLoginReturn => {
         throw new Error(errorMessage);
       }
     },
-    []
+    [authLogin]
   );
 
   return { login, loading, error };
