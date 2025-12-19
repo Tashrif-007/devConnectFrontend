@@ -1,10 +1,12 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import InputField from "./InputField";
 import PasswordField from "./PasswordField";
 import Button from "./Button";
 import LoginSuccessModal from "./LoginSuccessModal";
 import { useLogin } from "../hooks/useLogin";
-import type { LoginFormData, FormErrors, LoginUser } from "../types";
+import { useAuth } from "../context/useAuth";
+import type { LoginFormData, FormErrors } from "../types";
 
 const LoginForm: React.FC = () => {
   const [formData, setFormData] = React.useState<LoginFormData>({
@@ -15,8 +17,9 @@ const LoginForm: React.FC = () => {
   const [errors, setErrors] = React.useState<FormErrors>({});
   const [showPassword, setShowPassword] = React.useState(false);
   const [showSuccessModal, setShowSuccessModal] = React.useState(false);
-  const [loginUser, setLoginUser] = React.useState<LoginUser | null>(null);
   const { login, loading, error: loginError } = useLogin();
+  const { user } = useAuth();
+  const navigate = useNavigate();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -60,7 +63,6 @@ const LoginForm: React.FC = () => {
       });
 
       if (response.success && response.data) {
-        setLoginUser(response.data.user);
         setShowSuccessModal(true);
         setFormData({
           emailOrUsername: "",
@@ -73,6 +75,11 @@ const LoginForm: React.FC = () => {
         loginError || (error instanceof Error ? error.message : "Login failed");
       setErrors({ form: errorMessage });
     }
+  };
+
+  const handleModalClose = () => {
+    setShowSuccessModal(false);
+    navigate("/");
   };
 
   return (
@@ -112,8 +119,8 @@ const LoginForm: React.FC = () => {
 
       <LoginSuccessModal
         isOpen={showSuccessModal}
-        user={loginUser}
-        onClose={() => setShowSuccessModal(false)}
+        user={user}
+        onClose={handleModalClose}
       />
     </form>
   );
