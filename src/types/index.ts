@@ -36,8 +36,9 @@ export interface SignupResponseData {
 
 export interface SignupResponse {
   success: boolean;
-  data: SignupResponseData;
-  message: string;
+  data?: SignupResponseData;
+  message?: string;
+  error?: string;
 }
 
 export interface UseSignupReturn {
@@ -68,8 +69,9 @@ export interface LoginResponseData {
 
 export interface LoginResponse {
   success: boolean;
-  data: LoginResponseData;
-  message: string;
+  data?: LoginResponseData;
+  message?: string;
+  error?: string;
 }
 
 export interface UseLoginReturn {
