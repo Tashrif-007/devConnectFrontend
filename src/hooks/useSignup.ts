@@ -1,8 +1,11 @@
 import { useState, useCallback } from "react";
+import { authService } from "../services/authService";
 import type { SignupPayload, SignupResponse, UseSignupReturn } from "../types";
 
-export const useSignup = (): UseSignupReturn => {
-  const [loading, setLoading] = useState(false);
+export const useSignup = (): UseSignupReturn & {
+  signup: (payload: SignupPayload) => Promise<SignupResponse>;
+} => {
+  const [loading, setLoading] = useState<true | false>(false);
   const [error, setError] = useState<string | null>(null);
 
   const signup = useCallback(
@@ -11,39 +14,25 @@ export const useSignup = (): UseSignupReturn => {
       setError(null);
 
       try {
-        const response = await fetch(
-          "http://localhost:3000/api/v1/auth/signup",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              username: payload.username,
-              name: payload.name,
-              email: payload.email,
-              password: payload.password,
-              confirmPassword: payload.confirmPassword,
-            }),
-          }
-        );
+        const response = await authService.signup(payload);
 
-        if (!response.ok) {
-          const errorData = await response.json();
-          throw new Error(errorData.message || "Signup failed");
+        if (response.success === false) {
+          const errorMessage = response.error;
+          setError(errorMessage!);
+          return response;
         }
 
-        const data: SignupResponse = await response.json();
-        setLoading(false);
-        return data;
+        setError(null);
+        return response;
       } catch (err) {
         const errorMessage =
           err instanceof Error
             ? err.message
             : "An error occurred during signup";
         setError(errorMessage);
+        return { success: false, error: errorMessage };
+      } finally {
         setLoading(false);
-        throw new Error(errorMessage);
       }
     },
     []

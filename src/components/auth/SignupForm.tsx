@@ -1,72 +1,43 @@
-import React from "react";
-import InputField from "../common/InputField";
-import PasswordField from "../common/PasswordField";
+import React, { useState } from "react";
 import Button from "../common/Button";
 import SuccessModal from "./SuccessModal";
-import { validateForm as validateFormUtil } from "../../utils/validation";
-import { useSignup } from "../..//hooks/useSignup";
-import type { FormErrors, FormData } from "../../types/index";
+import SignupFormFields from "./SignupFormFields";
+import { useSignup } from "../../hooks/useSignup";
+import { useSignupForm } from "../../hooks/useSignupForm";
 
 const SignupForm: React.FC = () => {
-  const { signup, loading: apiLoading } = useSignup();
-  const [formData, setFormData] = React.useState<FormData>({
-    username: "",
-    name: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-  });
+  const { signup, loading: apiLoading, error: hookError } = useSignup();
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [successMessage, setSuccessMessage] = useState("");
 
-  const [errors, setErrors] = React.useState<FormErrors>({});
-  const [loading, setLoading] = React.useState(false);
-  const [showPassword, setShowPassword] = React.useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = React.useState(false);
-  const [showSuccessModal, setShowSuccessModal] = React.useState(false);
-  const [successMessage, setSuccessMessage] = React.useState("");
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-    if (errors[name]) {
-      setErrors((prev) => ({
-        ...prev,
-        [name]: "",
-      }));
-    }
-  };
+  const {
+    formData,
+    errors,
+    showPassword,
+    showConfirmPassword,
+    handleInputChange,
+    validateForm,
+    handleSignupSuccess,
+    handleSignupError,
+    setShowPassword,
+    setShowConfirmPassword,
+  } = useSignupForm();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const newErrors = validateFormUtil(formData);
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
+    if (!validateForm()) {
       return;
     }
 
-    setLoading(true);
-    try {
-      await signup(formData);
+    const result = await signup(formData);
+
+    if (result.success) {
       setSuccessMessage(`Please Check your inbox to verify your email!`);
       setShowSuccessModal(true);
-      setFormData({
-        username: "",
-        name: "",
-        email: "",
-        password: "",
-        confirmPassword: "",
-      });
-    } catch (error) {
-      const errorMessage =
-        error instanceof Error
-          ? error.message
-          : "Signup failed. Please try again.";
-      setErrors({ form: errorMessage });
-    } finally {
-      setLoading(false);
+      handleSignupSuccess();
+    } else {
+      handleSignupError(hookError);
     }
   };
 
@@ -77,60 +48,22 @@ const SignupForm: React.FC = () => {
   return (
     <>
       <form className="form-group-row" onSubmit={handleSubmit}>
-        <InputField
-          label="Username"
-          name="username"
-          placeholder="alexdev"
-          value={formData.username}
-          onChange={handleInputChange}
-          error={errors.username}
-        />
-
-        <InputField
-          label="Full Name"
-          name="name"
-          placeholder="Alex Developer"
-          value={formData.name}
-          onChange={handleInputChange}
-          error={errors.name}
-        />
-
-        <InputField
-          label="Email Address"
-          type="email"
-          name="email"
-          placeholder="dev@example.com"
-          value={formData.email}
-          onChange={handleInputChange}
-          error={errors.email}
-        />
-
-        <PasswordField
-          label="Password"
-          name="password"
-          placeholder="••••••••"
-          value={formData.password}
-          onChange={handleInputChange}
-          error={errors.password}
+        <SignupFormFields
+          formData={formData}
+          errors={errors}
           showPassword={showPassword}
+          showConfirmPassword={showConfirmPassword}
+          onInputChange={handleInputChange}
           onTogglePassword={() => setShowPassword(!showPassword)}
-        />
-
-        <PasswordField
-          label="Confirm Password"
-          name="confirmPassword"
-          placeholder="••••••••"
-          value={formData.confirmPassword}
-          onChange={handleInputChange}
-          error={errors.confirmPassword}
-          showPassword={showConfirmPassword}
-          onTogglePassword={() => setShowConfirmPassword(!showConfirmPassword)}
+          onToggleConfirmPassword={() =>
+            setShowConfirmPassword(!showConfirmPassword)
+          }
         />
 
         {errors.form && <span className="form-error">{errors.form}</span>}
 
-        <Button type="submit" disabled={loading || apiLoading}>
-          {loading || apiLoading ? "Creating Account..." : "Create Account →"}
+        <Button type="submit" disabled={apiLoading}>
+          {apiLoading ? "Creating Account..." : "Create Account →"}
         </Button>
       </form>
 
