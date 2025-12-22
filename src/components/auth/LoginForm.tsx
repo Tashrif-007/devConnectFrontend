@@ -1,12 +1,12 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import InputField from "./InputField";
-import PasswordField from "./PasswordField";
-import Button from "./Button";
+import InputField from "../common/InputField";
+import PasswordField from "../common/PasswordField";
+import Button from "../common/Button";
 import LoginSuccessModal from "./LoginSuccessModal";
-import { useLogin } from "../hooks/useLogin";
-import { useAuth } from "../context/useAuth";
-import type { LoginFormData, FormErrors } from "../types";
+import { useLogin } from "../../hooks/useLogin";
+import { useAuth } from "../../hooks/useAuth";
+import type { LoginFormData, FormErrors } from "../../types";
 
 const LoginForm: React.FC = () => {
   const [formData, setFormData] = React.useState<LoginFormData>({

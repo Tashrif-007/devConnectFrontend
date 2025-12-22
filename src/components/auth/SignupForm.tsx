@@ -1,11 +1,11 @@
 import React from "react";
-import InputField from "./InputField";
-import PasswordField from "./PasswordField";
-import Button from "./Button";
+import InputField from "../common/InputField";
+import PasswordField from "../common/PasswordField";
+import Button from "../common/Button";
 import SuccessModal from "./SuccessModal";
-import { validateForm as validateFormUtil } from "../utils/validation";
-import { useSignup } from "../hooks/useSignup";
-import type { FormErrors, FormData } from "../types/index";
+import { validateForm as validateFormUtil } from "../../utils/validation";
+import { useSignup } from "../..//hooks/useSignup";
+import type { FormErrors, FormData } from "../../types/index";
 
 const SignupForm: React.FC = () => {
   const { signup, loading: apiLoading } = useSignup();
@@ -49,10 +49,8 @@ const SignupForm: React.FC = () => {
 
     setLoading(true);
     try {
-      const response = await signup(formData);
-      setSuccessMessage(
-        `Welcome ${response.data.name}! You have successfully signed up.`
-      );
+      await signup(formData);
+      setSuccessMessage(`Please Check your inbox to verify your email!`);
       setShowSuccessModal(true);
       setFormData({
         username: "",
@@ -116,7 +114,6 @@ const SignupForm: React.FC = () => {
           error={errors.password}
           showPassword={showPassword}
           onTogglePassword={() => setShowPassword(!showPassword)}
-          showStrength={true}
         />
 
         <PasswordField
