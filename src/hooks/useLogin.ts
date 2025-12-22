@@ -1,8 +1,12 @@
 import { useState, useCallback } from "react";
 import { useAuth } from "../hooks/useAuth";
+import { authService } from "../services/authService";
 import type { LoginPayload, LoginResponse, UseLoginReturn } from "../types";
 
-export const useLogin = (): UseLoginReturn => {
+
+export const useLogin = (): UseLoginReturn & {
+  login: (payload: LoginPayload) => Promise<LoginResponse>;
+} => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const { login: authLogin } = useAuth();
@@ -13,39 +17,27 @@ export const useLogin = (): UseLoginReturn => {
       setError(null);
 
       try {
-        const response = await fetch(
-          "http://localhost:3000/api/v1/auth/login",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              email: payload.emailOrUsername,
-              password: payload.password,
-            }),
-          }
-        );
+        const response = await authService.login(payload);
 
-        if (!response.ok) {
-          const errorData = await response.json();
-          throw new Error(errorData.message || "Login failed");
+        if (response.success === false) {
+          const errorMessage = response.error;
+          setError(errorMessage!);
+          return response as LoginResponse;
         }
 
-        const data: LoginResponse = await response.json();
-
-        if (data.success && data.data) {
-          authLogin(data.data.user, data.data.token);
+        // Success case
+        if (response.data) {
+          authLogin(response.data.user, response.data.token);
         }
-
-        setLoading(false);
-        return data;
+        setError(null);
+        return response;
       } catch (err) {
         const errorMessage =
           err instanceof Error ? err.message : "An error occurred during login";
         setError(errorMessage);
+        return { success: false, error: errorMessage };
+      } finally {
         setLoading(false);
-        throw new Error(errorMessage);
       }
     },
     [authLogin]
