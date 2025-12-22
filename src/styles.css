@@ -1,3 +1,5 @@
+@import "tailwindcss";
+
 :root {
   --color-bg: #f3f4f6;
   --color-bg-white: #ffffff;
@@ -41,11 +43,11 @@
   --radius-full: 9999px;
 }
 
-* {
+/* * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
+} */
 
 html,
 body {
