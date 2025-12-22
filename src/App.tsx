@@ -1,15 +1,18 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SignupPage from "./pages/SignupPage";
 import LoginPage from "./pages/LoginPage";
+import EmailVerifiedPage from "./pages/EmailVerifiedPage";
+import LandingPage from "./pages/LandingPage";
 import "./styles.css";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<SignupPage />} />
+        <Route path="/" element={<LandingPage />} />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/email-verified" element={<EmailVerifiedPage />} />
       </Routes>
     </BrowserRouter>
   );

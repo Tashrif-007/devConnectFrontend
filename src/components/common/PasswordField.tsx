@@ -21,7 +21,6 @@ const PasswordField: React.FC<PasswordFieldProps> = ({
   error,
   showPassword,
   onTogglePassword,
-  showStrength = false,
 }) => {
   return (
     <div className="form-group">
@@ -57,15 +56,6 @@ const PasswordField: React.FC<PasswordFieldProps> = ({
           </svg>
         </button>
       </div>
-      {showStrength && value && (
-        <div className="password-strength">
-          <div className="strength-bar"></div>
-          <div className="strength-bar"></div>
-          <div className="strength-bar empty"></div>
-          <div className="strength-bar empty"></div>
-          <span className="strength-label">Medium</span>
-        </div>
-      )}
       {error && <span className="form-error">{error}</span>}
     </div>
   );

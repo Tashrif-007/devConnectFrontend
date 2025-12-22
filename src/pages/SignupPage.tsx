@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import SignupForm from "../components/SignupForm";
-import Divider from "../components/Divider";
-import OAuthButton from "../components/OAuthButton";
+import SignupForm from "../components/auth/SignupForm";
+import Divider from "../components/common/Divider";
+import OAuthButton from "../components/auth/OAuthButton";
 
 const SignupPage: React.FC = () => {
   const handleGithubClick = () => {
