@@ -4,10 +4,18 @@ const BASE_URL = "http://localhost:3000/api/v1";
 
 const axiosInstance: AxiosInstance = axios.create({
   baseURL: BASE_URL,
-  validateStatus: () => true, 
+  validateStatus: () => true,
   headers: {
     "Content-Type": "application/json",
   },
+});
+
+axiosInstance.interceptors.request.use((config) => {
+  const token = localStorage.getItem("devconnect_token");
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
 });
 
 export const apiClient = {
