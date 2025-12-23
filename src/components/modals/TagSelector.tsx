@@ -68,10 +68,10 @@ const TagSelector: React.FC<TagSelectorProps> = ({
             {loading
               ? "Loading categories..."
               : error
-                ? "Error loading categories"
-                : availableCategories.length > 0
-                  ? "Select tags..."
-                  : "No more tags available"}
+              ? "Error loading categories"
+              : availableCategories.length > 0
+              ? "Select tags..."
+              : "No more tags available"}
           </span>
           <FiChevronDown
             size={18}

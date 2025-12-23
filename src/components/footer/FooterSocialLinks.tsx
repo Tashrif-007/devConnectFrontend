@@ -1,7 +1,7 @@
 interface SocialLink {
   label: string;
   href: string;
-  icon: string; // SVG path
+  icon: string;
 }
 
 const socialLinks: SocialLink[] = [

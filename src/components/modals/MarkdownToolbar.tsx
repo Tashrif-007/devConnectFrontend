@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  FiBold,
-  FiItalic,
-  FiCode,
-  FiList,
-} from "react-icons/fi";
+import { FiBold, FiItalic, FiCode, FiList } from "react-icons/fi";
 
 interface MarkdownToolbarProps {
   onInsert: (before: string, after?: string) => void;
