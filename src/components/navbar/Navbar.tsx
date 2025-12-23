@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import SearchBar from "./SearchBar";
 import NavLinks from "./NavLinks";
 import ThemeToggle from "./ThemeToggle";
@@ -7,6 +7,8 @@ import ProfileDropdown from "./ProfileDropdown";
 
 export default function Navbar() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const location = useLocation();
+  const isFeedPage = location.pathname === "/feed";
 
   return (
     <nav className="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/90 backdrop-blur-md transition-colors duration-300">
@@ -30,6 +32,13 @@ export default function Navbar() {
 
           {/* Right Side Actions */}
           <div className="flex items-center gap-2 sm:gap-6">
+            {/* Create Post Button (only on feed page) */}
+            {isFeedPage && (
+              <button className="hidden sm:inline-flex px-4 py-2 bg-black text-white rounded-lg font-semibold hover:bg-black hover:opacity-80 transition-opacity ease-in-out duration-300 transition-colors">
+                Create Post
+              </button>
+            )}
+
             {/* Navigation Links */}
             <NavLinks />
 
