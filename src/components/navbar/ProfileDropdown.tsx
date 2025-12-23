@@ -1,3 +1,5 @@
+import {Link} from 'react-router-dom';
+
 interface ProfileDropdownProps {
   isOpen: boolean;
   onToggle: () => void;
@@ -21,8 +23,6 @@ export default function ProfileDropdown({
           />
         </div>
       </button>
-
-      {/* Dropdown Menu */}
       {isOpen && (
         <>
           <div className="fixed inset-0 z-30" onClick={onToggle}></div>
@@ -47,9 +47,9 @@ export default function ProfileDropdown({
                 </svg>
                 Profile
               </a>
-              <a
+              <Link
                 className="flex items-center gap-3 px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-primary"
-                href="#"
+                to='/change-password'
               >
                 <svg
                   className="w-5 h-5"
@@ -65,7 +65,7 @@ export default function ProfileDropdown({
                   />
                 </svg>
                 Change Password
-              </a>
+              </Link>
               <div className="border-t border-slate-200 my-1"></div>
               <a
                 className="flex items-center gap-3 px-4 py-2 text-sm text-slate-600 hover:bg-slate-50 hover:text-red-600 transition-colors"

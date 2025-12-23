@@ -25,7 +25,6 @@ export const useLogin = (): UseLoginReturn & {
           return response as LoginResponse;
         }
 
-        // Success case
         if (response.data) {
           authLogin(response.data.user, response.data.token);
         }

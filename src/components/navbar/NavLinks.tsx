@@ -7,12 +7,6 @@ export default function NavLinks() {
       >
         Feed
       </a>
-      <a
-        href="#"
-        className="text-sm font-medium text-slate-600 hover:text-primary transition-colors"
-      >
-        Tags
-      </a>
     </div>
   );
 }
