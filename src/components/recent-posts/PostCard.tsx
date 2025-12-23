@@ -21,16 +21,13 @@ export default function PostCard({
 }: PostCardProps) {
   return (
     <div className="group rounded-2xl overflow-hidden bg-white border border-slate-200 hover:border-primary/30 transition-all duration-300 hover:shadow-lg flex flex-col h-full">
-      {/* Image/Color Background */}
       <div className={`w-full h-48 ${tagColor} relative`}>
         <div className="absolute top-4 left-4 px-3 py-1 rounded-full bg-white/90 text-xs font-semibold text-slate-900">
           {tag}
         </div>
       </div>
 
-      {/* Content */}
       <div className="p-6 flex flex-col flex-grow">
-        {/* Author Info */}
         <div className="flex items-center gap-2 mb-4">
           <div className="w-6 h-6 rounded-full bg-slate-300"></div>
           <div className="flex-1">
@@ -41,17 +38,14 @@ export default function PostCard({
           </div>
         </div>
 
-        {/* Title */}
         <h3 className="text-lg font-bold text-slate-900 mb-3 line-clamp-2 group-hover:text-primary transition-colors">
           {title}
         </h3>
 
-        {/* Description */}
         <p className="text-slate-600 text-sm mb-4 line-clamp-3 flex-grow">
           {description}
         </p>
 
-        {/* Engagement Metrics */}
         <div className="flex items-center gap-4 pt-4 border-t border-slate-200">
           <div className="flex items-center gap-1 text-sm text-slate-500">
             <svg

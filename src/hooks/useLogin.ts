@@ -3,7 +3,6 @@ import { useAuth } from "../hooks/useAuth";
 import { authService } from "../services/authService";
 import type { LoginPayload, LoginResponse, UseLoginReturn } from "../types";
 
-
 export const useLogin = (): UseLoginReturn & {
   login: (payload: LoginPayload) => Promise<LoginResponse>;
 } => {
