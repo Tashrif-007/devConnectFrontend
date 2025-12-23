@@ -79,3 +79,55 @@ export interface UseLoginReturn {
   loading: boolean;
   error: string | null;
 }
+export interface User {
+  userId: string;
+  username: string;
+  name: string;
+  email: string;
+  joinDate: string;
+  isEmailConfirmed: boolean;
+  role: string;
+  profilePictureUrl: string | null;
+}
+
+export interface PostCardProps {
+  story: Story;
+}
+
+export interface Story {
+  storyId: string;
+  title: string;
+  body: string;
+  user: User;
+  categoryNames: string[];
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface PaginationData {
+  currentPage: string;
+  itemsPerPage: string;
+  totalItems: number;
+  totalPages: number;
+  hasNextPage: boolean;
+  hasPreviousPage: boolean;
+}
+
+export interface StoriesData {
+  data: Story[];
+  pagination: PaginationData;
+}
+
+export interface StoriesResponse {
+  success: boolean;
+  data: StoriesData;
+  message: string;
+}
+
+export interface UseStoriesReturn {
+  stories: Story[];
+  pagination: PaginationData | null;
+  loading: boolean;
+  error: string | null;
+  fetchStories: (page: number) => Promise<void>;
+}
