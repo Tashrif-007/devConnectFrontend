@@ -1,21 +1,23 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { useAuth } from "../../hooks/useAuth";
 import SearchBar from "./SearchBar";
 import NavLinks from "./NavLinks";
 import ThemeToggle from "./ThemeToggle";
 import ProfileDropdown from "./ProfileDropdown";
-import CreatePostModal from "../modals/CreatePostModal";
+import CreatePostModal from "../feed/CreatePostModal";
 
 export default function Navbar() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isCreatePostOpen, setIsCreatePostOpen] = useState(false);
   const location = useLocation();
+  const { isAuthenticated } = useAuth();
   const isFeedPage = location.pathname === "/feed";
 
   return (
     <>
       <nav className="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/90 backdrop-blur-md transition-colors duration-300">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between gap-4">
             <Link
               to="/"
@@ -30,7 +32,7 @@ export default function Navbar() {
             </Link>
             <SearchBar />
             <div className="flex items-center gap-2 sm:gap-6">
-              {isFeedPage && (
+              {isFeedPage && isAuthenticated && (
                 <button
                   onClick={() => setIsCreatePostOpen(true)}
                   className="hidden sm:inline-flex px-4 py-2 bg-black text-white rounded-lg font-semibold hover:bg-black hover:opacity-80 transition-opacity ease-in-out duration-300 transition-colors"
@@ -39,20 +41,41 @@ export default function Navbar() {
                 </button>
               )}
               <NavLinks />
-              <div className="hidden sm:block h-6 w-px bg-slate-200"></div>
+              {isAuthenticated && (
+                <div className="hidden sm:block h-6 w-px bg-slate-200"></div>
+              )}
               <ThemeToggle />
-              <ProfileDropdown
-                isOpen={isDropdownOpen}
-                onToggle={() => setIsDropdownOpen(!isDropdownOpen)}
-              />
+              <div className="hidden sm:block h-6 w-px bg-slate-200"></div>
+              {isAuthenticated ? (
+                <ProfileDropdown
+                  isOpen={isDropdownOpen}
+                  onToggle={() => setIsDropdownOpen(!isDropdownOpen)}
+                />
+              ) : (
+                <div className="hidden sm:flex items-center gap-4.5">
+                  <Link
+                    to="/login"
+                    className="text-sm font-medium rounded-lg hover:bg-primary/90 transition-colors"
+                  >
+                    Login
+                  </Link>
+                  <Link
+                    to="/signup"
+                    className="sm:inline-flex px-4 py-2 bg-black text-white text-sm rounded-full hover:bg-black hover:opacity-80 transition-opacity ease-in-out duration-300 transition-colors"
+                  >
+                    Sign Up
+                  </Link>
+                </div>
+              )}
             </div>
           </div>
         </div>
       </nav>
-      <CreatePostModal
+      {/* <CreatePostModal
         isOpen={isCreatePostOpen}
         onClose={() => setIsCreatePostOpen(false)}
-      />
+      /> */}
+      <CreatePostModal isOpen={isCreatePostOpen} onClose={() => setIsCreatePostOpen(false)}/>
     </>
   );
 }

@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
-import { storyService } from "../services/storyService";
+import { useCreateStory } from "./useCreateStory";
 
-interface FormData {
+interface CategoryFormData {
   title: string;
   body: string;
   categoryIds: string[];
@@ -10,15 +10,15 @@ interface FormData {
 
 export const useCreatePostForm = (onClose: () => void) => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const {createStory, loading, error: hookError} = useCreateStory();
 
-  const [formData, setFormData] = useState<FormData>({
+  const [formData, setFormData] = useState<CategoryFormData>({
     title: "",
     body: "",
     categoryIds: [],
     skip: false,
   });
 
-  const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const handleFieldChange = (
@@ -78,32 +78,14 @@ export const useCreatePostForm = (onClose: () => void) => {
 
   const handlePublish = async () => {
     setError(null);
-
     if (!validateForm()) return;
-
-    setLoading(true);
-    try {
-      console.log(formData.skip);
-      const response = await storyService.createStory({
-        title: formData.title,
-        body: formData.body,
-        categoryIds: formData.categoryIds,
-        skip: !formData.skip,
-      });
-
-      if (!response.success) {
-        setError(response.message || "Failed to publish post");
-        return;
-      }
-
-      console.log("Story published successfully:", response.data);
+    const result = await createStory({...formData, skip: !formData.skip});
+    if(result.success) {
       onClose();
-    } catch (err) {
-      const errorMessage =
-        err instanceof Error ? err.message : "Failed to publish post";
-      setError(errorMessage);
-    } finally {
-      setLoading(false);
+    }
+    else {
+      setError(hookError);
+      return;
     }
   };
 

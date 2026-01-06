@@ -1,4 +1,9 @@
+import { useState } from "react";
+import InputField from "../common/InputField";
+
 export default function SearchBar() {
+  const [searchQuery, setSearchQuery] = useState("");
+
   return (
     <div className="hidden md:flex flex-1 max-w-md mx-auto">
       <div className="relative w-full group">
@@ -17,11 +22,16 @@ export default function SearchBar() {
             />
           </svg>
         </div>
-        <input
-          className="block w-full pl-10 pr-3 py-2 border border-slate-200 rounded-full leading-5 bg-slate-50 text-slate-900 placeholder-slate-500 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary sm:text-sm transition-all duration-200"
-          placeholder="Search topics, posts, or developers..."
-          type="text"
-        />
+        <div className="pl-10">
+          <InputField
+            label=""
+            name="search"
+            placeholder="Search posts or developers..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            type="text"
+          />
+        </div>
       </div>
     </div>
   );
