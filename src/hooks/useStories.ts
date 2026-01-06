@@ -1,6 +1,7 @@
 import { useState, useCallback, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { storyService } from "../services/storyService";
+import { parsePage } from "../utils/pageUtils";
 import type { Story, PaginationData, UseStoriesReturn } from "../types";
 
 export const useStories = (): UseStoriesReturn => {
@@ -10,23 +11,34 @@ export const useStories = (): UseStoriesReturn => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const currentPage = parseInt(searchParams.get("page") || "1", 10);
-  const itemsPerPage = 9; 
+  const currentPage = parsePage(searchParams.get("page") || "1");
+  const currentCategory = searchParams.get("category") || undefined;
+  const itemsPerPage = 5;
 
   const fetchStories = useCallback(
-    async (page: number = currentPage) => {
+    async (page: number = currentPage, category?: string) => {
       setLoading(true);
       setError(null);
 
       try {
-        setSearchParams({ page: String(page) });
+        const params: Record<string, string> = { page: String(page) };
+        if (category) {
+          params.category = category;
+        }
+        setSearchParams(params);
 
-        const response = await storyService.fetchStories(page, itemsPerPage);
+        const response = await storyService.fetchStories(
+          page,
+          itemsPerPage,
+          category
+        );
+        if (response.success && response.data) {
+          setStories(response.data.data);
+          setPagination(response.data.pagination);
+        }
 
-        setStories(response.data.data);
-        setPagination(response.data.pagination);
         if (response.success === false) {
-          setError(response.message);
+          setError(response.error!);
         }
       } catch (err) {
         const errorMessage =
@@ -40,8 +52,24 @@ export const useStories = (): UseStoriesReturn => {
   );
 
   useEffect(() => {
-    fetchStories(currentPage);
-  }, [currentPage, fetchStories]);
+    fetchStories(currentPage, currentCategory);
+  }, [currentPage, currentCategory, fetchStories]);
+
+  const filterByCategory = useCallback(
+    (category: string | null) => {
+      if (category) {
+        fetchStories(1, category);
+      } else {
+        setSearchParams({ page: "1" });
+        fetchStories(1, undefined);
+      }
+    },
+    [fetchStories, setSearchParams]
+  );
+
+  const clearFilter = useCallback(() => {
+    filterByCategory(null);
+  }, [filterByCategory]);
 
   return {
     stories,
@@ -49,5 +77,8 @@ export const useStories = (): UseStoriesReturn => {
     loading,
     error,
     fetchStories,
+    filterByCategory,
+    clearFilter,
+    currentCategory,
   };
 };
