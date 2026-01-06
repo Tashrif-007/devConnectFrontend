@@ -1,45 +1,37 @@
-import { useState, useCallback } from "react";
+import { useMutation } from "@tanstack/react-query";
 import { useAuth } from "../hooks/useAuth";
 import { authService } from "../services/authService";
-import type { LoginPayload, LoginResponse, UseLoginReturn } from "../types";
+import type { LoginPayload, LoginResponse } from "../types";
 
-export const useLogin = (): UseLoginReturn & {
-  login: (payload: LoginPayload) => Promise<LoginResponse>;
-} => {
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+export const useLogin = () => {
   const { login: authLogin } = useAuth();
 
-  const login = useCallback(
-    async (payload: LoginPayload): Promise<LoginResponse> => {
-      setLoading(true);
-      setError(null);
-
-      try {
-        const response = await authService.login(payload);
-
-        if (response.success === false) {
-          const errorMessage = response.error;
-          setError(errorMessage!);
-          return response as LoginResponse;
-        }
-
-        if (response.data) {
-          authLogin(response.data.user, response.data.token);
-        }
-        setError(null);
-        return response;
-      } catch (err) {
-        const errorMessage =
-          err instanceof Error ? err.message : "An error occurred during login";
-        setError(errorMessage);
-        return { success: false, error: errorMessage };
-      } finally {
-        setLoading(false);
+  const {
+    mutate: login,
+    isPending: loading,
+    error,
+  } = useMutation<LoginResponse, Error, LoginPayload>({
+    mutationFn: async (payload: LoginPayload) => {
+      const response = await authService.login(payload);
+      return response;
+    },
+    onSuccess: (response) => {
+      if (response.success && response.data) {
+        authLogin(response.data.user, response.data.token);
       }
     },
-    [authLogin]
-  );
+  });
 
-  return { login, loading, error };
+  return {
+    login: async (payload: LoginPayload): Promise<LoginResponse> => {
+      return new Promise((resolve, reject) => {
+        login(payload, {
+          onSuccess: (response) => resolve(response),
+          onError: (error) => reject(error),
+        });
+      });
+    },
+    loading,
+    error: error?.message || null,
+  };
 };
