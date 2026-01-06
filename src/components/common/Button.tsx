@@ -2,7 +2,7 @@ import React from "react";
 
 interface ButtonProps {
   children: React.ReactNode;
-  onClick?: () => void;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
   type?: "button" | "submit" | "reset";
   variant?: "primary" | "secondary";
   disabled?: boolean;
@@ -14,12 +14,12 @@ const Button: React.FC<ButtonProps> = ({
   children,
   onClick,
   type = "button",
-  variant = "primary",
+  variant,
   disabled = false,
   className = "",
 }) => {
-  const buttonClass = `button ${
-    variant === "primary" ? "button-primary" : "button-secondary"
+  const buttonClass = `${
+    variant === "primary" ? "button-primary" : variant === 'secondary' ? "button-secondary" : ""
   } ${className}`;
 
   return (
