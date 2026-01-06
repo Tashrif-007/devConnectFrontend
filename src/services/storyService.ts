@@ -1,35 +1,44 @@
 import { apiClient } from "./apiClient";
-import type { StoriesResponse } from "../types";
-
-export interface CreateStoryPayload {
-  title: string;
-  body: string;
-  categoryIds: string[];
-  skip: boolean;
-}
-
-export interface CreateStoryResponse {
-  success: boolean;
-  message: string;
-  data?: {
-    storyId: string;
-    title: string;
-    body: string;
-    categoryIds: string[];
-    skip: boolean;
-    createdAt: string;
-  };
-}
+import type {
+  StoriesResponse,
+  CreateStoryPayload,
+  CreateStoryResponse,
+  StoryDetailResponse,
+  CreateCommentPayload,
+  CreateCommentResponse,
+  GetCommentsResponse,
+} from "../types";
 
 export const storyService = {
   async fetchStories(
     page: number = 1,
-    itemsPerPage: number = 10
+    itemsPerPage: number = 10,
+    category?: string
   ): Promise<StoriesResponse> {
     return apiClient.get<StoriesResponse>("/stories", {
       params: {
         page,
         itemsPerPage,
+        ...(category && { category }),
+      },
+    });
+  },
+
+  async getStoryById(storyId: string): Promise<StoryDetailResponse> {
+    return apiClient.get<StoryDetailResponse>(`/stories/${storyId}`);
+  },
+
+  async fetchStoriesByUserId(
+    userId: string,
+    page: number = 1,
+    itemsPerPage: number = 10,
+    category?: string
+  ): Promise<StoriesResponse> {
+    return apiClient.get<StoriesResponse>(`/stories/user/${userId}`, {
+      params: {
+        page,
+        itemsPerPage,
+        ...(category && { category }),
       },
     });
   },
@@ -41,5 +50,21 @@ export const storyService = {
       categoryIds: payload.categoryIds,
       skip: payload.skip,
     });
+  },
+
+  async createComment(
+    storyId: string,
+    payload: CreateCommentPayload
+  ): Promise<CreateCommentResponse> {
+    return apiClient.post<CreateCommentResponse>(
+      `/stories/${storyId}/comments`,
+      {
+        body: payload.body,
+      }
+    );
+  },
+
+  async getCommentsByStoryId(storyId: string): Promise<GetCommentsResponse> {
+    return apiClient.get<GetCommentsResponse>(`/stories/${storyId}/comments`);
   },
 };
