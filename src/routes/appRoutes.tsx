@@ -5,11 +5,16 @@ import FeedPage from "../pages/FeedPage";
 import PublicUserProfile from "../pages/PublicUserProfile";
 import StoryDetailPage from "../pages/StoryDetailPage";
 import UserProfilePage from "../pages/UserProfilePage";
+import SearchResultsPage from "../pages/SearchResultsPage";
 
 export const appRoutes = [
   {
     path: "/feed",
     element: <FeedPage />,
+  },
+  {
+    path: "/search",
+    element: <SearchResultsPage />,
   },
   {
     path: "/create",

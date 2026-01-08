@@ -1,28 +1,31 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import InputField from "../common/InputField";
+import { FiSearch } from "react-icons/fi";
+import { Button } from "../common";
 
 export default function SearchBar() {
   const [searchQuery, setSearchQuery] = useState("");
+  const navigate = useNavigate();
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === "Enter" && searchQuery.trim()) {
+      navigate(`/search?find=${encodeURIComponent(searchQuery)}&tab=users`);
+      setSearchQuery("");
+    }
+  };
+
+  const handleSearchClick = () => {
+    if (searchQuery.trim()) {
+      navigate(`/search?find=${encodeURIComponent(searchQuery)}&tab=users`);
+      setSearchQuery("");
+    }
+  };
 
   return (
     <div className="hidden md:flex flex-1 max-w-md mx-auto">
-      <div className="relative w-full group">
-        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-          <svg
-            className="w-4 h-4 text-slate-400 group-focus-within:text-primary transition-colors"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-            />
-          </svg>
-        </div>
-        <div className="pl-10">
+      <div className="relative w-full group" onKeyDown={handleKeyDown}>
+        <div className="pr-10">
           <InputField
             label=""
             name="search"
@@ -32,6 +35,12 @@ export default function SearchBar() {
             type="text"
           />
         </div>
+        <Button
+          onClick={handleSearchClick}
+          className="absolute inset-y-0 right-0 pr-3 flex items-center hover:opacity-75 transition-opacity"
+        >
+          <FiSearch />
+        </Button>
       </div>
     </div>
   );
