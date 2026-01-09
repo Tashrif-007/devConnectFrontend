@@ -1,4 +1,5 @@
 import React from "react";
+import { Button } from "../ui";
 
 interface FormActionsProps {
   loading: boolean;
@@ -12,16 +13,16 @@ const FormActions: React.FC<FormActionsProps> = ({
   onPublish,
 }) => {
   return (
-    <div className="flex justify-end gap-3 pt-4 border-t border-gray-200">
-      <button
+    <div className="flex justify-end gap-3 pt-4 border-t border-gray-200 mt-4">
+      <Button
         type="button"
         onClick={onCancel}
         disabled={loading}
         className="px-6 py-2 text-gray-700 font-medium border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors disabled:opacity-50"
       >
         Cancel
-      </button>
-      <button
+      </Button>
+      <Button
         type="button"
         onClick={onPublish}
         disabled={loading}
@@ -29,7 +30,7 @@ const FormActions: React.FC<FormActionsProps> = ({
       >
         {loading ? "Publishing..." : "Publish Post"}
         {!loading && <span>➜</span>}
-      </button>
+      </Button>
     </div>
   );
 };

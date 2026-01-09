@@ -1,5 +1,6 @@
 import React from "react";
 import { FiBold, FiItalic, FiCode, FiList } from "react-icons/fi";
+import { Button } from "../ui";
 
 interface MarkdownToolbarProps {
   onInsert: (before: string, after?: string) => void;
@@ -38,15 +39,14 @@ const MarkdownToolbar: React.FC<MarkdownToolbarProps> = ({ onInsert }) => {
       {toolbarButtons.map((btn, index) => {
         const Icon = btn.icon;
         return (
-          <button
+          <Button
             key={index}
             type="button"
             onClick={btn.onClick}
-            title={btn.title}
             className="p-2 rounded hover:bg-gray-200 transition-colors text-gray-700 hover:text-gray-900"
           >
             <Icon size={18} />
-          </button>
+          </Button>
         );
       })}
     </div>

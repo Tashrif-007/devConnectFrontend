@@ -22,7 +22,7 @@ const ContentTabs: React.FC<ContentTabsProps> = ({
           name="body"
           value={content}
           onChange={onContentChange}
-          placeholder="Write your masterpiece here... (Markdown supported)"
+          placeholder="Write your content here..."
           className="w-full h-54 p-4 border-none resize-none focus:outline-none font-mono text-sm"
         />
       ) : (
