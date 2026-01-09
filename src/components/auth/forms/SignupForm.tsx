@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import { Button, InputField } from "../ui";
+import { Button, InputField, Modal } from "../ui";
 import { AuthInputs } from "../../layouts/AuthInputs";
 import { useSignupForm } from "../../hooks/useSignupForm";
 import { useSignup } from "../../hooks/useSignup";
-import Modal from "../ui/Modal";
 
 const SignupForm = () => {
   const { signup, loading } = useSignup();

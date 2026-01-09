@@ -6,7 +6,7 @@ import DeveloperCard from "../feed/DeveloperCard";
 import PostCard from "../feed/PostCard";
 import Pagination from "../feed/Pagination";
 import ErrorMessage from "../modals/ErrorMessage";
-import { Paragraph } from "../ui/Paragraph";
+import { Paragraph } from "../ui";
 
 interface SearchResultsProps {
   type: "users" | "posts";
