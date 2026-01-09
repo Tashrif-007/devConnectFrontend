@@ -1,11 +1,12 @@
 import { useState, useRef } from "react";
 import { getStoredUser, saveStoredUser } from "../utils/storageUtils";
 import type { User } from "../types";
+import { userService } from "../services/userService";
 
 export interface ProfileFormData {
-  name: string;
-  bio: string;
-  profilePictureUrl: string;
+  name?: string;
+  bio?: string;
+  image?: File;
 }
 
 export function useProfileForm(initialUser: User) {
@@ -14,9 +15,9 @@ export function useProfileForm(initialUser: User) {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const [formData, setFormData] = useState<ProfileFormData>({
-    name: user.name,
+    name: user.name || "",
     bio: user.bio || "",
-    profilePictureUrl: user.profilePictureUrl || "",
+    image: undefined,
   });
 
   const handleInputChange = (
@@ -32,39 +33,41 @@ export function useProfileForm(initialUser: User) {
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        const imageUrl = event.target?.result as string;
-        setFormData((prev) => ({
-          ...prev,
-          profilePictureUrl: imageUrl,
-        }));
-      };
-      reader.readAsDataURL(file);
+      setFormData((prev) => ({
+        ...prev,
+        image: file,
+      }));
     }
   };
 
-  const handleSave = () => {
-    const updatedUser: User = {
-      ...user,
-      name: formData.name,
-      bio: formData.bio,
-      profilePictureUrl: formData.profilePictureUrl,
-    };
+  const handleSave = async () => {
+    const payload = new FormData();
+    if(formData.name) payload.append('name', formData.name);
+    if(formData.bio) payload.append('bio', formData.bio);
+    if(formData.image) payload.append('image', formData.image);
 
-    setUser(updatedUser);
-    const storedUser = getStoredUser();
-
-    if (storedUser) {
-      const updatedUserObj = {
-        ...storedUser,
-        name: formData.name,
-        bio: formData.bio,
-        profilePictureUrl: formData.profilePictureUrl,
+    const result = await userService.updateUser(payload);
+    if (result.success) {
+      const updatedUser: User = {
+        ...user,
+        name: result.data?.name || "",
+        bio: result.data?.bio,
+        profilePictureUrl: result.data?.profilePictureUrl || "",
       };
-      saveStoredUser(updatedUserObj);
-    }
 
+      setUser(updatedUser);
+      const storedUser = getStoredUser();
+
+      if (storedUser) {
+        const updatedUserObj = {
+          ...storedUser,
+          name: result.data?.name || "",
+          bio: result.data?.bio,
+          profilePictureUrl: result.data?.profilePictureUrl || "",
+        };
+        saveStoredUser(updatedUserObj);
+      }
+    }
     setIsEditing(false);
   };
 
@@ -72,7 +75,7 @@ export function useProfileForm(initialUser: User) {
     setFormData({
       name: user.name,
       bio: user.bio || "",
-      profilePictureUrl: user.profilePictureUrl || "",
+      image: undefined,
     });
     setIsEditing(false);
   };

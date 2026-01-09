@@ -1,5 +1,5 @@
 import React from "react";
-import InputField from "../common/InputField";
+import InputField from "../ui/InputField";
 
 interface ProfileBasicInfoProps {
   name: string;

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FiEdit, FiShare2 } from "react-icons/fi";
-import { Button } from "../common";
+import { Button } from "../ui";
 import ChangePasswordModal from "../auth/ChangePasswordModal";
 
 interface ActionButtonsProps {
@@ -25,8 +25,14 @@ const ActionButtons: React.FC<ActionButtonsProps> = ({
   if (isEditing) {
     return (
       <div className="grid grid-flow-col gap-3 justify-end">
-        <Button onClick={onCancel}>Cancel</Button>
-        <Button onClick={onSave} variant="secondary" disabled={isSaving}>
+        <Button onClick={onCancel} className="button button-secondary">
+          Cancel
+        </Button>
+        <Button
+          onClick={onSave}
+          className="button button-primary"
+          disabled={isSaving}
+        >
           Save Changes
         </Button>
       </div>
@@ -35,17 +41,21 @@ const ActionButtons: React.FC<ActionButtonsProps> = ({
 
   return (
     <div className="grid grid-flow-col grid-cols-2 gap-6 mt-6">
-      <div>
-        <Button onClick={onEdit} className="">
+      <div className="mt-4">
+        <Button onClick={onEdit} className="button button-primary">
           <FiEdit />
           Edit Profile
         </Button>
       </div>
-      <div>
-        <Button onClick={onShare} variant="secondary">
+      <div className="mt-4">
+        <Button onClick={onShare} className="button button-secondary">
           <FiShare2 /> Share
         </Button>
-        <Button onClick={() => setIsChangePasswordOpen(true)}>
+        <Button
+          onClick={() => setIsChangePasswordOpen(true)}
+          className="button mt-4"
+          variant="secondary"
+        >
           Change Password
         </Button>
       </div>
