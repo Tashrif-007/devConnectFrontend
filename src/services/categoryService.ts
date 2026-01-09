@@ -47,4 +47,23 @@ export const categoryService = {
         : new Error(UI_MESSAGES.ERROR.FAILED_TO_CREATE_CATEGORY);
     }
   },
+
+  createCategory: async (payload: CreateCategoryPayload): Promise<Category> => {
+    try {
+      const response = await apiClient.post<CreateCategoryResponse>(
+        "/categories",
+        payload
+      );
+
+      if (response.success && response.data) {
+        return response.data;
+      }
+
+      throw new Error(response.message || "Failed to create category");
+    } catch (error) {
+      throw error instanceof Error
+        ? error
+        : new Error("Failed to create category");
+    }
+  },
 };
