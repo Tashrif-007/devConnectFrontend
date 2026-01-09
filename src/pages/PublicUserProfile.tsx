@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import ProfileInfo from "../components/profile/info/ProfileInfo";
+import { Navbar } from "../components/navbar";
+import ProfileInfo from "../components/profile/ProfileInfo";
 import PostCard from "../components/feed/PostCard";
 import { useGetUserProfile } from "../hooks/useGetUserProfile";
 import { useUserStories } from "../hooks/useUserStories";
@@ -10,7 +11,6 @@ import styles from "./PublicUserProfile.module.css";
 
 const PublicUserProfile: React.FC = () => {
   const { userId } = useParams<{ userId: string }>();
-  const { user: loggedInUser } = useAuth();
   const {
     user,
     loading: userLoading,
@@ -60,7 +60,7 @@ const PublicUserProfile: React.FC = () => {
   return (
     <div className={styles.container}>
       <main className="max-w-4xl mx-auto px-4 py-8">
-        <ProfileInfo user={user} isOwnProfile={isOwnProfile} />
+        <ProfileInfo user={user} isPublicProfile={true} />
         {storiesError && (
           <div className={styles.errorMessage}>{storiesError}</div>
         )}
