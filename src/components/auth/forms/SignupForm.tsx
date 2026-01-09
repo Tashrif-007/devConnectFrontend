@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import { Button, InputField, Modal } from "../../ui";
-import { AuthInputs } from "../../../layouts/AuthInputs";
-import { useSignupForm } from "../../../hooks/useSignupForm";
-import { useSignup } from "../../../hooks/useSignup";
-import styles from "./SignupForm.module.css";
+import { Button, InputField, Modal } from "../ui";
+import { AuthInputs } from "../../layouts/AuthInputs";
+import { useSignupForm } from "../../hooks/useSignupForm";
+import { useSignup } from "../../hooks/useSignup";
 
 const SignupForm = () => {
   const { signup, loading } = useSignup();
@@ -33,8 +32,8 @@ const SignupForm = () => {
     }
   };
   return (
-    <div className={styles.container}>
-      <form onSubmit={handleSubmit} className={styles.form}>
+    <div className="w-full max-w-md mt-6">
+      <form onSubmit={handleSubmit}>
         <AuthInputs>
           <InputField
             label="Email"
@@ -80,7 +79,7 @@ const SignupForm = () => {
           ></InputField>
         </AuthInputs>
         <Button
-          className={styles.submitButton}
+          className="w-full button button-primary"
           type="submit"
           disabled={loading}
         >

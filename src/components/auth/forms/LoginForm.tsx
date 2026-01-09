@@ -1,10 +1,9 @@
 import type React from "react";
-import { useLoginForm } from "../../../hooks/useLoginForm";
-import { Button, InputField } from "../../ui";
-import { AuthInputs } from "../../../layouts/AuthInputs";
-import { useLogin } from "../../../hooks/useLogin";
+import { useLoginForm } from "../../hooks/useLoginForm";
+import { Button, InputField } from "../ui";
+import { AuthInputs } from "../../layouts/AuthInputs";
+import { useLogin } from "../../hooks/useLogin";
 import { useNavigate } from "react-router-dom";
-import styles from "./LoginForm.module.css";
 
 const LoginForm = () => {
   const {
@@ -31,8 +30,8 @@ const LoginForm = () => {
     }
   };
   return (
-    <div className={styles.container}>
-      <form onSubmit={handleSubmit} className={styles.form}>
+    <div>
+      <form onSubmit={handleSubmit}>
         <AuthInputs>
           <InputField
             label="Email"
@@ -51,7 +50,7 @@ const LoginForm = () => {
             value={formData.password || ""}
             error={errors.password || ""}
           />
-          <Button className={styles.submitButton} type="submit">
+          <Button className="button button-primary" type="submit">
             {loading ? "Loggin in..." : "Login"}
           </Button>
         </AuthInputs>

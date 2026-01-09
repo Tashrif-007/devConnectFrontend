@@ -1,10 +1,9 @@
 import React from "react";
-import AdminSearchBar from "../search/AdminSearchBar";
+import AdminSearchBar from "./AdminSearchBar";
 import UserTableSection from "./UserTableSection";
 import DeleteUserConfirmation from "./DeleteUserConfirmation";
-import { useUserManagement } from "../../../hooks/useUserManagement";
-import { Button, Paragraph } from "../../ui";
-import styles from "./UserManagement.module.css";
+import { useUserManagement } from "../../hooks/useUserManagement";
+import { Button, Paragraph } from "../ui";
 
 const UserManagement: React.FC = () => {
   const {
@@ -33,7 +32,7 @@ const UserManagement: React.FC = () => {
     hasPreviousPage: currentPage > 1,
     hasNextPage: currentPage < totalPages,
   };
-console.log(users)
+
   return (
     <div>
       <AdminSearchBar
@@ -43,13 +42,15 @@ console.log(users)
       />
 
       {loading ? (
-        <div className={styles.loadingContainer}>Loading users...</div>
+        <div className="bg-white rounded-lg shadow p-8 text-center text-gray-500">
+          Loading users...
+        </div>
       ) : deleteError ? (
-        <div className={styles.errorContainer}>
+        <div className="bg-white rounded-lg shadow p-8 text-center text-red-600">
           <Paragraph>Error: {deleteError}</Paragraph>
           <Button
             onClick={() => handlePageChange(pagination?.currentPage || 1)}
-            className={styles.retryButton}
+            className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
           >
             Retry
           </Button>

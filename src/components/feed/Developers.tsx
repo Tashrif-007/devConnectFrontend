@@ -6,8 +6,6 @@ import DeveloperCard from "./DeveloperCard";
 import DeveloperSkeleton from "./DeveloperSkeleton";
 import { Button } from "../ui";
 import { useNavigate } from "react-router-dom";
-import { ROUTES } from "../../constants";
-import styles from "./Developers.module.css";
 
 const Developers: React.FC = () => {
   const { users, loading, error } = useGetUsers(1, "");
@@ -17,24 +15,24 @@ const Developers: React.FC = () => {
   }, [users]);
 
   const handleClick = () => {
-    navigate(ROUTES.APP.SEARCH);
+    navigate("/search");
   };
 
   return (
-    <div className={styles.container}>
+    <div className="bg-white rounded-lg border border-gray-200 p-5">
       <SectionHeader Icon={FiUser} title="Developers to Know" />
 
-      <div className={styles.developersList}>
+      <div className="space-y-4">
         {loading ? (
-          <div className={styles.loadingContainer}>
+          <div className="space-y-3">
             {[1, 2, 3].map((i) => (
               <DeveloperSkeleton key={i} />
             ))}
           </div>
         ) : error ? (
-          <div className={styles.errorMessage}>{error}</div>
+          <div className="text-red-500 text-sm">{error}</div>
         ) : displayedDevelopers.length === 0 ? (
-          <div className={styles.emptyMessage}>No developers found</div>
+          <div className="text-gray-500 text-sm">No developers found</div>
         ) : (
           displayedDevelopers.map((dev) => (
             <DeveloperCard key={dev.userId} developer={dev} />
