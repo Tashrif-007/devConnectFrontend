@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Button, InputField, Modal } from "../common";
-import { AuthInputs } from "./AuthInputs";
+import { Button, InputField, Modal } from "../ui";
+import { AuthInputs } from "../../layouts/AuthInputs";
 import { useSignupForm } from "../../hooks/useSignupForm";
 import { useSignup } from "../../hooks/useSignup";
 
@@ -78,7 +78,11 @@ const SignupForm = () => {
             error={errors.confirmPassword || ""}
           ></InputField>
         </AuthInputs>
-        <Button className="w-full button button-primary" type="submit" disabled={loading}>
+        <Button
+          className="w-full button button-primary"
+          type="submit"
+          disabled={loading}
+        >
           {loading ? "Creating Account" : "Create Account"}
         </Button>
       </form>

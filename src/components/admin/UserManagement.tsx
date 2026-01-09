@@ -3,34 +3,41 @@ import AdminSearchBar from "./AdminSearchBar";
 import UserTableSection from "./UserTableSection";
 import DeleteUserConfirmation from "./DeleteUserConfirmation";
 import { useUserManagement } from "../../hooks/useUserManagement";
-import { Button } from "../common";
+import { Button, Paragraph } from "../ui";
 
 const UserManagement: React.FC = () => {
   const {
     users,
-    pagination,
+    currentPage,
+    totalPages,
     searchQuery,
     updatingUserId,
     loading,
-    error,
-    roleError,
     roleLoading,
+    roleError,
     deleteLoading,
+    deleteError,
     deleteConfirmModal,
-    handleSearch,
+    handleSearchChange,
     handlePageChange,
-    handlePromoteAdmin,
-    handleDemoteUser,
+    handleRoleChange,
     handleDeleteUser,
     handleConfirmDelete,
     handleCancelDelete,
   } = useUserManagement();
 
+  const pagination = {
+    currentPage,
+    totalPages,
+    hasPreviousPage: currentPage > 1,
+    hasNextPage: currentPage < totalPages,
+  };
+
   return (
     <div>
       <AdminSearchBar
         searchQuery={searchQuery}
-        onSearchChange={handleSearch}
+        onSearchChange={handleSearchChange}
         placeholder="Search users..."
       />
 
@@ -38,9 +45,9 @@ const UserManagement: React.FC = () => {
         <div className="bg-white rounded-lg shadow p-8 text-center text-gray-500">
           Loading users...
         </div>
-      ) : error ? (
+      ) : deleteError ? (
         <div className="bg-white rounded-lg shadow p-8 text-center text-red-600">
-          <p>Error: {error}</p>
+          <Paragraph>Error: {deleteError}</Paragraph>
           <Button
             onClick={() => handlePageChange(pagination?.currentPage || 1)}
             className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
@@ -51,21 +58,13 @@ const UserManagement: React.FC = () => {
       ) : (
         <UserTableSection
           users={users}
-          pagination={
-            pagination || {
-              currentPage: 1,
-              totalPages: 1,
-              hasPreviousPage: false,
-              hasNextPage: false,
-            }
-          }
+          pagination={pagination}
           roleLoading={roleLoading}
           updatingUserId={updatingUserId}
           deleteLoading={deleteLoading}
           roleError={roleError}
           onPageChange={handlePageChange}
-          onPromoteAdmin={handlePromoteAdmin}
-          onDemoteUser={handleDemoteUser}
+          onRoleChange={handleRoleChange}
           onDeleteUser={handleDeleteUser}
         />
       )}

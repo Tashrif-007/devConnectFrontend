@@ -1,7 +1,7 @@
 import type React from "react";
 import { useLoginForm } from "../../hooks/useLoginForm";
-import { Button, InputField } from "../common";
-import { AuthInputs } from "./AuthInputs";
+import { Button, InputField } from "../ui";
+import { AuthInputs } from "../../layouts/AuthInputs";
 import { useLogin } from "../../hooks/useLogin";
 import { useNavigate } from "react-router-dom";
 
@@ -22,8 +22,8 @@ const LoginForm = () => {
       return;
     }
     const result = await login(formData);
-    if(result.success) {
-      navigate('/');
+    if (result.success) {
+      navigate("/");
       handleLoginSuccess();
     } else {
       handleLoginError(result.error!);
@@ -38,7 +38,7 @@ const LoginForm = () => {
             name="email"
             placeholder="user@example.com"
             onChange={handleInputChange}
-            value={formData.email || ''}
+            value={formData.email || ""}
             error={errors.email || ""}
           />
           <InputField
@@ -47,10 +47,12 @@ const LoginForm = () => {
             type="password"
             placeholder="••••••••"
             onChange={handleInputChange}
-            value={formData.password || ''}
+            value={formData.password || ""}
             error={errors.password || ""}
           />
-          <Button className="button button-primary" type="submit">{loading ? "Loggin in..." : "Login"}</Button>
+          <Button className="button button-primary" type="submit">
+            {loading ? "Loggin in..." : "Login"}
+          </Button>
         </AuthInputs>
       </form>
     </div>

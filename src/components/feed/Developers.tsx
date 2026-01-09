@@ -1,26 +1,22 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useMemo } from "react";
 import { FiUser } from "react-icons/fi";
-import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
-import { fetchUsers } from "../../store/userSlice";
+import { useGetUsers } from "../../queries/users/getUsers";
 import SectionHeader from "./SectionHeader";
 import DeveloperCard from "./DeveloperCard";
 import DeveloperSkeleton from "./DeveloperSkeleton";
+import { Button } from "../ui";
+import { useNavigate } from "react-router-dom";
 
 const Developers: React.FC = () => {
-  const dispatch = useAppDispatch();
-  const {
-    items: users,
-    loading,
-    error,
-  } = useAppSelector((state) => state.users);
-
-  useEffect(() => {
-    dispatch(fetchUsers({ page: 1, itemsPerPage: 3 }));
-  }, [dispatch]);
-
+  const { users, loading, error } = useGetUsers(1, "");
+  const navigate = useNavigate();
   const displayedDevelopers = useMemo(() => {
     return users.slice(0, 3);
   }, [users]);
+
+  const handleClick = () => {
+    navigate("/search");
+  };
 
   return (
     <div className="bg-white rounded-lg border border-gray-200 p-5">
@@ -44,9 +40,9 @@ const Developers: React.FC = () => {
         )}
       </div>
 
-      <button className="w-full mt-5 py-2.5 text-center text-gray-700 text-sm font-semibold hover:bg-gray-50 rounded transition-colors border border-gray-200">
+      <Button className="button button-secondary" onClick={handleClick}>
         Find More People
-      </button>
+      </Button>
     </div>
   );
 };

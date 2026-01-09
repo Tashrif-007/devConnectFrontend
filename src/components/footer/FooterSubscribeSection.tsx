@@ -1,4 +1,6 @@
 import { useState } from "react";
+import InputField from "../ui/InputField";
+import { Button } from "../ui";
 
 export default function FooterSubscribeSection() {
   const [email, setEmail] = useState("");
@@ -18,20 +20,20 @@ export default function FooterSubscribeSection() {
         Get the latest dev news and updates.
       </p>
       <form onSubmit={handleSubscribe} className="flex flex-col gap-3">
-        <input
+        <InputField
+          label=""
+          name="email"
           type="email"
           placeholder="Enter your email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          required
-          className="px-4 py-2 border border-slate-200 rounded-lg bg-white text-slate-900 placeholder-slate-500 focus:outline-none focus:ring-1 focus:ring-primary text-sm transition-all"
         />
-        <button
+        <Button
           type="submit"
           className="px-4 py-2 bg-primary hover:bg-primary-hover text-white font-semibold rounded-lg transition-all text-sm"
         >
           Subscribe
-        </button>
+        </Button>
       </form>
     </div>
   );
