@@ -1,7 +1,7 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
-import { useAuth } from "../../hooks/useAuth";
-import type { ProtectedRouteProps } from "../../types/auth";
+import { useAuth } from "../hooks/useAuth";
+import type { ProtectedRouteProps } from "../types/auth";
 
 const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
   element,
