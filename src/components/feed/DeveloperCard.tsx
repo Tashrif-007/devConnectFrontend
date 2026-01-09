@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import type { User } from "../../types";
+import { avatarUrl } from "../../constants";
 
 interface DeveloperCardProps {
   developer: User;
@@ -23,7 +24,7 @@ const DeveloperCard: React.FC<DeveloperCardProps> = ({ developer }) => {
           <img
             src={
               developer.profilePictureUrl ||
-              "https://avatar.iran.liara.run/public"
+              `${avatarUrl}?seed=${developer.name}`
             }
             alt={developer.name}
             className="w-full h-full object-cover"

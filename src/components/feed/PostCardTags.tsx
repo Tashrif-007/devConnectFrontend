@@ -1,5 +1,5 @@
 import React from "react";
-import { Paragraph } from "../common";
+import { Paragraph } from "../ui";
 
 interface PostCardTagsProps {
   tags: string[];

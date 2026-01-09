@@ -1,8 +1,8 @@
 import React from "react";
-import { FiMessageCircle, FiShare2 } from "react-icons/fi";
+import { FiMessageCircle } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
-import VoteButtons from "../common/VoteButtons";
-import { Button } from "../common";
+import VoteButtons from "../ui/VoteButtons";
+import { Button } from "../ui";
 
 interface PostCardActionsProps {
   storyId: string;
@@ -47,11 +47,6 @@ const PostCardActions: React.FC<PostCardActionsProps> = ({
             <span>{commentsCount}</span>
           </Button>
         </div>
-      </div>
-      <div>
-        <Button className="flex items-center gap-1 text-gray-500 hover:text-green-500 transition-colors">
-          <FiShare2 size={16} />
-        </Button>
       </div>
     </div>
   );

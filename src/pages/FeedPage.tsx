@@ -1,13 +1,18 @@
 import React from "react";
 import FeedLayout from "../components/feed/FeedLayout";
-import { Navbar } from "../components/navbar";
+import { useStories } from "../hooks/useStories";
 
 const FeedPage: React.FC = () => {
+  const { stories, pagination, loading, fetchStories, currentCategory } =
+    useStories();
   return (
-    <>
-      <Navbar />;
-      <FeedLayout />;
-    </>
+      <FeedLayout
+        stories={stories}
+        pagination={pagination}
+        loading={loading}
+        fetchStories={fetchStories}
+        currentCategory={currentCategory}
+      />
   );
 };
 

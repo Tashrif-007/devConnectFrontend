@@ -1,5 +1,5 @@
 import React from "react";
-import { Header } from "../common";
+import { Header } from "../ui";
 import ReactMarkdown from "react-markdown";
 
 interface PostCardContentProps {

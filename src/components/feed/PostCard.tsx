@@ -1,10 +1,14 @@
 import React from "react";
-import type { PostCardProps } from "../../types";
+import type { PostCardProps, Story } from "../../types";
 import PostCardHeader from "./PostCardHeader";
 import PostCardContent from "./PostCardContent";
 import PostCardTags from "./PostCardTags";
 import PostCardActions from "./PostCardActions";
 import { useNavigate } from "react-router-dom";
+
+interface PostCardProps {
+  story: Story;
+}
 
 const PostCard: React.FC<PostCardProps> = ({ story }) => {
   const navigate = useNavigate();

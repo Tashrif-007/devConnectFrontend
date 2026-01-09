@@ -2,7 +2,8 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { formatDate } from "../../utils/dateFormatter";
 import type { User } from "../../types";
-import { Button, Paragraph } from "../common";
+import { Button, Paragraph } from "../ui";
+import { avatarUrl } from "../../constants";
 
 interface PostCardHeaderProps {
   user: User;
@@ -31,7 +32,7 @@ const PostCardHeader: React.FC<PostCardHeaderProps> = ({
       >
         <img
           className="h-12 rounded-full w-12 object-cover"
-          src={user.profilePictureUrl || "https://avatar.iran.liara.run/public"}
+          src={user.profilePictureUrl || `${avatarUrl}?seed=${user.name}`}
           alt={user.username}
         />
       </Button>
@@ -42,7 +43,9 @@ const PostCardHeader: React.FC<PostCardHeaderProps> = ({
         >
           {user.name}
         </Button>
-        <Paragraph className="text-base text-gray-500">{formatDate(createdAt)}</Paragraph>
+        <Paragraph className="text-base text-gray-500">
+          {formatDate(createdAt)}
+        </Paragraph>
       </div>
     </div>
   );
