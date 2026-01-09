@@ -2,9 +2,6 @@ import { useNavigate } from "react-router-dom";
 import PostCard from "../feed/PostCard";
 import { useGetStories } from "../../queries/stories/getStories";
 import { PostCardSkeletonLoader } from "../feed/PostCardSkeleton";
-import { ROUTES } from "../../constants";
-import styles from "./RecentPosts.module.css";
-import type { Story } from "../../interfaces";
 
 export default function RecentPosts() {
   const navigate = useNavigate();
@@ -12,20 +9,24 @@ export default function RecentPosts() {
 
   const recentPosts = stories.slice(0, 3);
   return (
-    <section className={styles["section"]}>
-      <div className={styles["container"]}>
-        <div className={styles["header"]}>
-          <div className={styles["header-content"]}>
-            <p className={styles["header-label"]}>Community Feed</p>
-            <h2 className={styles["header-title"]}>Fresh from the community</h2>
+    <section className="w-full bg-background-light transition-colors duration-300 py-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between mb-12">
+          <div>
+            <p className="text-primary font-bold tracking-wide uppercase text-sm mb-2">
+              Community Feed
+            </p>
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900">
+              Fresh from the community
+            </h2>
           </div>
           <button
-            onClick={() => navigate(ROUTES.PUBLIC.FEED)}
-            className={styles["view-all-button-desktop"]}
+            onClick={() => navigate("/feed")}
+            className="hidden md:flex items-center gap-2 text-primary hover:text-primary-hover font-semibold transition-colors"
           >
             View all posts
             <svg
-              className={styles["icon"]}
+              className="w-5 h-5"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -40,7 +41,7 @@ export default function RecentPosts() {
           </button>
         </div>
 
-        <div className={styles["grid"]}>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {loading ? (
             <>
               <PostCardSkeletonLoader />
@@ -54,14 +55,14 @@ export default function RecentPosts() {
           )}
         </div>
 
-        <div className={styles["mobile-button-container"]}>
+        <div className="md:hidden mt-8 text-center">
           <button
             onClick={() => navigate("/feed")}
-            className={styles["view-all-button-mobile"]}
+            className="inline-flex items-center gap-2 px-6 py-3 bg-primary hover:bg-primary-hover text-white font-semibold rounded-full transition-all"
           >
             View all posts
             <svg
-              className={styles["icon"]}
+              className="w-5 h-5"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
