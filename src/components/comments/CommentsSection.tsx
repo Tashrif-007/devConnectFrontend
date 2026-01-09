@@ -8,7 +8,7 @@ interface CommentsSectionProps {
 }
 
 const CommentsSection: React.FC<CommentsSectionProps> = ({ storyId }) => {
-  const { comments, loading, error, addComment, fetchComments } = useComments();
+  const { comments, loading, error, addComment, fetchComments } = useComments(storyId);
   useEffect(() => {
     fetchComments(storyId);
   }, [storyId, fetchComments]);
