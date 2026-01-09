@@ -1,5 +1,5 @@
 import React from "react";
-import { Header } from "../ui";
+import { Header } from "../ui/Header";
 import ReactMarkdown from "react-markdown";
 import styles from "./PostCardContent.module.css";
 

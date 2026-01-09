@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Button, Paragraph } from "../ui";
+import { Button } from "../ui";
 import { useAuth } from "../../hooks/useAuth";
+import { Paragraph } from "../ui/Paragraph";
 
 interface CommentFormProps {
   onSubmit: (body: string) => Promise<boolean>;
