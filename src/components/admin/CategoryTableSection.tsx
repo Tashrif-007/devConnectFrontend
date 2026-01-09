@@ -3,7 +3,7 @@ import AdminTable, { type ColumnDef } from "./AdminTable";
 import Pagination from "../feed/Pagination";
 import { FiTrash2 } from "react-icons/fi";
 import type { Category } from "../../types";
-import { Button } from "../common";
+import { Button } from "../ui";
 
 interface CategoryTableSectionProps {
   categories: Category[];

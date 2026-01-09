@@ -1,7 +1,6 @@
 import React from "react";
-import InputField from "../common/InputField";
-import Button from "../common/Button";
 import { FiPlus } from "react-icons/fi";
+import { Button, InputField } from "../common";
 
 interface AdminSearchBarProps {
   searchQuery: string;

@@ -1,5 +1,5 @@
 import React from "react";
-import { ROLE_COLORS, USER_ROLES } from "../../constants/adminConstants";
+import { ROLE_COLORS } from "../../constants/adminConstants";
 
 interface RoleBadgeProps {
   role: "ADMIN" | "USER";

@@ -4,13 +4,9 @@ import CategoryTableSection from "./CategoryTableSection";
 import DeleteCategoryConfirmation from "./DeleteCategoryConfirmation";
 import CreateCategoryModal from "../modals/CreateCategoryModal";
 import { useCategoryManagement } from "../../hooks/useCategoryManagement";
-import { useAppDispatch } from "../../hooks/reduxHooks";
-import { fetchCategories } from "../../store/categorySlice";
-import { Button } from "../common";
+import { Button } from "../ui";
 
 const CategoryManagement: React.FC = () => {
-  const dispatch = useAppDispatch();
-
   const {
     categories,
     pagination,
@@ -29,11 +25,6 @@ const CategoryManagement: React.FC = () => {
     handleCreateCategory,
     setCreateModal,
   } = useCategoryManagement();
-
-  // Dispatch fetch on mount
-  React.useEffect(() => {
-    dispatch(fetchCategories());
-  }, [dispatch]);
 
   return (
     <div>

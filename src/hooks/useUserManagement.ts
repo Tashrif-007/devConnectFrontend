@@ -1,20 +1,22 @@
-import { useState, useCallback, useEffect } from "react";
-import { useUpdateUserRole } from "./useUpdateUserRole";
-import { useAppDispatch, useAppSelector } from "./reduxHooks";
-import { fetchUsers } from "../store/userSlice";
-import { adminService } from "../services/adminService";
-import type { User } from "../types/auth";
-import { USER_MANAGEMENT_CONFIG } from "../constants/adminConstants";
+import { useState, useCallback } from "react";
+import { useQueryClient } from "@tanstack/react-query";
+import { useGetUsers } from "../queries/users/getUsers";
+import { useDeleteUserMutation } from "../queries/users/deleteUser";
+import { USER_MANAGEMENT_CONFIG } from "../constants/index";
+import { useUpdateUserRoleMutation } from "../queries";
+import { USER_ROLES } from "../types";
 
 export const useUserManagement = () => {
-  const dispatch = useAppDispatch();
-  const { items: users = [], loading } = useAppSelector((state) => state.users);
-  const { updateRole } = useUpdateUserRole();
+  const queryClient = useQueryClient();
+  const {
+    updateRole,
+    loading: roleLoading,
+    error: roleError,
+  } = useUpdateUserRoleMutation();
 
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [updatingUserId, setUpdatingUserId] = useState<string | null>(null);
-  const [optimisticUsers, setOptimisticUsers] = useState<User[] | null>(null);
   const [deleteLoading, setDeleteLoading] = useState<string | null>(null);
   const [deleteError, setDeleteError] = useState<string | null>(null);
   const [deleteConfirmModal, setDeleteConfirmModal] = useState<{
@@ -22,11 +24,13 @@ export const useUserManagement = () => {
     userId: string | null;
   }>({ isOpen: false, userId: null });
 
-  useEffect(() => {
-    dispatch(fetchUsers({ page: currentPage, find: searchQuery }));
-  }, [currentPage, searchQuery, dispatch]);
+  const { users, loading } = useGetUsers(currentPage, searchQuery);
+  const { deleteUserMutation } = useDeleteUserMutation(
+    currentPage,
+    searchQuery
+  );
 
-  const filteredUsers = optimisticUsers || users;
+  const filteredUsers = users;
   const totalPages = Math.ceil(
     (filteredUsers.length || 0) / USER_MANAGEMENT_CONFIG.ITEMS_PER_PAGE
   );
@@ -44,89 +48,45 @@ export const useUserManagement = () => {
     setCurrentPage(page);
   }, []);
 
-  const handlePromoteAdmin = useCallback(
-    async (userId: string) => {
+  const handleRoleChange = useCallback(
+    async (userId: string, newRole: USER_ROLES) => {
       setUpdatingUserId(userId);
-      const previousUsers = optimisticUsers || users;
-
-      setOptimisticUsers(
-        previousUsers.map((user) =>
-          user.userId === userId ? { ...user, role: "ADMIN" } : user
-        )
-      );
 
       try {
-        await updateRole(userId, "ADMIN");
-        setOptimisticUsers(null);
-        dispatch(fetchUsers({ page: currentPage, find: searchQuery }));
-      } catch {
-        setOptimisticUsers(null); 
+        await updateRole(userId, newRole);
+        await queryClient.invalidateQueries({
+          queryKey: ["users"],
+        });
       } finally {
         setUpdatingUserId(null);
       }
     },
-    [updateRole, users, optimisticUsers, currentPage, searchQuery, dispatch]
+    [updateRole, queryClient]
   );
 
-  const handleDemoteUser = useCallback(
-    async (userId: string) => {
-      setUpdatingUserId(userId);
-      const previousUsers = optimisticUsers || users;
-
-      setOptimisticUsers(
-        previousUsers.map((user) =>
-          user.userId === userId ? { ...user, role: "USER" } : user
-        )
-      );
-
-      try {
-        await updateRole(userId, "USER");
-        setOptimisticUsers(null);
-        dispatch(fetchUsers({ page: currentPage, find: searchQuery })); 
-      } catch {
-        setOptimisticUsers(null); 
-      } finally {
-        setUpdatingUserId(null);
-      }
+  const handleDeleteUser = useCallback(
+    async (userId: string): Promise<void> => {
+      setDeleteConfirmModal({ isOpen: true, userId });
     },
-    [updateRole, users, optimisticUsers, currentPage, searchQuery, dispatch]
+    []
   );
-
-  const handleDeleteUser = useCallback((userId: string) => {
-    setDeleteConfirmModal({ isOpen: true, userId });
-  }, []);
 
   const handleConfirmDelete = useCallback(async () => {
     const userId = deleteConfirmModal.userId;
     if (!userId) return;
 
     setDeleteLoading(userId);
-    setDeleteError(null);
-
     try {
-      await adminService.deleteUser(userId);
-
-      const updatedUsers = (optimisticUsers || users).filter(
-        (user) => user.userId !== userId
-      );
-      setOptimisticUsers(updatedUsers);
-      setDeleteConfirmModal({ isOpen: false, userId: null });
-      dispatch(fetchUsers({ page: currentPage, find: searchQuery }));
+      await deleteUserMutation.mutateAsync(userId);
+      setDeleteError(null);
     } catch (error) {
-      const errorMessage =
-        error instanceof Error ? error.message : "Failed to delete user";
-      setDeleteError(errorMessage);
+      setDeleteError(
+        error instanceof Error ? error.message : "Failed to delete user"
+      );
     } finally {
       setDeleteLoading(null);
     }
-  }, [
-    deleteConfirmModal.userId,
-    optimisticUsers,
-    users,
-    currentPage,
-    searchQuery,
-    dispatch,
-  ]);
+  }, [deleteConfirmModal.userId, deleteUserMutation]);
 
   const handleCancelDelete = useCallback(() => {
     setDeleteConfirmModal({ isOpen: false, userId: null });
@@ -141,13 +101,14 @@ export const useUserManagement = () => {
     totalPages,
     loading,
     updatingUserId,
+    roleLoading,
+    roleError,
     deleteLoading,
     deleteError,
     deleteConfirmModal,
     handleSearchChange,
     handlePageChange,
-    handlePromoteAdmin,
-    handleDemoteUser,
+    handleRoleChange,
     handleDeleteUser,
     handleConfirmDelete,
     handleCancelDelete,

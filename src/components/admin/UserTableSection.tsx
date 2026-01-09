@@ -1,27 +1,25 @@
 import React from "react";
 import AdminTable, { type ColumnDef } from "./AdminTable";
 import Pagination from "../feed/Pagination";
-import type { User } from "../../services/userService";
+import type { User } from "../../types/auth";
 import RoleBadge from "./RoleBadge";
 import UserActionCell from "./UserActionCell";
-import { USER_MANAGEMENT_CONFIG } from "../../constants/adminConstants";
+import { USER_MANAGEMENT_CONFIG } from "../../constants";
+import { USER_ROLES } from "../../types";
 
 interface UserTableSectionProps {
   users: User[];
   pagination: {
     currentPage: number;
     totalPages: number;
-    hasPreviousPage: boolean;
-    hasNextPage: boolean;
   };
   roleLoading: boolean;
   updatingUserId: string | null;
   deleteLoading: string | null;
   roleError: string | null;
   onPageChange: (page: number) => void;
-  onPromoteAdmin: (userId: string) => Promise<void>;
-  onDemoteUser: (userId: string) => Promise<void>;
-  onDeleteUser: (userId: string) => void;
+  onRoleChange: (userId: string, newRole: USER_ROLES) => Promise<void>;
+  onDeleteUser: (userId: string) => Promise<void>;
 }
 
 const UserTableSection: React.FC<UserTableSectionProps> = ({
@@ -32,8 +30,7 @@ const UserTableSection: React.FC<UserTableSectionProps> = ({
   deleteLoading,
   roleError,
   onPageChange,
-  onPromoteAdmin,
-  onDemoteUser,
+  onRoleChange,
   onDeleteUser,
 }) => {
   const formatDate = (dateString: string) => {
@@ -66,8 +63,7 @@ const UserTableSection: React.FC<UserTableSectionProps> = ({
       render: (_, item: User) => (
         <UserActionCell
           user={item}
-          onPromoteAdmin={onPromoteAdmin}
-          onDemoteUser={onDemoteUser}
+          onRoleChange={onRoleChange}
           onDeleteUser={onDeleteUser}
           isUpdating={roleLoading && updatingUserId === item.userId}
           isDeleting={deleteLoading === item.userId}
@@ -89,10 +85,12 @@ const UserTableSection: React.FC<UserTableSectionProps> = ({
       {pagination && (
         <Pagination
           pagination={{
-            currentPage: pagination.currentPage.toString(),
+            currentPage: pagination.currentPage,
             totalPages: pagination.totalPages,
-            hasPreviousPage: pagination.hasPreviousPage,
-            hasNextPage: pagination.hasNextPage,
+            itemsPerPage: USER_MANAGEMENT_CONFIG.ITEMS_PER_PAGE,
+            totalItems: users.length,
+            hasNextPage: pagination.currentPage < pagination.totalPages,
+            hasPreviousPage: pagination.currentPage > 1,
           }}
           onPageChange={onPageChange}
         />

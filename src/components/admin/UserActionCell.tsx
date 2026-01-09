@@ -1,13 +1,13 @@
 import React from "react";
-import Button from "../common/Button";
+import Button from "../ui/Button";
 import { FiTrash2 } from "react-icons/fi";
-import type { User } from "../../services/userService";
-import { USER_ROLES } from "../../constants/adminConstants";
+import type { User } from "../../types/auth";
+import Options from "../ui/Options";
+import { USER_ROLES } from "../../types";
 
 interface UserActionCellProps {
   user: User;
-  onPromoteAdmin: (userId: string) => Promise<void>;
-  onDemoteUser: (userId: string) => Promise<void>;
+  onRoleChange: (userId: string, newRole: USER_ROLES) => Promise<void>;
   onDeleteUser: (userId: string) => Promise<void>;
   isUpdating: boolean;
   isDeleting: boolean;
@@ -16,8 +16,7 @@ interface UserActionCellProps {
 
 const UserActionCell: React.FC<UserActionCellProps> = ({
   user,
-  onPromoteAdmin,
-  onDemoteUser,
+  onRoleChange,
   onDeleteUser,
   isUpdating,
   isDeleting,
@@ -27,26 +26,12 @@ const UserActionCell: React.FC<UserActionCellProps> = ({
     <div className="flex items-center justify-end gap-2">
       {error && <span className="text-xs text-red-600 mr-2">{error}</span>}
 
-      {user.role === USER_ROLES.USER ? (
-        <Button
-          variant="secondary"
-          onClick={() => onPromoteAdmin(user.userId)}
-          disabled={isUpdating}
-          className="px-3 py-1 text-xs button"
-        >
-          {isUpdating ? "Promoting..." : "Promote to Admin"}
-        </Button>
-      ) : (
-        <Button
-          variant="secondary"
-          onClick={() => onDemoteUser(user.userId)}
-          disabled={isUpdating}
-          className="px-3 py-1 text-xs button"
-        >
-          {isUpdating ? "Demoting..." : "Demote to User"}
-        </Button>
-      )}
-
+      <Options
+        value={user.role}
+        onChange={(e) => onRoleChange(user.userId, e.target.value as USER_ROLES)}
+        disabled={isUpdating}
+        className="px-3 py-1.5 text-sm border border-gray-300 rounded bg-white hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+      />
       <Button
         onClick={() => onDeleteUser(user.userId)}
         disabled={isDeleting || isUpdating}
