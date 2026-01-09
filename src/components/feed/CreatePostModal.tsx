@@ -1,5 +1,4 @@
 import type React from "react";
-import { Header, InputField, Modal } from "../ui";
 import { AuthInputs } from "../../layouts/AuthInputs";
 import ContentEditor from "../modals/ContentEditor";
 import TagSelector from "../modals/TagSelector";
@@ -9,6 +8,9 @@ import FormActions from "../modals/FormActions";
 import { useState } from "react";
 import { useCreatePostForm } from "../../hooks/useCreatePostForm";
 import { useGetCategories } from "../../queries";
+import Modal from "../ui/Modal";
+import { InputField } from "../ui";
+import { Header } from "../ui/Header";
 
 type CreatePostModalProps = {
   isOpen: boolean;

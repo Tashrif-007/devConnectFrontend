@@ -1,6 +1,6 @@
 import React from "react";
 import { type IconType } from "react-icons";
-import { Header } from "../common/Header";
+import { Header } from "../ui/Header";
 
 interface SectionHeaderProps {
   Icon: IconType;
