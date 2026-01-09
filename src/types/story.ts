@@ -32,9 +32,7 @@ export interface CreateStoryPayload {
   skip: boolean;
 }
 
-export interface CreateCommentPayload {
-  body: string;
-}
+export type UpdateStoryPayload = Partial<CreateStoryPayload>;
 
 export interface CreateStoryData {
   storyId: string;

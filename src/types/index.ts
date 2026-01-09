@@ -1,133 +1,61 @@
-export interface FormData {
-  username: string;
-  name: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
-}
+export type { ApiResponse } from "./common";
+export type { FormErrors } from "./common";
 
-export interface LoginFormData {
-  emailOrUsername: string;
-  password: string;
-}
+export type { PaginationData } from "./pagination";
 
-export interface FormErrors {
-  [key: string]: string;
-}
+export type { User } from "./auth";
+export type {
+  SignupPayload,
+  SignupResponse,
+  SignupResponseData,
+  LoginPayload,
+  LoginResponse,
+  LoginResponseData,
+  UpdatePasswordPayload,
+  UpdatePasswordResponse,
+  ResendConfirmationEmailPayload,
+  ResendConfirmationEmailResponse,
+} from "./auth";
 
-export interface SignupPayload {
-  username: string;
-  name: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
-}
+export type {
+  Story,
+  Comment,
+  CreateStoryPayload,
+  CreateStoryResponse,
+  CreateStoryData,
+  StoryDetailResponse,
+  CreateCommentResponse,
+  CommentsListData,
+  GetCommentsResponse,
+  StoriesData,
+  StoriesResponse,
+} from "./story";
 
-export interface SignupResponseData {
-  userId: string;
-  username: string;
-  name: string;
-  email: string;
-  joinDate: string;
-  isEmailConfirmed: boolean;
-  role: string;
-  profilePictureUrl: string | null;
-}
+export type { VoteType, UserVoteType, VotePayload, VoteResponse } from "./vote";
 
-export interface SignupResponse {
-  success: boolean;
-  data?: SignupResponseData;
-  message?: string;
-  error?: string;
-}
+export type {
+  GetUsersParams,
+  GetUsersData,
+  GetUsersResponse,
+  GetUserByIdResponse,
+  UpdateUserRolePayload,
+  UpdateUserRoleResponse,
+  DeleteUserResponse,
+} from "./user";
+export { USER_ROLES } from "./user";
 
-export interface UseSignupReturn {
-  signup: (payload: SignupPayload) => Promise<SignupResponse>;
-  loading: boolean;
-  error: string | null;
-}
+export type {
+  UseSignupReturn,
+  UseLoginReturn,
+  UseStoriesReturn,
+  UseCommentsReturn,
+  UseVotingReturn,
+} from "./hooks";
 
-export interface LoginPayload {
-  emailOrUsername: string;
-  password: string;
-}
-
-export interface LoginUser {
-  userId: string;
-  email: string;
-  username: string;
-  name: string;
-  role: string;
-  isEmailConfirmed: boolean;
-  profilePictureUrl: string | null;
-}
-
-export interface LoginResponseData {
-  token: string;
-  user: LoginUser;
-}
-
-export interface LoginResponse {
-  success: boolean;
-  data?: LoginResponseData;
-  message?: string;
-  error?: string;
-}
-
-export interface UseLoginReturn {
-  login: (payload: LoginPayload) => Promise<LoginResponse>;
-  loading: boolean;
-  error: string | null;
-}
-export interface User {
-  userId: string;
-  username: string;
-  name: string;
-  email: string;
-  joinDate: string;
-  isEmailConfirmed: boolean;
-  role: string;
-  profilePictureUrl: string | null;
-}
-
-export interface PostCardProps {
-  story: Story;
-}
-
-export interface Story {
-  storyId: string;
-  title: string;
-  body: string;
-  user: User;
-  categoryNames: string[];
-  createdAt: string;
-  updatedAt: string;
-}
-
-export interface PaginationData {
-  currentPage: string;
-  itemsPerPage: string;
-  totalItems: number;
-  totalPages: number;
-  hasNextPage: boolean;
-  hasPreviousPage: boolean;
-}
-
-export interface StoriesData {
-  data: Story[];
-  pagination: PaginationData;
-}
-
-export interface StoriesResponse {
-  success: boolean;
-  data: StoriesData;
-  message: string;
-}
-
-export interface UseStoriesReturn {
-  stories: Story[];
-  pagination: PaginationData | null;
-  loading: boolean;
-  error: string | null;
-  fetchStories: (page: number) => Promise<void>;
-}
+export type {
+  Category,
+  CreateCategoryPayload,
+  CreateCategoryResponse,
+  DeleteCategoryResponse,
+  CategoryResponse,
+} from "./categories";
