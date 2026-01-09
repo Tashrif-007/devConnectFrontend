@@ -33,7 +33,11 @@ const UserManagement: React.FC = () => {
     hasPreviousPage: currentPage > 1,
     hasNextPage: currentPage < totalPages,
   };
+<<<<<<< HEAD:src/components/admin/management/UserManagement.tsx
 console.log(users)
+=======
+
+>>>>>>> 00cd111 (refactor: use Button, Paragraph, Header components instead html):src/components/admin/UserManagement.tsx
   return (
     <div>
       <AdminSearchBar
@@ -43,9 +47,17 @@ console.log(users)
       />
 
       {loading ? (
+<<<<<<< HEAD:src/components/admin/management/UserManagement.tsx
         <div className={styles.loadingContainer}>Loading users...</div>
       ) : deleteError ? (
         <div className={styles.errorContainer}>
+=======
+        <div className="bg-white rounded-lg shadow p-8 text-center text-gray-500">
+          Loading users...
+        </div>
+      ) : deleteError ? (
+        <div className="bg-white rounded-lg shadow p-8 text-center text-red-600">
+>>>>>>> 00cd111 (refactor: use Button, Paragraph, Header components instead html):src/components/admin/UserManagement.tsx
           <Paragraph>Error: {deleteError}</Paragraph>
           <Button
             onClick={() => handlePageChange(pagination?.currentPage || 1)}
