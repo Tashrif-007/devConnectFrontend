@@ -1,38 +1,33 @@
 import React, { useState, type ReactNode } from "react";
 import AuthContext, { type AuthContextType } from "./AuthContext";
-import type { LoginUser } from "../types";
+import type { User } from "../types";
+import {
+  getStoredUser,
+  getStoredToken,
+  saveStoredUser,
+  clearStoredAuth,
+} from "../utils/storageUtils";
+import { STORAGE_KEYS } from "../utils/storageKeys";
 
 interface AuthProviderProps {
   children: ReactNode;
 }
 
-const STORAGE_KEYS = {
-  TOKEN: "devconnect_token",
-  USER: "devconnect_user",
-};
-
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [authState, setAuthState] = useState<{
-    user: LoginUser | null;
+    user: User | null;
     token: string | null;
     isLoading: boolean;
   }>(() => {
-    const storedToken = localStorage.getItem(STORAGE_KEYS.TOKEN);
-    const storedUser = localStorage.getItem(STORAGE_KEYS.USER);
+    const storedToken = getStoredToken();
+    const storedUser = getStoredUser();
 
     if (storedToken && storedUser) {
-      try {
-        const parsedUser = JSON.parse(storedUser);
-        return {
-          user: parsedUser,
-          token: storedToken,
-          isLoading: false,
-        };
-      } catch (error) {
-        console.error("Failed to parse stored user data:", error);
-        localStorage.removeItem(STORAGE_KEYS.TOKEN);
-        localStorage.removeItem(STORAGE_KEYS.USER);
-      }
+      return {
+        user: storedUser,
+        token: storedToken,
+        isLoading: false,
+      };
     }
 
     return {
@@ -42,14 +37,14 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     };
   });
 
-  const login = (newUser: LoginUser, newToken: string) => {
+  const login = (newUser: User, newToken: string) => {
     setAuthState({
       user: newUser,
       token: newToken,
       isLoading: false,
     });
+    saveStoredUser(newUser);
     localStorage.setItem(STORAGE_KEYS.TOKEN, newToken);
-    localStorage.setItem(STORAGE_KEYS.USER, JSON.stringify(newUser));
   };
 
   const logout = () => {
@@ -58,8 +53,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       token: null,
       isLoading: false,
     });
-    localStorage.removeItem(STORAGE_KEYS.TOKEN);
-    localStorage.removeItem(STORAGE_KEYS.USER);
+    clearStoredAuth();
   };
 
   const value: AuthContextType = {

@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
+import { useAuth } from "../../hooks/useAuth";
 
 export default function HeroSection() {
+  const { isAuthenticated } = useAuth();
   return (
     <section className="w-full relative overflow-hidden bg-background-light transition-colors duration-300 pt-20 pb-10">
       <div className="absolute inset-0 z-0">
@@ -20,26 +22,28 @@ export default function HeroSection() {
           and accelerate career growth.
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-4 w-full justify-center items-center mb-12">
-          <Link
-            to="/signup"
-            className="w-full sm:w-auto px-8 py-4 border-2 border-slate-300 bg-black text-white hover:bg-black-hover font-bold text-lg rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-primary/40 flex items-center justify-center gap-2"
-          >
-            Get Started
-            <svg
-              className="w-5 h-5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          {!isAuthenticated && (
+            <Link
+              to="/signup"
+              className="w-full sm:w-auto px-8 py-4 border-2 border-slate-300 bg-black text-white hover:bg-black-hover font-bold text-lg rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-primary/40 flex items-center justify-center gap-2"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M13 7l5 5m0 0l-5 5m5-5H6"
-              />
-            </svg>
-          </Link>
+              Get Started
+              <svg
+                className="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M13 7l5 5m0 0l-5 5m5-5H6"
+                />
+              </svg>
+            </Link>
+          )}
           <Link
             to="/feed"
             className="w-full sm:w-auto px-8 py-4 bg-transparent border-2 border-slate-300 hover:border-primary text-slate-700 font-bold text-lg rounded-full transition-all duration-300 hover:bg-slate-50 flex items-center justify-center gap-2 group"

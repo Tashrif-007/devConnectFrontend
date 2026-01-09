@@ -1,42 +1,13 @@
-import PostCard from "./PostCard";
-
-const dummyPosts = [
-  {
-    tag: "React",
-    tagColor: "bg-purple-200",
-    author: "Sarah Jenkins",
-    timeAgo: "1 day ago",
-    title: "Understanding React Server Components in 2024",
-    description:
-      "Server components are changing how we build modern web apps. Here's a deep dive into the architecture and benefits...",
-    likes: 42,
-    comments: 12,
-  },
-  {
-    tag: "Rust",
-    tagColor: "bg-cyan-200",
-    author: "Alex Chen",
-    timeAgo: "4 days ago",
-    title: "Why I switched from Go to Rust for my backend services",
-    description:
-      "Memory safety without garbage collection was the main selling point, but the developer experience surprised me...",
-    likes: 124,
-    comments: 45,
-  },
-  {
-    tag: "DevOps",
-    tagColor: "bg-red-200",
-    author: "Maria Rodriguez",
-    timeAgo: "6 days ago",
-    title: "Mastering Docker Compose for local development environments",
-    description:
-      "Stop installing dependencies globally. Learn how to containerize your entire stack for consistent development...",
-    likes: 89,
-    comments: 23,
-  },
-];
+import { useNavigate } from "react-router-dom";
+import PostCard from "../feed/PostCard";
+import { useGetStories } from "../../queries/stories/getStories";
+import { PostCardSkeletonLoader } from "../feed/PostCardSkeleton";
 
 export default function RecentPosts() {
+  const navigate = useNavigate();
+  const { stories, loading } = useGetStories(1, undefined);
+
+  const recentPosts = stories.slice(0, 3);
   return (
     <section className="w-full bg-background-light transition-colors duration-300 py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -49,8 +20,8 @@ export default function RecentPosts() {
               Fresh from the community
             </h2>
           </div>
-          <a
-            href="#"
+          <button
+            onClick={() => navigate("/feed")}
             className="hidden md:flex items-center gap-2 text-primary hover:text-primary-hover font-semibold transition-colors"
           >
             View all posts
@@ -67,27 +38,28 @@ export default function RecentPosts() {
                 d="M13 7l5 5m0 0l-5 5m5-5H6"
               />
             </svg>
-          </a>
+          </button>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {dummyPosts.map((post, index) => (
-            <PostCard
-              key={index}
-              tag={post.tag}
-              tagColor={post.tagColor}
-              author={post.author}
-              timeAgo={post.timeAgo}
-              title={post.title}
-              description={post.description}
-              likes={post.likes}
-              comments={post.comments}
-            />
-          ))}
+          {loading ? (
+            <>
+              <PostCardSkeletonLoader />
+              <PostCardSkeletonLoader />
+              <PostCardSkeletonLoader />
+            </>
+          ) : (
+            recentPosts.map((story) => (
+              <PostCard key={story.storyId} story={story} />
+            ))
+          )}
         </div>
 
         <div className="md:hidden mt-8 text-center">
-          <button className="inline-flex items-center gap-2 px-6 py-3 bg-primary hover:bg-primary-hover text-white font-semibold rounded-full transition-all">
+          <button
+            onClick={() => navigate("/feed")}
+            className="inline-flex items-center gap-2 px-6 py-3 bg-primary hover:bg-primary-hover text-white font-semibold rounded-full transition-all"
+          >
             View all posts
             <svg
               className="w-5 h-5"

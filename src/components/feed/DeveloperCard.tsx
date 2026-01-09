@@ -20,7 +20,7 @@ const DeveloperCard: React.FC<DeveloperCardProps> = ({ developer }) => {
         onClick={handleClick}
         className="flex items-center gap-3 flex-1 hover:opacity-75 transition-opacity text-left"
       >
-        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center text-white font-bold text-sm flex-shrink-0 overflow-hidden">
+        <div className="w-10 h-10 rounded-full bg-linear-to-br from-blue-500 to-purple-500 flex items-center justify-center text-white font-bold text-sm flex-shrink-0 overflow-hidden">
           <img
             src={
               developer.profilePictureUrl ||

@@ -316,7 +316,7 @@ body {
   padding: var(--space-3);
   font-size: var(--font-size-base);
   font-weight: 600;
-  border-radius: var(--radius-full);
+  border-radius: var(--radius-2xl);
   border: none;
   cursor: pointer;
   transition: all 0.2s;
@@ -417,8 +417,8 @@ body {
 .modal-content {
   background-color: var(--color-bg-white);
   border-radius: var(--radius-lg);
-  padding: var(--space-8);
-  max-width: 28rem;
+  padding: var(--space-5) var(--space-8);
+  max-width: 40rem;
   width: 90%;
   text-align: center;
   box-shadow: var(--shadow-lg);
@@ -487,6 +487,37 @@ body {
 
 .modal-button:hover {
   background-color: #1f2937;
+}
+
+.modal-buttons {
+  display: flex;
+  gap: var(--space-3);
+  justify-content: center;
+  margin-top: var(--space-6);
+}
+
+.modal-button-primary {
+  background-color: var(--color-text-primary);
+  color: var(--color-bg-white);
+}
+
+.modal-button-primary:hover {
+  background-color: #1f2937;
+}
+
+.modal-button-secondary {
+  background-color: var(--color-bg-light);
+  color: var(--color-text-primary);
+  border: 1px solid var(--color-border);
+}
+
+.modal-button-secondary:hover {
+  background-color: #f3f4f6;
+}
+
+.modal-body {
+  margin-bottom: var(--space-6);
+  text-align: left;
 }
 
 @keyframes fadeIn {
