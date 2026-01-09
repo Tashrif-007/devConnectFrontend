@@ -3,8 +3,8 @@ import ProfileInfo from "../components/profile/ProfileInfo";
 import PostCard from "../components/feed/PostCard";
 import { useAuth } from "../hooks/useAuth";
 import { useUserStories } from "../hooks/useUserStories";
-import { Header } from "../components/ui/Header";
-import { Paragraph } from "../components/ui/Paragraph";
+import { Header, Paragraph } from "../components/ui";
+import Spinner from "../components/ui/Spinner";
 
 const UserProfilePage: React.FC = () => {
   const { user } = useAuth();

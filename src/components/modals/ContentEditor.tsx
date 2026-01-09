@@ -1,6 +1,7 @@
 import React, { useState, type ForwardedRef } from "react";
 import MarkdownToolbar from "./MarkdownToolbar";
 import ContentTabs from "./ContentTabs";
+import TabButton from "../ui/TabButton";
 
 interface ContentEditorProps {
   content: string;
