@@ -1,7 +1,7 @@
 import { apiClient } from "./apiClient";
-import { API_ENDPOINTS } from "../constants";
 import type {
   StoriesResponse,
+  CreateStoryPayload,
   CreateStoryResponse,
   StoryDetailResponse,
   CreateCommentPayload,
@@ -9,7 +9,6 @@ import type {
   GetCommentsResponse,
 } from "../types";
 import type { UpdateStoryPayload } from "../types/story";
-import type { CreateStoryPayload } from "../interfaces";
 
 export const storyService = {
   async fetchStories(
@@ -18,7 +17,7 @@ export const storyService = {
     category?: string,
     find?: string
   ): Promise<StoriesResponse> {
-    return apiClient.get<StoriesResponse>(API_ENDPOINTS.STORIES.BASE, {
+    return apiClient.get<StoriesResponse>("/stories", {
       params: {
         page,
         itemsPerPage,
@@ -29,9 +28,7 @@ export const storyService = {
   },
 
   async getStoryById(storyId: string): Promise<StoryDetailResponse> {
-    return apiClient.get<StoryDetailResponse>(
-      API_ENDPOINTS.STORIES.BY_ID(storyId)
-    );
+    return apiClient.get<StoryDetailResponse>(`/stories/${storyId}`);
   },
 
   async fetchStoriesByUserId(
@@ -40,20 +37,17 @@ export const storyService = {
     itemsPerPage: number = 10,
     category?: string
   ): Promise<StoriesResponse> {
-    return apiClient.get<StoriesResponse>(
-      API_ENDPOINTS.STORIES.BY_USER_ID(userId),
-      {
-        params: {
-          page,
-          itemsPerPage,
-          ...(category && { category }),
-        },
-      }
-    );
+    return apiClient.get<StoriesResponse>(`/stories/user/${userId}`, {
+      params: {
+        page,
+        itemsPerPage,
+        ...(category && { category }),
+      },
+    });
   },
 
   async createStory(payload: CreateStoryPayload): Promise<CreateStoryResponse> {
-    return apiClient.post<CreateStoryResponse>(API_ENDPOINTS.STORIES.BASE, {
+    return apiClient.post<CreateStoryResponse>("/stories", {
       title: payload.title,
       body: payload.body,
       categoryIds: payload.categoryIds,
@@ -64,14 +58,11 @@ export const storyService = {
     storyId: string,
     payload: UpdateStoryPayload
   ): Promise<CreateStoryResponse> {
-    return apiClient.put<CreateStoryResponse>(
-      API_ENDPOINTS.STORIES.BY_ID(storyId),
-      payload
-    );
+    return apiClient.put<CreateStoryResponse>(`/stories/${storyId}`, payload);
   },
 
   async deleteStory(storyId: string): Promise<void> {
-    return apiClient.delete(API_ENDPOINTS.STORIES.BY_ID(storyId));
+    return apiClient.delete(`/stories/${storyId}`);
   },
 
   async createComment(
@@ -79,20 +70,14 @@ export const storyService = {
     payload: CreateCommentPayload
   ): Promise<CreateCommentResponse> {
     return apiClient.post<CreateCommentResponse>(
-      API_ENDPOINTS.STORIES.COMMENTS(storyId),
+      `/stories/${storyId}/comments`,
       {
         body: payload.body,
       }
     );
   },
 
-  async deleteComment(commentId: string): Promise<void> {
-    return apiClient.delete(API_ENDPOINTS.STORIES.COMMENT_DELETE(commentId));
-  },
-
   async getCommentsByStoryId(storyId: string): Promise<GetCommentsResponse> {
-    return apiClient.get<GetCommentsResponse>(
-      API_ENDPOINTS.STORIES.COMMENTS(storyId)
-    );
+    return apiClient.get<GetCommentsResponse>(`/stories/${storyId}/comments`);
   },
 };
