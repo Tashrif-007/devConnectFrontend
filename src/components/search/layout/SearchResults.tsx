@@ -7,6 +7,7 @@ import PostCard from "../feed/PostCard";
 import Pagination from "../feed/Pagination";
 import ErrorMessage from "../modals/ErrorMessage";
 import { Paragraph } from "../ui";
+import Spinner from "../ui/Spinner";
 
 interface SearchResultsProps {
   type: "users" | "posts";
