@@ -1,23 +1,20 @@
 import { useQuery } from "@tanstack/react-query";
 import { storyService } from "../../services/storyService";
-import { QUERY_CONFIG, UI_MESSAGES } from "../../constants";
 
 export const useGetStoryDetail = (storyId: string | undefined) => {
   const { data, isLoading, error } = useQuery({
-    queryKey: [QUERY_CONFIG.QUERY_KEYS.STORIES, storyId],
+    queryKey: ["story", storyId],
     queryFn: async () => {
       if (!storyId) throw new Error("Story ID not found");
       const response = await storyService.getStoryById(storyId);
       if (response.success && response.data) {
         return response.data;
       }
-      throw new Error(
-        response.message || UI_MESSAGES.ERROR.FAILED_TO_FETCH_STORIES
-      );
+      throw new Error(response.message || "Failed to fetch story");
     },
     enabled: !!storyId,
-    staleTime: QUERY_CONFIG.STALE_TIMES.STORIES,
-    gcTime: QUERY_CONFIG.GC_TIMES.STORIES,
+    staleTime: 2 * 60 * 1000, 
+    gcTime: 5 * 60 * 1000, 
   });
 
   return {

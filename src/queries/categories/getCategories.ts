@@ -1,6 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
 import { categoryService } from "../../services/categoryService";
-import { QUERY_CONFIG } from "../../constants";
 
 export const useGetCategories = () => {
   const {
@@ -8,13 +7,13 @@ export const useGetCategories = () => {
     isLoading,
     error,
   } = useQuery({
-    queryKey: [QUERY_CONFIG.QUERY_KEYS.CATEGORIES],
+    queryKey: ["categories"],
     queryFn: async () => {
       const response = await categoryService.fetchCategories();
       return response || [];
     },
-    staleTime: QUERY_CONFIG.STALE_TIMES.CATEGORIES,
-    gcTime: QUERY_CONFIG.GC_TIMES.CATEGORIES,
+    staleTime: 5 * 60 * 1000, 
+    gcTime: 10 * 60 * 1000, 
   });
 
   return {
