@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { publicRoutes, adminRoutes, appRoutes, authRoutes } from "./routes";
+import { Navbar } from "./components/navbar";
 import "./styles.css";
 import { AppLayout } from "./layouts";
 
