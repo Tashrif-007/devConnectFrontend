@@ -1,6 +1,6 @@
 import React from "react";
+import "../../styles/tabButton.css";
 import Button from "./Button";
-import styles from "./TabButton.module.css";
 
 interface TabButtonProps {
   label: string;
@@ -20,22 +20,16 @@ const TabButton: React.FC<TabButtonProps> = ({
   let className = "";
 
   if (variant === "search") {
-    className = `${styles["tab-button-search"]} ${
-      isActive
-        ? styles["tab-button-search-active"]
-        : styles["tab-button-search-inactive"]
+    className = `tab-button-search ${
+      isActive ? "tab-button-search-active" : "tab-button-search-inactive"
     }`;
   } else if (variant === "admin") {
-    className = `${styles["tab-button-admin"]} ${
-      isActive
-        ? styles["tab-button-admin-active"]
-        : styles["tab-button-admin-inactive"]
+    className = `tab-button-admin ${
+      isActive ? "tab-button-admin-active" : "tab-button-admin-inactive"
     }`;
   } else if (variant === "content") {
-    className = `${styles["tab-button-content"]} ${
-      isActive
-        ? styles["tab-button-content-active"]
-        : styles["tab-button-content-inactive"]
+    className = `tab-button-content ${
+      isActive ? "tab-button-content-active" : "tab-button-content-inactive"
     }`;
   }
 
@@ -43,10 +37,10 @@ const TabButton: React.FC<TabButtonProps> = ({
     <Button onClick={onClick} className={className}>
       {label}
       {count !== undefined && (
-        <span className={styles["tab-button-count-badge"]}>{count}</span>
+        <span className="tab-button-count-badge">{count}</span>
       )}
       {variant === "search" && isActive && (
-        <div className={styles["tab-button-search-underline"]}></div>
+        <div className="tab-button-search-underline"></div>
       )}
     </Button>
   );
