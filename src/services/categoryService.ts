@@ -1,36 +1,32 @@
 import { apiClient } from "./apiClient";
-import { API_ENDPOINTS, UI_MESSAGES } from "../constants";
 import type {
+  Category,
+  CreateCategoryPayload,
   CategoryResponse,
   CreateCategoryResponse,
 } from "../types";
-import type { Category, CreateCategoryPayload } from "../interfaces";
 
 export const categoryService = {
   fetchCategories: async (): Promise<Category[]> => {
     try {
-      const response = await apiClient.get<CategoryResponse>(
-        API_ENDPOINTS.CATEGORIES.BASE
-      );
+      const response = await apiClient.get<CategoryResponse>("/categories");
 
       if (response.success && response.data) {
         return response.data;
       }
 
-      throw new Error(
-        response.error || UI_MESSAGES.ERROR.FAILED_TO_FETCH_CATEGORIES
-      );
+      throw new Error(response.error || "Failed to fetch categories");
     } catch (error) {
       throw error instanceof Error
         ? error
-        : new Error(UI_MESSAGES.ERROR.FAILED_TO_FETCH_CATEGORIES);
+        : new Error("Failed to fetch categories");
     }
   },
 
   createCategory: async (payload: CreateCategoryPayload): Promise<Category> => {
     try {
       const response = await apiClient.post<CreateCategoryResponse>(
-        API_ENDPOINTS.CATEGORIES.BASE,
+        "/categories",
         payload
       );
 
@@ -38,9 +34,7 @@ export const categoryService = {
         return response.data;
       }
 
-      throw new Error(
-        response.message || UI_MESSAGES.ERROR.FAILED_TO_CREATE_CATEGORY
-      );
+      throw new Error(response.message || "Failed to create category");
     } catch (error) {
       throw error instanceof Error
         ? error
