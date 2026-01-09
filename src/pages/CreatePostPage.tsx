@@ -1,6 +1,5 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Navbar } from "../components/navbar";
 import CreatePostForm from "../components/modals/CreatePostForm";
 
 const CreatePostPage: React.FC = () => {

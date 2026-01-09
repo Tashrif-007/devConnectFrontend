@@ -1,6 +1,5 @@
 import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { Navbar } from "../components/navbar";
 import EditStoryForm from "../components/story/EditStoryForm";
 import StoryDetailSkeleton from "../components/story/StoryDetailSkeleton";
 import StoryError from "../components/story/StoryError";

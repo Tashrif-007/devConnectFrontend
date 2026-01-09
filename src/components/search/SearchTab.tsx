@@ -1,5 +1,5 @@
 import React from "react";
-import TabButton from "../common/TabButton";
+import TabButton from "../ui/TabButton";
 
 interface SearchTabProps {
   name: string;
