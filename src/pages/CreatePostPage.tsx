@@ -1,21 +1,18 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import CreatePostForm from "../components/modals/post/CreatePostForm";
-import { ROUTES, UI_MESSAGES } from "../constants";
+import { Navbar } from "../components/navbar";
+import CreatePostForm from "../components/modals/CreatePostForm";
 
 const CreatePostPage: React.FC = () => {
   const navigate = useNavigate();
 
   const handleClose = () => {
-    navigate(ROUTES.PUBLIC.FEED);
+    navigate("/feed");
   };
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <CreatePostForm
-        onClose={handleClose}
-        title={UI_MESSAGES.PAGE_TITLES.CREATE_POST}
-      />
+      <CreatePostForm onClose={handleClose} title="Create Your Post"/>
     </div>
   );
 };

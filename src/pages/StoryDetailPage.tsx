@@ -1,15 +1,16 @@
 import React from "react";
-import { useParams } from "react-router-dom";
-import StoryDetailHeader from "../components/story/detail/StoryDetailHeader";
-import StoryDetailCard from "../components/story/detail/StoryDetailCard";
-import StoryDetailSkeleton from "../components/story/detail/StoryDetailSkeleton";
-import StoryError from "../components/story/shared/StoryError";
+import { useParams} from "react-router-dom";
+import StoryDetailHeader from "../components/story/StoryDetailHeader";
+import StoryDetailCard from "../components/story/StoryDetailCard";
+import StoryDetailSkeleton from "../components/story/StoryDetailSkeleton";
+import StoryError from "../components/story/StoryError";
 import { CommentsSection } from "../components/comments";
 import { useGetStoryDetail } from "../queries";
 
 const StoryDetailPage: React.FC = () => {
   const { storyId } = useParams<{ storyId: string }>();
   const { story, loading, error } = useGetStoryDetail(storyId);
+
 
   return (
     <div className="min-h-screen bg-gray-50">
