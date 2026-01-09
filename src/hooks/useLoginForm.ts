@@ -3,8 +3,7 @@ import {
   validateLoginForm,
   classifyLoginError,
 } from "../utils/loginValidation";
-import type { FormErrors } from "../types/index";
-import type { LoginPayload } from "../interfaces";
+import type { FormErrors, LoginPayload } from "../types/index";
 
 export const useLoginForm = () => {
   const [formData, setFormData] = useState<LoginPayload>({

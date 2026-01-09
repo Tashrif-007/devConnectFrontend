@@ -1,7 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 import { authService } from "../services/authService";
-import type { UpdatePasswordResponse } from "../types";
-import type { UpdatePasswordPayload } from "../interfaces/auth";
+import type { UpdatePasswordPayload, UpdatePasswordResponse } from "../types";
 
 export const useChangePassword = () => {
   const {
