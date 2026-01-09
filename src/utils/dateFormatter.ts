@@ -13,3 +13,13 @@ export const formatDate = (dateString: string) => {
 
   return date.toLocaleDateString();
 };
+
+export const formatProfileDate = (dateInput: string | Date) => {
+    const date =
+      typeof dateInput === "string" ? new Date(dateInput) : dateInput;
+    return date.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+  };
