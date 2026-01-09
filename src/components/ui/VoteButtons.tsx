@@ -2,6 +2,7 @@ import React from "react";
 import { RxThickArrowDown, RxThickArrowUp } from "react-icons/rx";
 import { useAuth } from "../../hooks/useAuth";
 import { useVoting } from "../../hooks/useVoting";
+import Snackbar from "./Snackbar";
 import Button from "./Button";
 
 interface VoteButtonsProps {
@@ -66,7 +67,7 @@ export const VoteButtons: React.FC<VoteButtonsProps> = ({
           <span className="text-xs">{localDownvotes}</span>
         </Button>
       </div>
-      {/* <Snackbar message={error} onClose={clearError} /> */}
+      <Snackbar message={error} onClose={clearError} />
     </>
   );
 };
