@@ -41,7 +41,6 @@ export const VoteButtons: React.FC<VoteButtonsProps> = ({
               ? "text-green-500 hover:text-green-600"
               : "text-gray-500 hover:text-green-500"
           }`}
-          title="Upvote"
         >
           {userVoteType === "UPVOTE" ? (
             <RxThickArrowUp size={14} fill="currentColor" />
@@ -59,7 +58,6 @@ export const VoteButtons: React.FC<VoteButtonsProps> = ({
               ? "text-red-500 hover:text-red-600"
               : "text-gray-500 hover:text-red-500"
           }`}
-          title="Downvote"
         >
           {userVoteType === "DOWNVOTE" ? (
             <RxThickArrowDown size={14} fill="currentColor" />
