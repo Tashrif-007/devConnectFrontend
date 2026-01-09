@@ -6,7 +6,7 @@ import TagSelector from "./TagSelector";
 import SummaryToggle from "./SummaryToggle";
 import ErrorMessage from "./ErrorMessage";
 import FormActions from "./FormActions";
-import { Header } from "../ui/Header";
+import { Header } from "../ui";
 import type { Story } from "../../types";
 import { useGetCategories } from "../../queries";
 

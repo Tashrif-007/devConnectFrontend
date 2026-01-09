@@ -3,8 +3,7 @@ import AdminSearchBar from "./AdminSearchBar";
 import UserTableSection from "./UserTableSection";
 import DeleteUserConfirmation from "./DeleteUserConfirmation";
 import { useUserManagement } from "../../hooks/useUserManagement";
-import { Button } from "../ui";
-import { Paragraph } from "../ui/Paragraph";
+import { Button, Paragraph } from "../ui";
 
 const UserManagement: React.FC = () => {
   const {

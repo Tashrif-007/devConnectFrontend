@@ -1,8 +1,7 @@
 import React, { useState, useCallback } from "react";
-import { InputField } from "../ui";
+import { Modal, InputField } from "../ui";
 import { AuthInputs } from "../../layouts/AuthInputs";
 import { useChangePassword } from "../../hooks/useChangePassword";
-import Modal from "../ui/Modal";
 
 interface ChangePasswordModalProps {
   isOpen: boolean;

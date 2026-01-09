@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import CategoryManagement from "../components/admin/CategoryManagement";
 import UserManagement from "../components/admin/UserManagement";
-import { Header } from "../components/ui/Header";
-import { Paragraph } from "../components/ui/Paragraph";
-import TabButton from "../components/ui/TabButton";
+import { Header, Paragraph, TabButton } from "../components/ui";
 
 const AdminPage: React.FC = () => {
   const [activeTab, setActiveTab] = useState<"categories" | "users">(
