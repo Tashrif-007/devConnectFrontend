@@ -1,8 +1,9 @@
 import React, { useEffect, useRef } from "react";
 import PostsList from "../../layouts/PostsList";
 import Sidebar from "../../layouts/Sidebar";
-import { Header, Paragraph } from "../ui";
 import type { PaginationData, Story } from "../../types";
+import { Header } from "../ui/Header";
+import { Paragraph } from "../ui/Paragraph";
 
 type FeedLayoutProps = {
   stories: Story[];

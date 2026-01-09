@@ -2,8 +2,9 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { formatDate } from "../../utils/dateFormatter";
 import type { User } from "../../types";
-import { Button, Paragraph } from "../ui";
+import { Button } from "../ui";
 import { avatarUrl } from "../../constants";
+import { Paragraph } from "../ui/Paragraph";
 
 interface PostCardHeaderProps {
   user: User;
