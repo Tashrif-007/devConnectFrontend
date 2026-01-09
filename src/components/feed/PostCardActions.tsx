@@ -3,7 +3,6 @@ import { FiMessageCircle } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import VoteButtons from "../ui/VoteButtons";
 import { Button } from "../ui";
-import styles from "./PostCardActions.module.css";
 
 interface PostCardActionsProps {
   storyId: string;
@@ -31,8 +30,8 @@ const PostCardActions: React.FC<PostCardActionsProps> = ({
   };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.actionsGroup}>
+    <div className="flex items-center justify-end gap-4 text-sm">
+      <div className="flex gap-3">
         <VoteButtons
           storyId={storyId}
           upvotes={upvotes}
@@ -40,7 +39,10 @@ const PostCardActions: React.FC<PostCardActionsProps> = ({
           userVote={userVote}
         />
         <div>
-          <Button onClick={handleCommentClick} className={styles.commentButton}>
+          <Button
+            onClick={handleCommentClick}
+            className="flex items-center gap-2 text-gray-500 hover:text-blue-500 transition-colors"
+          >
             <FiMessageCircle size={16} />
             <span>{commentsCount}</span>
           </Button>

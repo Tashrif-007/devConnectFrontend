@@ -3,8 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { formatDate } from "../../utils/dateFormatter";
 import type { User } from "../../types";
 import { Button, Paragraph } from "../ui";
-import { UI_CONFIG, getPublicProfileRoute } from "../../constants/index";
-import styles from "./PostCardHeader.module.css";
+import { avatarUrl } from "../../constants";
 
 interface PostCardHeaderProps {
   user: User;
@@ -21,27 +20,32 @@ const PostCardHeader: React.FC<PostCardHeaderProps> = ({
 
   const handleProfileClick = (e: React.MouseEvent) => {
     e.stopPropagation();
-    navigate(getPublicProfileRoute(user.userId));
+    navigate(`/profile/${user.userId}`);
     onUserClick?.();
   };
 
   return (
-    <div className={styles.container}>
-      <Button onClick={handleProfileClick} className={styles.button}>
+    <div className="flex items-start gap-4 mb-4">
+      <Button
+        onClick={handleProfileClick}
+        className="rounded-full shrink-0 hover:opacity-80 transition-opacity"
+      >
         <img
-          className={styles.avatar}
-          src={
-            user.profilePictureUrl ||
-            `${UI_CONFIG.AVATAR_URL}?seed=${user.name}`
-          }
+          className="h-12 rounded-full w-12 object-cover"
+          src={user.profilePictureUrl || `${avatarUrl}?seed=${user.name}`}
           alt={user.username}
         />
       </Button>
-      <div className={styles.info}>
-        <Button onClick={handleProfileClick} className={styles.userName}>
+      <div className="flex-1 min-w-0">
+        <Button
+          onClick={handleProfileClick}
+          className="font-semibold text-gray-900 text-lg hover:text-primary transition-colors text-left"
+        >
           {user.name}
         </Button>
-        <Paragraph className={styles.date}>{formatDate(createdAt)}</Paragraph>
+        <Paragraph className="text-base text-gray-500">
+          {formatDate(createdAt)}
+        </Paragraph>
       </div>
     </div>
   );
