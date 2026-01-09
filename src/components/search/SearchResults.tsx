@@ -5,9 +5,8 @@ import type { PaginationData } from "../../types/pagination";
 import DeveloperCard from "../feed/DeveloperCard";
 import PostCard from "../feed/PostCard";
 import Pagination from "../feed/Pagination";
-import Spinner from "../common/Spinner";
 import ErrorMessage from "../modals/ErrorMessage";
-import { Paragraph } from "../common";
+import { Paragraph } from "../ui/Paragraph";
 
 interface SearchResultsProps {
   type: "users" | "posts";
@@ -35,9 +34,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({
   }
 
   if (error) {
-    return (
-      <ErrorMessage message={error}/>
-    );
+    return <ErrorMessage message={error} />;
   }
 
   if (data.length === 0) {

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 import SearchBar from "./SearchBar";
 import NavLinks from "./NavLinks";
@@ -13,6 +13,7 @@ export default function Navbar() {
   const location = useLocation();
   const { isAuthenticated } = useAuth();
   const isFeedPage = location.pathname === "/feed";
+  const navigate = useNavigate();
 
   return (
     <>
@@ -21,7 +22,7 @@ export default function Navbar() {
           <div className="flex h-16 items-center justify-between gap-4">
             <Link
               to="/"
-              className="flex items-center gap-1 flex-shrink-0 hover:opacity-80 transition-opacity"
+              className="flex items-center gap-1 shrink-0 hover:opacity-80 transition-opacity"
             >
               <img
                 src="/devConnectLogo1.png"
@@ -34,7 +35,7 @@ export default function Navbar() {
             <div className="flex items-center gap-2 sm:gap-6">
               {isFeedPage && isAuthenticated && (
                 <button
-                  onClick={() => setIsCreatePostOpen(true)}
+                  onClick={() => navigate('/create')}
                   className="hidden sm:inline-flex px-4 py-2 bg-black text-white rounded-lg font-semibold hover:bg-black hover:opacity-80 transition-opacity ease-in-out duration-300 transition-colors"
                 >
                   Create Post
@@ -71,10 +72,6 @@ export default function Navbar() {
           </div>
         </div>
       </nav>
-      {/* <CreatePostModal
-        isOpen={isCreatePostOpen}
-        onClose={() => setIsCreatePostOpen(false)}
-      /> */}
       <CreatePostModal isOpen={isCreatePostOpen} onClose={() => setIsCreatePostOpen(false)}/>
     </>
   );

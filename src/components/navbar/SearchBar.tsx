@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import InputField from "../common/InputField";
+import InputField from "../ui/InputField";
 import { FiSearch } from "react-icons/fi";
-import { Button } from "../common";
+import { Button } from "../ui";
 
 export default function SearchBar() {
   const [searchQuery, setSearchQuery] = useState("");
