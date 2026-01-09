@@ -26,4 +26,13 @@ export const userService = {
     const endpoint = `/users/${userId}`;
     return apiClient.get<GetUserByIdResponse>(endpoint);
   },
+
+  async updateUser(updatePayload: FormData): Promise<GetUserByIdResponse> {
+    const endpoint = `/users/profile`;
+    return apiClient.put<GetUserByIdResponse>(endpoint, updatePayload, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+  },
 };

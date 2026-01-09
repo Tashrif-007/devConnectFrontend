@@ -1,32 +1,44 @@
 import { apiClient } from "./apiClient";
-
-export interface Category {
-  categoryId: string;
-  name: string;
-  description?: string;
-  createdAt?: string;
-}
-
-export interface CategoryResponse {
-  success: boolean;
-  message: string;
-  data: Category[];
-}
+import type {
+  Category,
+  CreateCategoryPayload,
+  CategoryResponse,
+  CreateCategoryResponse,
+} from "../types";
 
 export const categoryService = {
   fetchCategories: async (): Promise<Category[]> => {
     try {
       const response = await apiClient.get<CategoryResponse>("/categories");
 
-      if (response.success) {
+      if (response.success && response.data) {
         return response.data;
       }
 
-      throw new Error(response.message || "Failed to fetch categories");
+      throw new Error(response.error || "Failed to fetch categories");
     } catch (error) {
       throw error instanceof Error
         ? error
         : new Error("Failed to fetch categories");
+    }
+  },
+
+  createCategory: async (payload: CreateCategoryPayload): Promise<Category> => {
+    try {
+      const response = await apiClient.post<CreateCategoryResponse>(
+        "/categories",
+        payload
+      );
+
+      if (response.success && response.data) {
+        return response.data;
+      }
+
+      throw new Error(response.message || "Failed to create category");
+    } catch (error) {
+      throw error instanceof Error
+        ? error
+        : new Error("Failed to create category");
     }
   },
 };

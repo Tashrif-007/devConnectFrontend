@@ -4,6 +4,10 @@ import type {
   SignupResponse,
   LoginPayload,
   LoginResponse,
+  UpdatePasswordPayload,
+  UpdatePasswordResponse,
+  ResendConfirmationEmailPayload,
+  ResendConfirmationEmailResponse,
 } from "../types";
 
 export const authService = {
@@ -18,8 +22,32 @@ export const authService = {
   },
   async login(payload: LoginPayload): Promise<LoginResponse> {
     return apiClient.post<LoginResponse>("/auth/login", {
-      email: payload.emailOrUsername,
+      email: payload.email,
       password: payload.password,
     });
+  },
+  async updatePassword(
+    payload: UpdatePasswordPayload
+  ): Promise<UpdatePasswordResponse> {
+    const response = await apiClient.post<UpdatePasswordResponse>(
+      "/auth/update-password",
+      {
+        oldPassword: payload.oldPassword,
+        newPassword: payload.newPassword,
+        confirmPassword: payload.confirmPassword,
+      }
+    );
+    return response;
+  },
+  async resendConfirmationEmail(
+    payload: ResendConfirmationEmailPayload
+  ): Promise<ResendConfirmationEmailResponse> {
+    const response = await apiClient.post<ResendConfirmationEmailResponse>(
+      "/auth/resend-confirmation-email",
+      {
+        email: payload.email,
+      }
+    );
+    return response;
   },
 };
