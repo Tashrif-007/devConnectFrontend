@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import CategoryManagement from "../components/admin/categories/CategoryManagement";
-import UserManagement from "../components/admin/management/UserManagement";
+import CategoryManagement from "../components/admin/CategoryManagement";
+import UserManagement from "../components/admin/UserManagement";
 import { Header, Paragraph, TabButton } from "../components/ui";
 
 const AdminPage: React.FC = () => {

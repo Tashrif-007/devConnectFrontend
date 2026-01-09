@@ -1,6 +1,5 @@
 import React from "react";
-import { ROLE_COLORS } from "../../../constants";
-import styles from "./RoleBadge.module.css";
+import { ROLE_COLORS } from "../../constants/adminConstants";
 
 interface RoleBadgeProps {
   role: "ADMIN" | "USER";
@@ -10,7 +9,9 @@ const RoleBadge: React.FC<RoleBadgeProps> = ({ role }) => {
   const colors = ROLE_COLORS[role as keyof typeof ROLE_COLORS];
 
   return (
-    <span className={`${styles.badge} ${colors.bg} ${colors.text}`}>
+    <span
+      className={`px-3 py-1 rounded-full text-xs font-medium ${colors.bg} ${colors.text}`}
+    >
       {role}
     </span>
   );
