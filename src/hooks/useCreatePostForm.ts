@@ -1,5 +1,6 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useCreateStory } from "./useCreateStory";
+import type { Story } from "../types";
 
 interface CategoryFormData {
   title: string;
@@ -8,18 +9,39 @@ interface CategoryFormData {
   skip: boolean;
 }
 
-export const useCreatePostForm = (onClose: () => void) => {
+export const useCreatePostForm = (
+  onClose: () => void,
+  story?: Story,
+  categories?: { categoryId: string; name: string }[]
+) => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
-  const {createStory, loading, error: hookError} = useCreateStory();
+  const {
+    createStory,
+    updateStory,
+    loading,
+    error: hookError,
+  } = useCreateStory(story?.storyId);
 
   const [formData, setFormData] = useState<CategoryFormData>({
-    title: "",
-    body: "",
+    title: story?.title || "",
+    body: story?.body || "",
     categoryIds: [],
     skip: false,
   });
 
   const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (story && categories && formData.categoryIds.length === 0) {
+      const categoryIds = categories
+        .filter((cat) => story.categoryNames.includes(cat.name))
+        .map((cat) => cat.categoryId);
+      setFormData((prev) => ({
+        ...prev,
+        categoryIds,
+      }));
+    }
+  }, [story, categories, formData.categoryIds.length]);
 
   const handleFieldChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -79,12 +101,24 @@ export const useCreatePostForm = (onClose: () => void) => {
   const handlePublish = async () => {
     setError(null);
     if (!validateForm()) return;
-    const result = await createStory({...formData, skip: !formData.skip});
-    if(result.success) {
+    const result = await createStory({ ...formData, skip: !formData.skip });
+    if (result.success) {
       onClose();
-    }
-    else {
+    } else {
       setError(hookError);
+      return;
+    }
+  };
+
+  const handleEdit = async () => {
+    setError(null);
+    if (!validateForm()) return;
+    const {skip, ...payload} = formData;
+    const result = await updateStory(payload);
+    if (result.success) {
+      onClose();
+    } else {
+      setError(result.error!);
       return;
     }
   };
@@ -99,5 +133,6 @@ export const useCreatePostForm = (onClose: () => void) => {
     handleToggleSummary,
     handleInsertMarkdown,
     handlePublish,
+    handleEdit,
   };
 };
