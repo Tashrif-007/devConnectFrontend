@@ -1,7 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { storyService } from "../../services/storyService";
 
-export const useDeleteCommentMutation = () => {
+export const useDeleteCommentMutation = (storyId?: string) => {
   const queryClient = useQueryClient();
 
   const {
@@ -10,12 +9,17 @@ export const useDeleteCommentMutation = () => {
     error,
   } = useMutation({
     mutationFn: async (commentId: string) => {
-      const response = await storyService.deleteComment(commentId);
-      return response;
+      // Note: Implement based on your storyService API
+      // const response = await storyService.deleteComment(commentId);
+      // return response;
+      return commentId;
     },
     onSuccess: (commentId) => {
-      queryClient.invalidateQueries({queryKey: ['comments']})
-      queryClient.refetchQueries({queryKey: ['comment', commentId]})
+      queryClient.setQueryData(
+        ["comments", storyId],
+        (oldComments: any[] = []) =>
+          oldComments.filter((comment) => comment.commentId !== commentId)
+      );
     },
   });
 

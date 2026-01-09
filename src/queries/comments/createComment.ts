@@ -1,5 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { storyService } from "../../services/storyService";
+import type { CreateCommentPayload, Comment } from "../../types";
 
 export const useCreateCommentMutation = (storyId?: string) => {
   const queryClient = useQueryClient();

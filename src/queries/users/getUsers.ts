@@ -1,36 +1,26 @@
 import { useQuery } from "@tanstack/react-query";
 import { userService } from "../../services/userService";
-import { QUERY_CONFIG } from "../../constants";
-import type { User } from "../../types";
-import type { PaginationData } from "../../types";
 
 export const useGetUsers = (currentPage: number, searchQuery: string) => {
   const {
-    data,
+    data: users = [],
     isLoading: loading,
     error,
   } = useQuery({
-    queryKey: [
-      QUERY_CONFIG.QUERY_KEYS.USERS,
-      { page: currentPage, search: searchQuery },
-    ],
+    queryKey: ["users", { page: currentPage, search: searchQuery }],
     queryFn: async () => {
       const response = await userService.getUsers({
         page: currentPage,
         find: searchQuery,
       });
-      return response.data;
+      return response.data?.data || [];
     },
-    staleTime: QUERY_CONFIG.STALE_TIMES.USERS,
-    gcTime: QUERY_CONFIG.GC_TIMES.USERS,
+    staleTime: 2 * 60 * 1000, 
+    gcTime: 5 * 60 * 1000,
   });
-
-  const users: User[] = data?.data || [];
-  const pagination: PaginationData | null = data?.pagination || null;
 
   return {
     users,
-    pagination,
     loading,
     error: error?.message || null,
   };
