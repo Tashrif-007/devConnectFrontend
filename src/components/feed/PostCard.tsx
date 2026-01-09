@@ -11,6 +11,10 @@ interface PostCardProps {
   story: Story;
 }
 
+interface PostCardProps {
+  story: Story;
+}
+
 const PostCard: React.FC<PostCardProps> = ({ story }) => {
   const navigate = useNavigate();
   const handleCardClick = () => {
