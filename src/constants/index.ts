@@ -24,3 +24,16 @@ export const features = [
       "Browse real problems from real developers. Find solutions, best practices, and fresh perspectives from the community.",
   },
 ];
+
+export const avatarUrl = "https://api.dicebear.com/9.x/pixel-art/svg";
+
+export const USER_MANAGEMENT_CONFIG = {
+  ITEMS_PER_PAGE: 5,
+  DEFAULT_SORT_BY: "DESC",
+  DEFAULT_ORDER_BY: "user.joinDate",
+  DATE_FORMAT_OPTIONS: {
+    year: "numeric" as const,
+    month: "short" as const,
+    day: "numeric" as const,
+  },
+} as const;
