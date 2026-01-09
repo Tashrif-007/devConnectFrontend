@@ -2,12 +2,17 @@ import React, { useEffect, useRef, useState } from "react";
 import { RxHamburgerMenu, RxCross2 } from "react-icons/rx";
 import PostsList from "../../layouts/PostsList";
 import Sidebar from "../../layouts/Sidebar";
+<<<<<<< HEAD
 import { Header, Paragraph, Button } from "../ui";
 import type { PaginationData } from "../../types";
 import styles from "./FeedLayout.module.css";
 import type { Story } from "../../interfaces";
 import { UI_MESSAGES } from "../../constants";
 import sidebarStyles from "../../layouts/Sidebar.module.css";
+=======
+import { Header, Paragraph } from "../ui";
+import type { PaginationData, Story } from "../../types";
+>>>>>>> 4eabfa6 (refactor: use Button, Paragraph, Header components instead html)
 
 type FeedLayoutProps = {
   stories: Story[];
@@ -55,12 +60,12 @@ const FeedLayout: React.FC<FeedLayoutProps> = ({
             </Button>
           </div>
           {currentCategory && (
-            <Paragraph className={styles.categoryFilter}>
+            <Paragraph className="text-sm text-gray-600 mt-2">
               Filtered by:{currentCategory}
             </Paragraph>
           )}
         </div>
-        <div className={styles.postsContainer}>
+        <div className="flex-1">
           <PostsList
             stories={stories}
             pagination={pagination}

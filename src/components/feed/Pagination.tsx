@@ -3,7 +3,6 @@ import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import { parsePage } from "../../utils/pageUtils";
 import type { PaginationData } from "../../types";
 import { Button } from "../ui";
-import styles from "./Pagination.module.css";
 
 interface PaginationProps {
   pagination: PaginationData;
@@ -53,11 +52,11 @@ const Pagination: React.FC<PaginationProps> = ({
   const pages = getPageNumbers();
 
   return (
-    <div className={styles.container}>
+    <div className="flex items-center justify-center gap-2 mt-8 mb-8">
       <Button
         onClick={() => onPageChange(currentPage - 1)}
         disabled={!pagination.hasPreviousPage}
-        className={styles.button}
+        className="p-2 rounded border border-gray-300 hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
       >
         <FiChevronLeft size={20} />
       </Button>
@@ -67,9 +66,11 @@ const Pagination: React.FC<PaginationProps> = ({
           key={index}
           onClick={() => typeof page === "number" && onPageChange(page)}
           disabled={page === "..." || page === currentPage}
-          className={`${
-            page === currentPage ? styles.pageActive : styles.pageInactive
-          } ${styles.button}`}
+          className={`px-3 py-2 rounded border transition-colors ${
+            page === currentPage
+              ? "bg-black text-white"
+              : "border-gray-300 hover:bg-gray-100"
+          }`}
         >
           {page}
         </Button>
@@ -78,7 +79,7 @@ const Pagination: React.FC<PaginationProps> = ({
       <Button
         onClick={() => onPageChange(currentPage + 1)}
         disabled={!pagination.hasNextPage}
-        className={styles.button}
+        className="p-2 rounded border border-gray-300 hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
       >
         <FiChevronRight size={20} />
       </Button>
