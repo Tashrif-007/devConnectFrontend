@@ -5,7 +5,7 @@ export interface User {
   username: string;
   name: string;
   email: string;
-  joinDate: Date | string;
+  joinDate: Date;
   isEmailConfirmed: boolean;
   role: USER_ROLES | string;
   profilePictureUrl: string | null;
@@ -45,6 +45,7 @@ export interface SignupResponseData {
   role: string;
   profilePictureUrl: string | null;
 }
+
 
 export interface LoginResponseData {
   token: string;
