@@ -1,12 +1,5 @@
-import type {
-  SignupPayload,
-  SignupResponse,
-  LoginPayload,
-  LoginResponse,
-} from "./auth";
-import type { Story, Comment } from "./story";
-import type { PaginationData } from "./pagination";
-import type { UserVoteType } from "./vote";
+import type { LoginResponse, PaginationData, SignupResponse, Story, UserVoteType } from "../types";
+import type { LoginPayload, SignupPayload } from "./auth";
 
 export interface UseSignupReturn {
   signup: (payload: SignupPayload) => Promise<SignupResponse>;

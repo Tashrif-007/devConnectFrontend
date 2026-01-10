@@ -8,4 +8,3 @@ export interface ApiResponse<T = unknown> {
 export interface FormErrors {
   [key: string]: string;
 }
-
