@@ -1,0 +1,13 @@
+@reference '../../../styles.css';
+
+.loadingContainer {
+  @apply bg-white rounded-lg shadow p-8 text-center text-gray-500;
+}
+
+.errorContainer {
+  @apply bg-white rounded-lg shadow p-8 text-center text-red-600;
+}
+
+.retryButton {
+  @apply mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700;
+}

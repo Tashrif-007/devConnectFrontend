@@ -1,0 +1,9 @@
+@reference '../../../styles.css';
+
+.container {
+  @apply space-y-4;
+}
+
+.heading {
+  @apply text-xl font-bold text-gray-900 mb-6;
+}

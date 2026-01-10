@@ -1,0 +1,29 @@
+@reference '../../../styles.css';
+
+.container {
+  @apply mb-6 p-4 bg-gray-50 rounded-lg border border-gray-200;
+}
+
+.editContainer {
+  @apply mb-6 p-4 bg-gray-50 rounded-lg border border-gray-200;
+}
+
+.displayContainer {
+  @apply mb-6 p-4 bg-gray-50 rounded-lg border-l-4 border-gray-900;
+}
+
+.label {
+  @apply block text-sm font-semibold text-gray-700 mb-2;
+}
+
+.textarea {
+  @apply w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-900 resize-none;
+}
+
+.bioText {
+  @apply text-gray-700 leading-relaxed;
+}
+
+.emptyText {
+  @apply text-gray-400 italic;
+}

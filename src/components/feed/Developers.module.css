@@ -1,0 +1,9 @@
+@reference '../../styles.css';
+
+.container {
+  @apply bg-white rounded-lg border border-gray-200 p-5;
+}
+
+.developersList {
+  @apply space-y-4;
+}

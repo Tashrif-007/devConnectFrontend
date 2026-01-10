@@ -1,0 +1,17 @@
+@reference '../../../styles.css';
+
+.button {
+  @apply flex items-center gap-2 focus:outline-none;
+}
+
+.avatar {
+  @apply h-8 w-8 rounded-full bg-slate-200 border border-slate-200 overflow-hidden ring-2 ring-transparent transition-all;
+}
+
+.avatarImage {
+  @apply h-full w-full object-cover;
+}
+
+.avatarInitial {
+  @apply text-gray-600 text-xl font-bold;
+}

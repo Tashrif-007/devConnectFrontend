@@ -1,0 +1,24 @@
+@reference '../../styles.css';
+
+.input-label {
+  @apply block text-sm font-semibold text-gray-900 mb-2;
+}
+
+.input-fields {
+  @apply w-full pr-10 px-4 py-2.5 border rounded-lg focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent transition-all;
+}
+
+.input-fields-error {
+  @apply border-red-500 bg-red-50;
+}
+
+.input-fields-no-error {
+  @apply border-gray-300 bg-white;
+}
+
+.input-fields-button{
+    @apply absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 focus:outline-none;
+}
+.input-fields-error-message {
+    @apply text-red-500 text-sm mt-1;
+}

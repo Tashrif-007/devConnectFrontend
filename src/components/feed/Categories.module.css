@@ -1,0 +1,13 @@
+@reference '../../styles.css';
+
+.container {
+  @apply bg-white rounded-lg border border-gray-200 p-5 w-sm h-10/12 sticky;
+}
+
+.categoryList {
+  @apply h-76 overflow-y-auto space-y-2 pr-2;
+}
+
+.clearButtonContainer {
+  @apply w-full mb-3;
+}

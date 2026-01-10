@@ -1,8 +1,9 @@
-import FooterBrandSection from "./FooterBrandSection";
-import FooterLinksSection from "./FooterLinksSection";
-import FooterSubscribeSection from "./FooterSubscribeSection";
-import FooterSocialLinks from "./FooterSocialLinks";
-import FooterCopyright from "./FooterCopyright";
+import FooterBrandSection from "./sections/FooterBrandSection";
+import FooterLinksSection from "./sections/FooterLinksSection";
+import FooterSubscribeSection from "./sections/FooterSubscribeSection";
+import FooterSocialLinks from "./sections/FooterSocialLinks";
+import FooterCopyright from "./shared/FooterCopyright";
+
 
 const platformLinks = [
   { label: "Trending Posts", href: "#" },

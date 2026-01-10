@@ -1,5 +1,6 @@
 import FeatureCard from "./FeatureCard";
 import { features } from "../../constants/index";
+import styles from './FeatureCards.module.css';
 
 export default function FeatureCards() {
   return (

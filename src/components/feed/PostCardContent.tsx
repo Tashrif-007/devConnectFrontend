@@ -1,6 +1,7 @@
 import React from "react";
 import { Header } from "../ui";
 import ReactMarkdown from "react-markdown";
+import styles from "./PostCardContent.module.css";
 
 interface PostCardContentProps {
   title: string;
@@ -10,12 +11,8 @@ interface PostCardContentProps {
 const PostCardContent: React.FC<PostCardContentProps> = ({ title, body }) => {
   return (
     <>
-      <Header
-        level={2}
-        value={title}
-        className="text-2xl font-bold text-gray-900 mb-3 line-clamp-2"
-      />
-      <div className="text-gray-700 text-md line-clamp-3 mb-4">
+      <Header level={2} value={title} className={styles.title} />
+      <div className={styles.body}>
         <ReactMarkdown
           components={{
             strong: ({ ...props }) => (

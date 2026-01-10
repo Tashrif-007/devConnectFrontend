@@ -1,6 +1,7 @@
 import React, { type ReactNode } from "react";
 import { Header } from "./Header";
 import Button from "./Button";
+import styles from './Modal.module.css';
 
 export interface ModalButton {
   label: string;

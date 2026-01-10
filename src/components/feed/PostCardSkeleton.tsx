@@ -1,8 +1,9 @@
 import React from "react";
+import styles from "./PostCardSkeleton.module.css";
 
 const PostCardSkeleton: React.FC = () => {
   return (
-    <div className="bg-white rounded-lg border border-gray-200 p-5 mb-4 animate-pulse">
+    <div className={styles.skeletonCard}>
       <div className="flex items-start gap-3">
         <div className="w-12 h-12 rounded-full bg-gray-300 flex-shrink-0"></div>
 
@@ -10,12 +11,12 @@ const PostCardSkeleton: React.FC = () => {
           <div className="h-4 bg-gray-300 rounded w-24 mb-2"></div>
           <div className="h-3 bg-gray-200 rounded w-16 mb-3"></div>
 
-          <div className="h-6 bg-gray-300 rounded w-2/3 mb-2"></div>
+          <div className={styles.skeletonLine}></div>
 
           <div className="space-y-2 mb-3">
-            <div className="h-3 bg-gray-200 rounded"></div>
-            <div className="h-3 bg-gray-200 rounded"></div>
-            <div className="h-3 bg-gray-200 rounded w-4/5"></div>
+            <div className={styles.skeletonLine}></div>
+            <div className={styles.skeletonLine}></div>
+            <div className={`${styles.skeletonLine} w-4/5`}></div>
           </div>
 
           <div className="flex flex-wrap gap-2 mb-4">

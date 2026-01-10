@@ -1,0 +1,57 @@
+@reference '../../../styles.css';
+
+.tableWrapper {
+  @apply bg-white rounded-lg shadow overflow-hidden;
+}
+
+.table {
+  @apply w-full;
+}
+
+.tableHead {
+  @apply bg-gray-50 border-b border-gray-200;
+}
+
+.headerCell {
+  @apply px-6 py-3 text-sm font-semibold text-gray-900;
+}
+
+.headerCellRight {
+  @apply text-right;
+}
+
+.headerCellCenter {
+  @apply text-center;
+}
+
+.headerCellLeft {
+  @apply text-left;
+}
+
+.tableBody {
+  @apply divide-y divide-gray-200;
+}
+
+.tableRow {
+  @apply hover:bg-gray-50 transition-colors;
+}
+
+.tableCell {
+  @apply px-6 py-4 text-sm;
+}
+
+.tableCellRight {
+  @apply text-right;
+}
+
+.tableCellCenter {
+  @apply text-center;
+}
+
+.tableCellLeft {
+  @apply text-left;
+}
+
+.emptyCell {
+  @apply px-6 py-8 text-center text-gray-500;
+}

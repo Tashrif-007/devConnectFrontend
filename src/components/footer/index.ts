@@ -1,6 +1,6 @@
 export { default as Footer } from "./Footer";
-export { default as FooterBrandSection } from "./FooterBrandSection";
-export { default as FooterLinksSection } from "./FooterLinksSection";
-export { default as FooterSubscribeSection } from "./FooterSubscribeSection";
-export { default as FooterSocialLinks } from "./FooterSocialLinks";
-export { default as FooterCopyright } from "./FooterCopyright";
+export { default as FooterBrandSection } from "./sections/FooterBrandSection";
+export { default as FooterLinksSection } from "./sections/FooterLinksSection";
+export { default as FooterSubscribeSection } from "./sections/FooterSubscribeSection";
+export { default as FooterSocialLinks } from "./sections/FooterSocialLinks";
+export { default as FooterCopyright } from "./shared/FooterCopyright";

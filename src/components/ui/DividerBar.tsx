@@ -1,4 +1,5 @@
 import type React from "react";
+import styles from './DividerBar.module.css';
 
 type DividerBarProps = {
   value: string;

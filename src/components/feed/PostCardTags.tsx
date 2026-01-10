@@ -1,5 +1,6 @@
 import React from "react";
 import { Paragraph } from "../ui";
+import styles from "./PostCardTags.module.css";
 
 interface PostCardTagsProps {
   tags: string[];
@@ -9,12 +10,9 @@ interface PostCardTagsProps {
 const PostCardTags: React.FC<PostCardTagsProps> = ({ tags, maxTags = 3 }) => {
   if (tags.length === 0) return null;
   return (
-    <div className="flex flex-wrap gap-2">
+    <div className={styles.container}>
       {tags.slice(0, maxTags).map((tag) => (
-        <Paragraph
-          key={tag}
-          className="inline-block bg-blue-100 text-blue-700 text-sm px-3 py-1 rounded"
-        >
+        <Paragraph key={tag} className={styles.tag}>
           #{tag}
         </Paragraph>
       ))}

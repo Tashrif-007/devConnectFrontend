@@ -1,0 +1,9 @@
+@reference '../../../styles.css';
+
+.container {
+  @apply flex-1;
+}
+
+.tabsContainer {
+  @apply flex gap-4 border-b border-gray-200 mb-6;
+}

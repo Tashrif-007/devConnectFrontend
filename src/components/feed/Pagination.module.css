@@ -1,0 +1,13 @@
+@reference '../../styles.css';
+
+.container {
+  @apply flex items-center justify-center gap-2 mt-8 mb-8;
+}
+
+.pageInfo {
+  @apply text-sm text-gray-600 px-2;
+}
+
+.button {
+  @apply p-2 rounded border border-gray-300 hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed transition-colors;
+}

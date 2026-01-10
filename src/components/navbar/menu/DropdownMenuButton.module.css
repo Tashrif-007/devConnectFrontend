@@ -1,0 +1,17 @@
+@reference '../../../styles.css';
+
+.button {
+  @apply flex items-center gap-3 px-4 py-2 text-sm transition-colors w-full text-left;
+}
+
+.buttonDefault {
+  @apply text-slate-700 hover:bg-slate-50 hover:text-[#111827];
+}
+
+.buttonDanger {
+  @apply text-slate-600 hover:bg-slate-50 hover:text-red-600;
+}
+
+.icon {
+  @apply w-5 h-5 flex items-center justify-center;
+}

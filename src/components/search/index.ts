@@ -1,4 +1,4 @@
-export { default as SearchHeader } from "./SearchHeader";
-export { default as SearchTab } from "./SearchTab";
-export { default as SearchResults } from "./SearchResults";
-export { default as SearchContent } from "./SearchContent";
+export { default as SearchHeader } from "./layout/SearchHeader";
+export { default as SearchTab } from "./tabs/SearchTab";
+export { default as SearchResults } from "./layout/SearchResults";
+export { default as SearchContent } from "./tabs/SearchContent";

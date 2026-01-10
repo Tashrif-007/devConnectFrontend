@@ -1,0 +1,9 @@
+@reference '../../styles.css';
+
+.skeletonCard {
+  @apply bg-white rounded-lg border border-gray-200 p-5 mb-4 animate-pulse;
+}
+
+.skeletonLine {
+  @apply h-4 bg-gray-200 rounded animate-pulse;
+}

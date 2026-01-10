@@ -1,0 +1,25 @@
+@reference '../../../styles.css';
+
+.form {
+  @apply border border-gray-200 rounded-lg p-4 mb-6 bg-white;
+}
+
+.label {
+  @apply block mb-3;
+}
+
+.labelText {
+  @apply text-sm font-medium text-gray-700 mb-2;
+}
+
+.textarea {
+  @apply w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-black focus:ring-1 focus:ring-black disabled:opacity-50 disabled:cursor-not-allowed resize-none;
+}
+
+.errorText {
+  @apply text-red-600 text-sm mb-3;
+}
+
+.submitButton {
+  @apply px-4 py-2 bg-black text-white rounded-lg font-medium hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors;
+}

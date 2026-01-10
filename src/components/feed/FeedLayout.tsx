@@ -3,6 +3,7 @@ import PostsList from "../../layouts/PostsList";
 import Sidebar from "../../layouts/Sidebar";
 import { Header, Paragraph } from "../ui";
 import type { PaginationData, Story } from "../../types";
+import styles from "./FeedLayout.module.css";
 
 type FeedLayoutProps = {
   stories: Story[];
@@ -31,21 +32,17 @@ const FeedLayout: React.FC<FeedLayoutProps> = ({
   }, [pagination, feedRef]);
 
   return (
-    <div ref={feedRef} className="mt-6 flex gap-8 px-10 justify-center">
-      <div className="flex flex-col w-8/15">
-        <div className="mb-6">
-          <Header
-            level={1}
-            value="Your Feed"
-            className="text-gray-900 text-2xl font-bold"
-          />
+    <div ref={feedRef} className={styles.container}>
+      <div className={styles.mainContent}>
+        <div className={styles.feedHeader}>
+          <Header level={1} value="Your Feed" className={styles.title} />
           {currentCategory && (
-            <Paragraph className="text-sm text-gray-600 mt-2">
+            <Paragraph className={styles.categoryFilter}>
               Filtered by:{currentCategory}
             </Paragraph>
           )}
         </div>
-        <div className="flex-1">
+        <div className={styles.postsContainer}>
           <PostsList
             stories={stories}
             pagination={pagination}

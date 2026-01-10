@@ -1,0 +1,15 @@
+@reference '../../../styles.css';
+
+.button {
+  @apply p-2 text-slate-600 hover:text-primary hover:bg-slate-100 rounded-full transition-colors;
+}
+
+.icon {
+  @apply w-5 h-5;
+
+  /* Add your semantic CSS classes below */
+  /* Example: */
+  /* .container { */
+  /*   @apply flex items-center justify-between gap-4; */
+  /* } */
+}

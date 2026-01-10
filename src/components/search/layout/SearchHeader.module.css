@@ -1,0 +1,9 @@
+@reference '../../../styles.css';
+
+.heading {
+  @apply text-3xl font-bold mb-6;
+}
+
+.query {
+  @apply text-blue-600;
+}

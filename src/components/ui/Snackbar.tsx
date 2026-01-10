@@ -2,6 +2,7 @@ import React from "react";
 import { IoClose } from "react-icons/io5";
 import Button from "./Button";
 import { Paragraph } from "./Paragraph";
+import styles from './Snackbar.module.css';
 
 interface SnackbarProps {
   message: string | null;

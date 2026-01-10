@@ -1,5 +1,6 @@
 import type React from "react";
 import { USER_ROLES } from "../../types";
+import styles from './Options.module.css';
 
 
 type OptionsProps = {
