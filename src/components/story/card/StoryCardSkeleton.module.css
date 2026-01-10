@@ -1,21 +1,7 @@
-@import "../../../styles.css";
+@reference '../../../styles.css';
 
-.container {
-  @apply space-y-4;
-}
-
-.skeleton-card {
-  @apply bg-white rounded-lg border border-gray-200 shadow-sm p-6 animate-pulse;
-}
-
-.skeleton-title {
-  @apply h-6 bg-gray-200 rounded w-3/4 mb-3;
-}
-
-.skeleton-text {
-  @apply h-4 bg-gray-200 rounded w-full mb-3;
-}
-
-.skeleton-text-short {
-  @apply h-4 bg-gray-200 rounded w-5/6;
-}
+/* Add your semantic CSS classes below */
+/* Example: */
+/* .container { */
+/*   @apply flex items-center justify-between gap-4; */
+/* } */

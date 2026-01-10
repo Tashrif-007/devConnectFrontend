@@ -1,8 +1,7 @@
 import { useState } from "react";
 import InputField from "../../ui/InputField";
 import { Button } from "../../ui";
-
-import styles from "./FooterSubscribeSection.module.css";
+import styles from './FooterSubscribeSection.module.css';
 
 export default function FooterSubscribeSection() {
   const [email, setEmail] = useState("");
@@ -14,10 +13,14 @@ export default function FooterSubscribeSection() {
   };
 
   return (
-    <div className={styles.container}>
-      <h4 className={styles.title}>Subscribe</h4>
-      <p className={styles.description}>Get the latest dev news and updates.</p>
-      <form onSubmit={handleSubscribe} className={styles.form}>
+    <div className="w-full md:w-auto">
+      <h4 className="font-semibold text-slate-900 mb-4 text-sm uppercase tracking-wide">
+        Subscribe
+      </h4>
+      <p className="text-slate-600 text-sm mb-4">
+        Get the latest dev news and updates.
+      </p>
+      <form onSubmit={handleSubscribe} className="flex flex-col gap-3">
         <InputField
           label=""
           name="email"
@@ -26,7 +29,10 @@ export default function FooterSubscribeSection() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-        <Button type="submit" className={styles.button}>
+        <Button
+          type="submit"
+          className="px-4 py-2 bg-primary hover:bg-primary-hover text-white font-semibold rounded-lg transition-all text-sm"
+        >
           Subscribe
         </Button>
       </form>

@@ -3,9 +3,9 @@ import { useLocation } from "react-router-dom";
 import { FiMessageCircle, FiShare2 } from "react-icons/fi";
 import VoteButtons from "../../ui/VoteButtons";
 import Snackbar from "../../ui/Snackbar";
+import type { Story } from "../../../types";
 import { Button } from "../../ui";
 import styles from "./StoryDetailActions.module.css";
-import type { Story } from "../../../interfaces";
 
 interface StoryDetailActionsProps {
   story: Story;

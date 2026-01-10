@@ -1,11 +1,11 @@
 import type React from "react";
 import { Header, InputField, Modal } from "../ui";
 import { AuthInputs } from "../../layouts/AuthInputs";
-import ContentEditor from "../modals/ContentEditor";
-import TagSelector from "../modals/TagSelector";
-import SummaryToggle from "../modals/SummaryToggle";
-import ErrorMessage from "../modals/ErrorMessage";
-import FormActions from "../modals/FormActions";
+import ContentEditor from "../modals/forms/ContentEditor";
+import TagSelector from "../modals/forms/TagSelector";
+import SummaryToggle from "../modals/shared/SummaryToggle";
+import ErrorMessage from "../modals/forms/ErrorMessage";
+import FormActions from "../modals/forms/FormActions";
 import { useState } from "react";
 import { useCreatePostForm } from "../../hooks/useCreatePostForm";
 import { useGetCategories } from "../../queries";

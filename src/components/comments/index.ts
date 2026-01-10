@@ -1,5 +1,5 @@
-import CommentCard from "./CommentCard";
-import CommentForm from "./CommentForm";
-import CommentsSection from "./CommentsSection";
+import CommentCard from "./display/CommentCard";
+import CommentForm from "./form/CommentForm";
+import CommentsSection from "./display/CommentsSection";
 
 export { CommentCard, CommentForm, CommentsSection };

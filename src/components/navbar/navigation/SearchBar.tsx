@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import InputField from "../ui/InputField";
+import InputField from "../../ui/InputField";
 import { FiSearch } from "react-icons/fi";
-import { Button } from "../ui";
-import { ROUTES } from "../../constants";
+import { Button } from "../../ui";
+import { ROUTES } from "../../../constants";
+import styles from "./SearchBar.module.css";
 
 export default function SearchBar() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -28,9 +29,9 @@ export default function SearchBar() {
   };
 
   return (
-    <div className="hidden md:flex flex-1 max-w-md mx-auto">
-      <div className="relative w-full group" onKeyDown={handleKeyDown}>
-        <div className="pr-10">
+    <div className={styles.container}>
+      <div className={styles.wrapper} onKeyDown={handleKeyDown}>
+        <div className={styles.inputWrapper}>
           <InputField
             label=""
             name="search"
@@ -40,10 +41,7 @@ export default function SearchBar() {
             type="text"
           />
         </div>
-        <Button
-          onClick={handleSearchClick}
-          className="absolute inset-y-0 right-0 pr-3 flex items-center hover:opacity-75 transition-opacity"
-        >
+        <Button onClick={handleSearchClick} className={styles.searchButton}>
           <FiSearch />
         </Button>
       </div>

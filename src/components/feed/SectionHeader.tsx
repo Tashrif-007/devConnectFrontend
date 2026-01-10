@@ -1,6 +1,7 @@
 import React from "react";
 import { type IconType } from "react-icons";
 import { Header } from "../ui";
+import styles from "./SectionHeader.module.css";
 
 interface SectionHeaderProps {
   Icon: IconType;
@@ -9,9 +10,9 @@ interface SectionHeaderProps {
 
 const SectionHeader: React.FC<SectionHeaderProps> = ({ Icon, title }) => {
   return (
-    <div className="flex items-center gap-2 mb-4">
-      <Icon size={20} className="text-gray-700" />
-      <Header level={3} value={title} className="text-lg font-bold text-gray-900" />
+    <div className={styles.container}>
+      <Icon size={20} className={styles.icon} />
+      <Header level={3} value={title} className={styles.title} />
     </div>
   );
 };

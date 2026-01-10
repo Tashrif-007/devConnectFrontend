@@ -5,6 +5,7 @@ import PostCardContent from "./PostCardContent";
 import PostCardTags from "./PostCardTags";
 import PostCardActions from "./PostCardActions";
 import { useNavigate } from "react-router-dom";
+import styles from "./PostCard.module.css";
 
 interface PostCardProps {
   story: Story;
@@ -17,13 +18,10 @@ const PostCard: React.FC<PostCardProps> = ({ story }) => {
   };
 
   return (
-    <div
-      onClick={handleCardClick}
-      className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg transition-shadow cursor-pointer hover:border-gray-300"
-    >
+    <div onClick={handleCardClick} className={styles.card}>
       <PostCardHeader user={story.user} createdAt={story.createdAt} />
       <PostCardContent title={story.title} body={story.body} />
-      <div className="flex justify-between pt-4 border-t border-gray-100">
+      <div className={styles.footer}>
         <PostCardTags tags={story.categoryNames} />
         <PostCardActions
           storyId={story.storyId}

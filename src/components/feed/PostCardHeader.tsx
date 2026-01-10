@@ -4,6 +4,7 @@ import { formatDate } from "../../utils/dateFormatter";
 import type { User } from "../../types";
 import { Button, Paragraph } from "../ui";
 import { UI_CONFIG, getPublicProfileRoute } from "../../constants/index";
+import styles from "./PostCardHeader.module.css";
 
 interface PostCardHeaderProps {
   user: User;
@@ -25,13 +26,10 @@ const PostCardHeader: React.FC<PostCardHeaderProps> = ({
   };
 
   return (
-    <div className="flex items-start gap-4 mb-4">
-      <Button
-        onClick={handleProfileClick}
-        className="rounded-full shrink-0 hover:opacity-80 transition-opacity"
-      >
+    <div className={styles.container}>
+      <Button onClick={handleProfileClick} className={styles.button}>
         <img
-          className="h-12 rounded-full w-12 object-cover"
+          className={styles.avatar}
           src={
             user.profilePictureUrl ||
             `${UI_CONFIG.AVATAR_URL}?seed=${user.name}`
@@ -39,16 +37,11 @@ const PostCardHeader: React.FC<PostCardHeaderProps> = ({
           alt={user.username}
         />
       </Button>
-      <div className="flex-1 min-w-0">
-        <Button
-          onClick={handleProfileClick}
-          className="font-semibold text-gray-900 text-lg hover:text-primary transition-colors text-left"
-        >
+      <div className={styles.info}>
+        <Button onClick={handleProfileClick} className={styles.userName}>
           {user.name}
         </Button>
-        <Paragraph className="text-base text-gray-500">
-          {formatDate(createdAt)}
-        </Paragraph>
+        <Paragraph className={styles.date}>{formatDate(createdAt)}</Paragraph>
       </div>
     </div>
   );

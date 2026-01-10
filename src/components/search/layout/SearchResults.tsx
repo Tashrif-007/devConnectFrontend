@@ -1,13 +1,14 @@
 import React from "react";
-import type { User } from "../../types/auth";
-import type { Story } from "../../types/story";
+import type { User } from "../../../types/auth";
+import type { Story } from "../../../types/story";
 import type { PaginationData } from "../../types/pagination";
-import DeveloperCard from "../feed/DeveloperCard";
-import PostCard from "../feed/PostCard";
-import Pagination from "../feed/Pagination";
-import ErrorMessage from "../modals/ErrorMessage";
-import { Paragraph } from "../ui";
-import Spinner from "../ui/Spinner";
+import DeveloperCard from "../../feed/DeveloperCard";
+import PostCard from "../../feed/PostCard";
+import Pagination from "../../feed/Pagination";
+import ErrorMessage from "../../modals/forms/ErrorMessage";
+import { Paragraph } from "../../ui";
+import Spinner from "../../ui/Spinner";
+import styles from "./SearchResults.module.css";
 
 interface SearchResultsProps {
   type: "users" | "posts";
@@ -28,7 +29,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({
 }) => {
   if (loading) {
     return (
-      <div className="flex justify-center py-12">
+      <div className={styles.loadingContainer}>
         <Spinner />
       </div>
     );
@@ -40,14 +41,14 @@ const SearchResults: React.FC<SearchResultsProps> = ({
 
   if (data.length === 0) {
     return (
-      <div className="text-center py-12">
-        <Paragraph className="text-gray-600 text-lg">No {type} found</Paragraph>
+      <div className={styles.emptyContainer}>
+        <Paragraph className={styles.emptyText}>No {type} found</Paragraph>
       </div>
     );
   }
 
   return (
-    <div className="space-y-4">
+    <div className={styles.resultsList}>
       {type === "users"
         ? (data as User[]).map((user) => (
             <DeveloperCard key={user.userId} developer={user} />

@@ -1,17 +1,7 @@
 @reference '../../../styles.css';
 
-.container {
-  @apply flex flex-col gap-4;
-}
-
-.header {
-  @apply flex items-center gap-2;
-}
-
-.logo {
-  @apply text-xl font-bold text-slate-900;
-}
-
-.description {
-  @apply text-slate-600 text-sm max-w-xs;
-}
+/* Add your semantic CSS classes below */
+/* Example: */
+/* .container { */
+/*   @apply flex items-center justify-between gap-4; */
+/* } */

@@ -1,25 +1,7 @@
-@import "../../styles.css";
+@reference '../../styles.css';
 
-.section {
-  @apply w-full bg-white border-y border-slate-200 transition-colors duration-300 py-20;
-}
-
-.container {
-  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
-}
-
-.heading-container {
-  @apply text-center mb-12;
-}
-
-.title {
-  @apply text-3xl md:text-4xl font-bold text-slate-900;
-}
-
-.description {
-  @apply mt-4 text-slate-600 max-w-2xl mx-auto;
-}
-
-.grid {
-  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8;
-}
+/* Add your semantic CSS classes below */
+/* Example: */
+/* .container { */
+/*   @apply flex items-center justify-between gap-4; */
+/* } */

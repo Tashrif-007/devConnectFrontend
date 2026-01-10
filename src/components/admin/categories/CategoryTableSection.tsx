@@ -1,9 +1,10 @@
 import React from "react";
-import AdminTable, { type ColumnDef } from "./AdminTable";
-import Pagination from "../feed/Pagination";
+import AdminTable, { type ColumnDef } from "../table/AdminTable";
+import Pagination from "../../feed/Pagination";
 import { FiTrash2 } from "react-icons/fi";
-import type { Category } from "../../types";
-import { Button } from "../ui";
+import type { Category } from "../../../types";
+import { Button } from "../../ui";
+import styles from "./CategoryTableSection.module.css";
 
 interface CategoryTableSectionProps {
   categories: Category[];
@@ -43,22 +44,21 @@ const CategoryTableSection: React.FC<CategoryTableSectionProps> = ({
       key: "createdAt",
       align: "right",
       render: (_, item: Category) => (
-        <div className="flex items-center justify-end gap-2">
+        <div className={styles.actionContainer}>
           {deleteError && deleteError.includes(item.categoryId) && (
-            <span className="text-xs text-red-600 mr-2">{deleteError}</span>
+            <span className={styles.errorText}>{deleteError}</span>
           )}
           <Button
             onClick={() => onDeleteCategory(item.categoryId)}
             disabled={deleteLoading === item.categoryId}
-            className={`p-2 rounded transition-colors ${
+            className={
               deleteLoading === item.categoryId
-                ? "text-red-400 bg-red-50 cursor-not-allowed"
-                : "text-red-600 hover:bg-red-50"
-            }`}
-            title="Delete"
+                ? styles.deleteButtonLoading
+                : styles.deleteButton
+            }
           >
             {deleteLoading === item.categoryId ? (
-              <span className="text-xs">...</span>
+              <span className={styles.loadingIndicator}>...</span>
             ) : (
               <FiTrash2 size={18} />
             )}

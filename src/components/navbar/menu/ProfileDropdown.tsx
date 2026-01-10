@@ -1,8 +1,9 @@
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../hooks/useAuth";
+import { useAuth } from "../../../hooks/useAuth";
 import DropdownMenuAvatar from "./DropdownMenuAvatar";
+import { UI_CONFIG } from "../../../constants";
 import ProfileDropdownMenu from "./ProfileDropdownMenu";
-import { UI_CONFIG } from "../../constants";
+import styles from "./ProfileDropdown.module.css";
 
 interface ProfileDropdownProps {
   isOpen: boolean;
@@ -23,7 +24,7 @@ export default function ProfileDropdown({
   };
 
   return (
-    <div className="relative">
+    <div className={styles.container}>
       <DropdownMenuAvatar
         profilePictureUrl={
           user?.profilePictureUrl ||
@@ -34,8 +35,8 @@ export default function ProfileDropdown({
       />
       {isOpen && (
         <>
-          <div className="fixed inset-0 z-30" onClick={onToggle}></div>
-          <div className="absolute right-0 mt-2 w-48 origin-top-right rounded-xl bg-white border border-slate-200 shadow-lg ring-1 ring-black ring-opacity-5 z-50">
+          <div className={styles.backdrop} onClick={onToggle}></div>
+          <div className={styles.menu}>
             <ProfileDropdownMenu onLogout={handleLogout} />
           </div>
         </>

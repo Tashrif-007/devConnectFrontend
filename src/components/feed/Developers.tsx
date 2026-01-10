@@ -7,6 +7,7 @@ import DeveloperSkeleton from "./DeveloperSkeleton";
 import { Button } from "../ui";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../constants";
+import styles from "./Developers.module.css";
 
 const Developers: React.FC = () => {
   const { users, loading, error } = useGetUsers(1, "");
@@ -23,7 +24,7 @@ const Developers: React.FC = () => {
     <div className="bg-white rounded-lg border border-gray-200 p-5">
       <SectionHeader Icon={FiUser} title="Developers to Know" />
 
-      <div className="space-y-4">
+      <div className={styles.developersList}>
         {loading ? (
           <div className="space-y-3">
             {[1, 2, 3].map((i) => (

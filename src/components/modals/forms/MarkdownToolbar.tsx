@@ -1,6 +1,7 @@
 import React from "react";
 import { FiBold, FiItalic, FiCode, FiList } from "react-icons/fi";
-import { Button } from "../ui";
+import { Button } from "../../ui";
+import styles from './MarkdownToolbar.module.css';
 
 interface MarkdownToolbarProps {
   onInsert: (before: string, after?: string) => void;

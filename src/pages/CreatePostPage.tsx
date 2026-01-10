@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import CreatePostForm from "../components/modals/CreatePostForm";
+import CreatePostForm from "../components/modals/post/CreatePostForm";
 import { ROUTES, UI_MESSAGES } from "../constants";
 
 const CreatePostPage: React.FC = () => {

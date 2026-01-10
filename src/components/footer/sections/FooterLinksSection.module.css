@@ -1,13 +1,7 @@
 @reference '../../../styles.css';
 
-.title {
-  @apply font-semibold text-slate-900 mb-4 text-sm uppercase tracking-wide;
-}
-
-.list {
-  @apply space-y-3;
-}
-
-.link {
-  @apply text-slate-600 hover:text-[#1A1A1A] transition-colors text-sm;
-}
+/* Add your semantic CSS classes below */
+/* Example: */
+/* .container { */
+/*   @apply flex items-center justify-between gap-4; */
+/* } */
