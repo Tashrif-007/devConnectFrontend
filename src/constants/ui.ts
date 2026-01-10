@@ -1,3 +1,8 @@
+/**
+ * UI and Component Constants
+ * Avatar URLs, styling configurations, and UI-related constants
+ */
+
 export const UI_CONFIG = {
   AVATAR_URL: "https://api.dicebear.com/9.x/pixel-art/svg",
 } as const;
