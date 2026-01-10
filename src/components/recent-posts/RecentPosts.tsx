@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import PostCard from "../feed/PostCard";
 import { useGetStories } from "../../queries/stories/getStories";
 import { PostCardSkeletonLoader } from "../feed/PostCardSkeleton";
+import { ROUTES } from "../../constants";
 
 export default function RecentPosts() {
   const navigate = useNavigate();
@@ -21,7 +22,7 @@ export default function RecentPosts() {
             </h2>
           </div>
           <button
-            onClick={() => navigate("/feed")}
+            onClick={() => navigate(ROUTES.PUBLIC.FEED)}
             className="hidden md:flex items-center gap-2 text-primary hover:text-primary-hover font-semibold transition-colors"
           >
             View all posts

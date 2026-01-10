@@ -1,4 +1,5 @@
 import { apiClient } from "./apiClient";
+import { API_ENDPOINTS } from "../constants";
 import type {
   SignupPayload,
   SignupResponse,
@@ -12,7 +13,7 @@ import type {
 
 export const authService = {
   async signup(payload: SignupPayload): Promise<SignupResponse> {
-    return apiClient.post<SignupResponse>("/auth/signup", {
+    return apiClient.post<SignupResponse>(API_ENDPOINTS.AUTH.SIGNUP, {
       username: payload.username,
       name: payload.name,
       email: payload.email,
@@ -21,7 +22,7 @@ export const authService = {
     });
   },
   async login(payload: LoginPayload): Promise<LoginResponse> {
-    return apiClient.post<LoginResponse>("/auth/login", {
+    return apiClient.post<LoginResponse>(API_ENDPOINTS.AUTH.LOGIN, {
       email: payload.email,
       password: payload.password,
     });
@@ -30,7 +31,7 @@ export const authService = {
     payload: UpdatePasswordPayload
   ): Promise<UpdatePasswordResponse> {
     const response = await apiClient.post<UpdatePasswordResponse>(
-      "/auth/update-password",
+      API_ENDPOINTS.AUTH.UPDATE_PASSWORD,
       {
         oldPassword: payload.oldPassword,
         newPassword: payload.newPassword,
@@ -43,7 +44,7 @@ export const authService = {
     payload: ResendConfirmationEmailPayload
   ): Promise<ResendConfirmationEmailResponse> {
     const response = await apiClient.post<ResendConfirmationEmailResponse>(
-      "/auth/resend-confirmation-email",
+      API_ENDPOINTS.AUTH.RESEND_CONFIRMATION_EMAIL,
       {
         email: payload.email,
       }

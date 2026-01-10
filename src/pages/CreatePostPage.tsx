@@ -8,7 +8,7 @@ const CreatePostPage: React.FC = () => {
   const navigate = useNavigate();
 
   const handleClose = () => {
-    navigate("/feed");
+    navigate(ROUTES.PUBLIC.FEED);
   };
 
   return (

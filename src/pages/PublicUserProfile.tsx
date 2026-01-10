@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { Navbar } from "../components/navbar";
 import ProfileInfo from "../components/profile/ProfileInfo";
 import PostCard from "../components/feed/PostCard";
 import { useGetUserProfile } from "../hooks/useGetUserProfile";

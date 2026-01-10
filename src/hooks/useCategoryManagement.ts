@@ -3,7 +3,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { useGetCategories } from "../queries/categories/getCategories";
 import { useDeleteCategoryMutation } from "../queries/categories/deleteCategory";
 import { categoryService } from "../services/categoryService";
-import { USER_MANAGEMENT_CONFIG } from "../constants/index";
+import { USER_MANAGEMENT_CONFIG } from "../constants";
 
 export const useCategoryManagement = () => {
   const queryClient = useQueryClient();

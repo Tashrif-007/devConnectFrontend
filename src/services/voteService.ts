@@ -1,7 +1,6 @@
 import { apiClient } from "./apiClient";
 import { API_ENDPOINTS } from "../constants";
-import type { VoteResponse } from "../types";
-import type { VotePayload } from "../interfaces";
+import type { VotePayload, VoteResponse } from "../types";
 
 export const voteService = {
   async submitVote(
