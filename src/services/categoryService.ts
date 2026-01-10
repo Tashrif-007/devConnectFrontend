@@ -51,7 +51,7 @@ export const categoryService = {
   createCategory: async (payload: CreateCategoryPayload): Promise<Category> => {
     try {
       const response = await apiClient.post<CreateCategoryResponse>(
-        "/categories",
+        API_ENDPOINTS.CATEGORIES.BASE,
         payload
       );
 
@@ -59,11 +59,13 @@ export const categoryService = {
         return response.data;
       }
 
-      throw new Error(response.message || "Failed to create category");
+      throw new Error(
+        response.message || UI_MESSAGES.ERROR.FAILED_TO_CREATE_CATEGORY
+      );
     } catch (error) {
       throw error instanceof Error
         ? error
-        : new Error("Failed to create category");
+        : new Error(UI_MESSAGES.ERROR.FAILED_TO_CREATE_CATEGORY);
     }
   },
 };
