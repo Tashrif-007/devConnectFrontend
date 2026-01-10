@@ -1,5 +1,5 @@
 import React from "react";
-import { avatarUrl } from "../../constants";
+import { UI_CONFIG } from "../../constants";
 
 interface ProfilePictureProps {
   name: string;
@@ -22,11 +22,11 @@ const ProfilePicture: React.FC<ProfilePictureProps> = ({
 }) => {
   return (
     <div className="relative group">
-        <img
-          src={imageUrl || `${avatarUrl}?seed=${name}`}
-          alt={name}
-          className="w-32 h-32 rounded-full shadow-2xl object-contain"
-        />
+      <img
+        src={imageUrl || `${UI_CONFIG.AVATAR_URL}?seed=${name}`}
+        alt={name}
+        className="w-32 h-32 rounded-full shadow-2xl object-contain"
+      />
       {isEditing && (
         <>
           <button

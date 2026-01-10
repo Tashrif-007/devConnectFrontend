@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { storyService } from "../../services/storyService";
+import { QUERY_CONFIG } from "../../constants";
 import type { Comment } from "../../types";
 
 export const useGetComments = (storyId?: string) => {
@@ -8,7 +9,7 @@ export const useGetComments = (storyId?: string) => {
     isLoading,
     error,
   } = useQuery({
-    queryKey: ["comments", storyId],
+    queryKey: [QUERY_CONFIG.QUERY_KEYS.COMMENTS, storyId],
     queryFn: async () => {
       if (!storyId) return [];
       const response = await storyService.getCommentsByStoryId(storyId);
@@ -17,8 +18,8 @@ export const useGetComments = (storyId?: string) => {
       }
       throw new Error(response.message || "Failed to fetch comments");
     },
-    staleTime: 1 * 60 * 1000,
-    gcTime: 5 * 60 * 1000,
+    staleTime: QUERY_CONFIG.STALE_TIMES.COMMENTS,
+    gcTime: QUERY_CONFIG.GC_TIMES.COMMENTS,
     enabled: !!storyId,
   });
 

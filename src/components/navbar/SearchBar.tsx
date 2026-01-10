@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import InputField from "../ui/InputField";
 import { FiSearch } from "react-icons/fi";
 import { Button } from "../ui";
+import { ROUTES } from "../../constants";
 
 export default function SearchBar() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -10,14 +11,18 @@ export default function SearchBar() {
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
     if (e.key === "Enter" && searchQuery.trim()) {
-      navigate(`/search?find=${encodeURIComponent(searchQuery)}&tab=users`);
+      navigate(
+        `${ROUTES.APP.SEARCH}?find=${encodeURIComponent(searchQuery)}&tab=users`
+      );
       setSearchQuery("");
     }
   };
 
   const handleSearchClick = () => {
     if (searchQuery.trim()) {
-      navigate(`/search?find=${encodeURIComponent(searchQuery)}&tab=users`);
+      navigate(
+        `${ROUTES.APP.SEARCH}?find=${encodeURIComponent(searchQuery)}&tab=users`
+      );
       setSearchQuery("");
     }
   };

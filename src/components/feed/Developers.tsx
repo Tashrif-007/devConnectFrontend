@@ -6,6 +6,7 @@ import DeveloperCard from "./DeveloperCard";
 import DeveloperSkeleton from "./DeveloperSkeleton";
 import { Button } from "../ui";
 import { useNavigate } from "react-router-dom";
+import { ROUTES } from "../../constants";
 
 const Developers: React.FC = () => {
   const { users, loading, error } = useGetUsers(1, "");
@@ -15,7 +16,7 @@ const Developers: React.FC = () => {
   }, [users]);
 
   const handleClick = () => {
-    navigate("/search");
+    navigate(ROUTES.APP.SEARCH);
   };
 
   return (

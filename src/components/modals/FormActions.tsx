@@ -1,5 +1,6 @@
 import React from "react";
 import { Button } from "../ui";
+import { UI_MESSAGES } from "../../constants";
 
 interface FormActionsProps {
   loading: boolean;
@@ -20,7 +21,7 @@ const FormActions: React.FC<FormActionsProps> = ({
         disabled={loading}
         className="px-6 py-2 text-gray-700 font-medium border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors disabled:opacity-50"
       >
-        Cancel
+        {UI_MESSAGES.BUTTONS.CANCEL}
       </Button>
       <Button
         type="button"
@@ -28,7 +29,9 @@ const FormActions: React.FC<FormActionsProps> = ({
         disabled={loading}
         className="px-6 py-2 bg-black text-white font-medium rounded-lg hover:bg-gray-800 transition-colors disabled:opacity-50 flex items-center gap-2"
       >
-        {loading ? "Publishing..." : "Publish Post"}
+        {loading
+          ? UI_MESSAGES.BUTTONS.PUBLISHING
+          : UI_MESSAGES.BUTTONS.PUBLISH_POST}
         {!loading && <span>➜</span>}
       </Button>
     </div>

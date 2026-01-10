@@ -1,4 +1,5 @@
 import { apiClient } from "./apiClient";
+import { API_ENDPOINTS } from "../constants";
 import type {
   GetUsersParams,
   GetUsersResponse,
@@ -16,14 +17,14 @@ export const userService = {
     if (params.orderBy) queryString.append("orderBy", params.orderBy);
     if (params.find) queryString.append("find", params.find);
 
-    const endpoint = `/users${
+    const endpoint = `${API_ENDPOINTS.USERS.BASE}${
       queryString.toString() ? `?${queryString.toString()}` : ""
     }`;
     return apiClient.get<GetUsersResponse>(endpoint);
   },
 
   async getUserById(userId: string): Promise<GetUserByIdResponse> {
-    const endpoint = `/users/${userId}`;
+    const endpoint = API_ENDPOINTS.USERS.BY_ID(userId);
     return apiClient.get<GetUserByIdResponse>(endpoint);
   },
 

@@ -1,5 +1,5 @@
 import React from "react";
-import type { PostCardProps, Story } from "../../types";
+import type { Story } from "../../types";
 import PostCardHeader from "./PostCardHeader";
 import PostCardContent from "./PostCardContent";
 import PostCardTags from "./PostCardTags";
