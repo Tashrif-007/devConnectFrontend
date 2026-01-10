@@ -1,9 +1,9 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import type { Story } from "../../../types";
 import { formatDate, truncateText } from "../../../utils/stringUtils";
 import StoryCategoryBadges from "../badges/StoryCategoryBadges";
 import styles from "./StoryCard.module.css";
-import type { Story } from "../../../interfaces";
 
 interface StoryCardProps {
   story: Story;

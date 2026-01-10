@@ -1,4 +1,7 @@
 import React from "react";
+import type { User } from "../../../types/auth";
+import type { Story } from "../../../types/story";
+import type { PaginationData } from "../../types/pagination";
 import DeveloperCard from "../../feed/DeveloperCard";
 import PostCard from "../../feed/PostCard";
 import Pagination from "../../feed/Pagination";
@@ -6,8 +9,6 @@ import ErrorMessage from "../../modals/forms/ErrorMessage";
 import { Paragraph } from "../../ui";
 import Spinner from "../../ui/Spinner";
 import styles from "./SearchResults.module.css";
-import type { PaginationData, User } from "../../../types";
-import type { Story } from "../../../interfaces";
 
 interface SearchResultsProps {
   type: "users" | "posts";

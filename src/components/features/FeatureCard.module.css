@@ -1,25 +1,7 @@
 @reference '../../styles.css';
 
-.feature-card-container {
-    @apply p-8 rounded-2xl bg-white border border-slate-200 hover:bg-white transition-all duration-300 hover:shadow-xl hover:shadow-slate-200/50 relative overflow-hidden;
-}
-
-.feature-card-header {
-    @apply absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity;
-}
-
-.feature-card-icon {
-    @apply text-8xl text-[#1A1A1A];
-}
-
-.feature-card-content {
-    @apply w-14 h-14 rounded-xl bg-slate-50 flex items-center justify-center mb-6 group-hover:bg-[#1A1A1A] group-hover:text-white transition-colors text-[#1A1A1A] text-2xl;
-}
-
-.feature-card-title {
-    @apply text-xl font-bold text-slate-900 mb-3;
-}
-
-.feature-card-description {
-    @apply text-slate-600 leading-relaxed;
-}
+/* Add your semantic CSS classes below */
+/* Example: */
+/* .container { */
+/*   @apply flex items-center justify-between gap-4; */
+/* } */

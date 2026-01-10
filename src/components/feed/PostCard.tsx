@@ -1,15 +1,11 @@
 import React from "react";
+import type { Story } from "../../types";
 import PostCardHeader from "./PostCardHeader";
 import PostCardContent from "./PostCardContent";
 import PostCardTags from "./PostCardTags";
 import PostCardActions from "./PostCardActions";
 import { useNavigate } from "react-router-dom";
 import styles from "./PostCard.module.css";
-import type { Story } from "../../interfaces";
-
-interface PostCardProps {
-  story: Story;
-}
 
 interface PostCardProps {
   story: Story;

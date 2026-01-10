@@ -39,7 +39,7 @@ const Categories: React.FC<CategoriesProps> = ({
     return (
       <div className={styles.container}>
         <SectionHeader Icon={FiCode} title="Categories" />
-        <div className={styles.errorMessage}>Error loading categories</div>
+        <div className="text-red-500 text-sm">Error loading categories</div>
       </div>
     );
   }
@@ -52,7 +52,7 @@ const Categories: React.FC<CategoriesProps> = ({
         <div className={styles.clearButtonContainer}>
           <Button
             onClick={() => handleCategoryChange(null)}
-            className={styles.clearButton}
+            className="w-full py-2 px-3 text-sm font-semibold text-white rounded-lg bg-black hover:bg-black/80 transition-colors"
           >
             Clear Filter
           </Button>
@@ -61,9 +61,9 @@ const Categories: React.FC<CategoriesProps> = ({
 
       <div className={styles.categoryList}>
         {loading ? (
-          <div className={styles.emptyMessage}>Loading Categories...</div>
+          <div className="text-gray-500 text-sm">Loading Categories...</div>
         ) : categories.length === 0 ? (
-          <div className={styles.emptyMessage}>No categories yet</div>
+          <div className="text-gray-500 text-sm">No categories yet</div>
         ) : (
           categories.map((category) => (
             <CategoryItem

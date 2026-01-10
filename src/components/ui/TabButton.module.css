@@ -1,45 +1,7 @@
-@import "../../styles.css";
+@reference '../../styles.css';
 
-.tab-button-search {
-  @apply px-4 py-3 font-medium transition-colors relative whitespace-nowrap;
-}
-
-.tab-button-search-active {
-  @apply text-gray-900;
-}
-
-.tab-button-search-inactive {
-  @apply text-gray-600 hover:text-gray-900;
-}
-
-.tab-button-search-underline {
-  @apply absolute bottom-0 left-0 right-0 h-0.5 bg-black;
-}
-
-.tab-button-admin {
-  @apply pb-4 px-1 font-medium transition-colors;
-}
-
-.tab-button-admin-active {
-  @apply border-b-2 border-black text-black;
-}
-
-.tab-button-admin-inactive {
-  @apply text-gray-600 hover:text-gray-900;
-}
-
-.tab-button-content {
-  @apply px-4 py-2 font-medium transition-colors border-b-2;
-}
-
-.tab-button-content-active {
-  @apply border-black text-black;
-}
-
-.tab-button-content-inactive {
-  @apply border-gray-200 text-gray-600 hover:text-gray-900;
-}
-
-.tab-button-count-badge {
-  @apply ml-2 text-sm bg-gray-100 px-2 py-1 rounded;
-}
+/* Add your semantic CSS classes below */
+/* Example: */
+/* .container { */
+/*   @apply flex items-center justify-between gap-4; */
+/* } */

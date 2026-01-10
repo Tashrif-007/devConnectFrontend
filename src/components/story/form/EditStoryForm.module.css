@@ -1,3 +1,7 @@
-@import "../../../styles.css";
+@reference '../../../styles.css';
 
-/* EditStoryForm is a wrapper for CreatePostForm - no additional styles needed */
+/* Add your semantic CSS classes below */
+/* Example: */
+/* .container { */
+/*   @apply flex items-center justify-between gap-4; */
+/* } */

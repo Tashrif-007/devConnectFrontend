@@ -67,9 +67,11 @@ const Pagination: React.FC<PaginationProps> = ({
           key={index}
           onClick={() => typeof page === "number" && onPageChange(page)}
           disabled={page === "..." || page === currentPage}
-          className={`${
-            page === currentPage ? styles.pageActive : styles.pageInactive
-          } ${styles.button}`}
+          className={`${styles.button} ${
+            page === currentPage
+              ? "bg-black text-white"
+              : "border-gray-300 hover:bg-gray-100"
+          }`}
         >
           {page}
         </Button>

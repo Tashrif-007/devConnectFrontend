@@ -1,7 +1,7 @@
 import { useState } from "react";
+import type { Story } from "../../types";
 import PostDetailModal from "../modals/post/PostDetailModal";
-import styles from "./PostCard.module.css";
-import type { Story } from "../../interfaces";
+import styles from './PostCard.module.css';
 
 interface PostCardProps {
   tag: string;
@@ -32,39 +32,43 @@ export default function PostCard({
     <>
       <div
         onClick={() => story && setIsModalOpen(true)}
-        className={`${styles["card"]} ${story ? styles["card-clickable"] : ""}`}
+        className={`group rounded-2xl overflow-hidden bg-white border border-slate-200 hover:border-primary/30 transition-all duration-300 hover:shadow-lg flex flex-col h-full ${
+          story ? "cursor-pointer" : ""
+        }`}
       >
-        <div className={`${styles["card-header"]} ${tagColor}`}>
-          <div className={styles["card-tag"]}>{tag}</div>
+        <div className={`w-full h-48 ${tagColor} relative`}>
+          <div className="absolute top-4 left-4 px-3 py-1 rounded-full bg-white/90 text-xs font-semibold text-slate-900">
+            {tag}
+          </div>
         </div>
 
-        <div className={styles["card-body"]}>
-          <div className={styles["author-info"]}>
-            <div className={styles["author-avatar"]}></div>
-            <div className={styles["author-details"]}>
-              <p className={styles["author-name"]}>{author}</p>
-              <p className={styles["author-time"]}>{timeAgo}</p>
+        <div className="p-6 flex flex-col flex-grow">
+          <div className="flex items-center gap-2 mb-4">
+            <div className="w-6 h-6 rounded-full bg-slate-300"></div>
+            <div className="flex-1">
+              <p className="text-sm font-semibold text-slate-900">{author}</p>
+              <p className="text-xs text-slate-500">{timeAgo}</p>
             </div>
           </div>
 
-          <h3 className={styles["card-title"]}>{title}</h3>
+          <h3 className="text-lg font-bold text-slate-900 mb-3 line-clamp-2 group-hover:text-primary transition-colors">
+            {title}
+          </h3>
 
-          <p className={styles["card-description"]}>{description}</p>
+          <p className="text-slate-600 text-sm mb-4 line-clamp-3 flex-grow">
+            {description}
+          </p>
 
-          <div className={styles["card-footer"]}>
-            <div className={styles["footer-stat"]}>
-              <svg
-                className={styles["stat-icon"]}
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
+          <div className="flex items-center gap-4 pt-4 border-t border-slate-200">
+            <div className="flex items-center gap-1 text-sm text-slate-500">
+              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" />
               </svg>
               {likes}
             </div>
-            <div className={styles["footer-stat"]}>
+            <div className="flex items-center gap-1 text-sm text-slate-500">
               <svg
-                className={styles["stat-icon"]}
+                className="w-4 h-4"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"

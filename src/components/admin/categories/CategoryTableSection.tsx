@@ -1,10 +1,10 @@
 import React from "react";
 import AdminTable, { type ColumnDef } from "../table/AdminTable";
+import Pagination from "../../feed/Pagination";
 import { FiTrash2 } from "react-icons/fi";
+import type { Category } from "../../../types";
 import { Button } from "../../ui";
 import styles from "./CategoryTableSection.module.css";
-import type { Category } from "../../../interfaces";
-import Pagination from "../../feed/Pagination";
 
 interface CategoryTableSectionProps {
   categories: Category[];

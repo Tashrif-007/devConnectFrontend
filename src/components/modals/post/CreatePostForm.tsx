@@ -7,9 +7,9 @@ import SummaryToggle from "../shared/SummaryToggle";
 import ErrorMessage from "../forms/ErrorMessage";
 import FormActions from "../forms/FormActions";
 import { Header } from "../../ui";
+import type { Story } from "../../../types";
 import { useGetCategories } from "../../../queries";
-import styles from "./CreatePostForm.module.css";
-import type { Story } from "../../../interfaces";
+import styles from './CreatePostForm.module.css';
 
 interface CreatePostFormProps {
   onClose: () => void;
@@ -46,10 +46,14 @@ const CreatePostForm: React.FC<CreatePostFormProps> = ({
       onSubmit={(e) => {
         e.preventDefault();
       }}
-      className={styles.form}
+      className="space-y-6 max-w-4xl mx-auto px-4 py-8"
     >
       {" "}
-      <Header level={2} value={title} className={styles.title} />
+      <Header
+        level={2}
+        value={title}
+        className="text-3xl font-bold text-gray-900"
+      />
       <InputField
         label="Post Title"
         name="title"
@@ -65,7 +69,9 @@ const CreatePostForm: React.FC<CreatePostFormProps> = ({
         textareaRef={textareaRef}
       />
       <div>
-        <label className={styles.label}>Tags</label>
+        <label className="block text-sm font-semibold text-gray-900 mb-2">
+          Tags
+        </label>
         <TagSelector
           selectedCategoryIds={formData.categoryIds}
           onChange={handleCategoryChange}
