@@ -1,7 +1,8 @@
 import { useState, useCallback } from "react";
 import { validateForm as validateFormUtil } from "../utils/validation";
 import { parseFieldErrors } from "../utils/errorParser";
-import type { FormErrors, SignupPayload } from "../types/index";
+import type { FormErrors } from "../types/index";
+import type { SignupPayload } from "../interfaces";
 
 export const useSignupForm = () => {
   const [formData, setFormData] = useState<SignupPayload>({

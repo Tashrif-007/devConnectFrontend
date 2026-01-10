@@ -2,8 +2,8 @@ import React from "react";
 import PostCard from "../components/feed/PostCard";
 import { PostCardSkeletonLoader } from "../components/feed/PostCardSkeleton";
 import Pagination from "../components/feed/Pagination";
-import type { Story } from "../types";
 import type { PaginationData } from "../types";
+import type { Story } from "../interfaces";
 
 interface PostsListProps {
   stories: Story[];

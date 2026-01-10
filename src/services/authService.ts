@@ -1,15 +1,13 @@
 import { apiClient } from "./apiClient";
 import { API_ENDPOINTS } from "../constants";
 import type {
-  SignupPayload,
   SignupResponse,
-  LoginPayload,
   LoginResponse,
-  UpdatePasswordPayload,
   UpdatePasswordResponse,
-  ResendConfirmationEmailPayload,
   ResendConfirmationEmailResponse,
 } from "../types";
+import type { LoginPayload, SignupPayload } from "../interfaces";
+import type { ResendConfirmationEmailPayload, UpdatePasswordPayload } from "../interfaces/auth";
 
 export const authService = {
   async signup(payload: SignupPayload): Promise<SignupResponse> {

@@ -1,7 +1,7 @@
 import type React from "react";
-import type { Story } from "../../../types";
 import CreatePostForm from "../../modals/post/CreatePostForm";
 import styles from './EditStoryForm.module.css';
+import type { Story } from "../../../interfaces";
 
 type EditStoryProps = {
   story: Story;

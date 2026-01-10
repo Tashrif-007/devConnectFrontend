@@ -2,7 +2,6 @@ import { useState, useCallback } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { useGetUsers } from "../queries/users/getUsers";
 import { useDeleteUserMutation } from "../queries/users/deleteUser";
-import { USER_MANAGEMENT_CONFIG } from "../constants";
 import { useUpdateUserRoleMutation } from "../queries";
 import { USER_ROLES } from "../types";
 
@@ -24,20 +23,15 @@ export const useUserManagement = () => {
     userId: string | null;
   }>({ isOpen: false, userId: null });
 
-  const { users, loading } = useGetUsers(currentPage, searchQuery);
+  const { users, pagination, loading } = useGetUsers(currentPage, searchQuery);
   const { deleteUserMutation } = useDeleteUserMutation(
     currentPage,
     searchQuery
   );
 
   const filteredUsers = users;
-  const totalPages = Math.ceil(
-    (filteredUsers.length || 0) / USER_MANAGEMENT_CONFIG.ITEMS_PER_PAGE
-  );
-  const paginatedUsers = filteredUsers.slice(
-    (currentPage - 1) * USER_MANAGEMENT_CONFIG.ITEMS_PER_PAGE,
-    currentPage * USER_MANAGEMENT_CONFIG.ITEMS_PER_PAGE
-  );
+  const totalPages = pagination?.totalPages || 0;
+  const paginatedUsers = filteredUsers;
 
   const handleSearchChange = useCallback((query: string) => {
     setSearchQuery(query);

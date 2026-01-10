@@ -1,10 +1,10 @@
 import { apiClient } from "./apiClient";
 import { API_ENDPOINTS } from "../constants";
 import type {
-  GetUsersParams,
   GetUsersResponse,
   GetUserByIdResponse,
 } from "../types";
+import type { GetUsersParams } from "../interfaces";
 
 export const userService = {
   async getUsers(params: GetUsersParams): Promise<GetUsersResponse> {
