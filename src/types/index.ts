@@ -1,9 +1,9 @@
-export type { ApiResponse } from "./common";
+export type { ApiResponse } from "../interfaces/common";
 export type { FormErrors } from "./common";
 
 export type { PaginationData } from "./pagination";
 
-export type { User } from "./auth";
+export type { User } from "../interfaces/auth";
 export type {
   SignupPayload,
   SignupResponse,

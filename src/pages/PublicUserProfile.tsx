@@ -10,6 +10,7 @@ import styles from "./PublicUserProfile.module.css";
 
 const PublicUserProfile: React.FC = () => {
   const { userId } = useParams<{ userId: string }>();
+  const { user: loggedInUser } = useAuth();
   const {
     user,
     loading: userLoading,
@@ -59,7 +60,7 @@ const PublicUserProfile: React.FC = () => {
   return (
     <div className={styles.container}>
       <main className="max-w-4xl mx-auto px-4 py-8">
-        <ProfileInfo user={user} isPublicProfile={true} />
+        <ProfileInfo user={user} isOwnProfile={isOwnProfile} />
         {storiesError && (
           <div className={styles.errorMessage}>{storiesError}</div>
         )}
