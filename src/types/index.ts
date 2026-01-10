@@ -1,44 +1,28 @@
 export type { ApiResponse } from "../interfaces/common";
-export type { FormErrors } from "./common";
+export type { FormErrors } from "../interfaces/common";
 
-export type { PaginationData } from "./pagination";
+export type { PaginationData } from "../interfaces/pagination";
 
 export type { User } from "../interfaces/auth";
 export type {
-  SignupPayload,
   SignupResponse,
-  SignupResponseData,
-  LoginPayload,
   LoginResponse,
-  LoginResponseData,
-  UpdatePasswordPayload,
   UpdatePasswordResponse,
-  ResendConfirmationEmailPayload,
   ResendConfirmationEmailResponse,
 } from "./auth";
-
 export type {
-  Story,
-  Comment,
-  CreateStoryPayload,
   CreateStoryResponse,
-  CreateStoryData,
   StoryDetailResponse,
   CreateCommentResponse,
-  CommentsListData,
   GetCommentsResponse,
-  StoriesData,
   StoriesResponse,
 } from "./story";
 
-export type { VoteType, UserVoteType, VotePayload, VoteResponse } from "./vote";
+export type { UserVoteType, VoteResponse } from "./vote";
 
 export type {
-  GetUsersParams,
-  GetUsersData,
   GetUsersResponse,
   GetUserByIdResponse,
-  UpdateUserRolePayload,
   UpdateUserRoleResponse,
   DeleteUserResponse,
 } from "./user";
@@ -50,11 +34,9 @@ export type {
   UseStoriesReturn,
   UseCommentsReturn,
   UseVotingReturn,
-} from "./hooks";
+} from "../interfaces/hooks";
 
 export type {
-  Category,
-  CreateCategoryPayload,
   CreateCategoryResponse,
   DeleteCategoryResponse,
   CategoryResponse,

@@ -1,11 +1,11 @@
 import { apiClient } from "./apiClient";
 import { API_ENDPOINTS, UI_MESSAGES } from "../constants";
 import type {
-  UpdateUserRolePayload,
   UpdateUserRoleResponse,
   DeleteUserResponse,
   DeleteCategoryResponse,
 } from "../types";
+import type { UpdateUserRolePayload } from "../interfaces";
 
 export const adminService = {
   async updateUserRole(

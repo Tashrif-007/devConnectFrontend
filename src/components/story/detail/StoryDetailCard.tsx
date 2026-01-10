@@ -1,8 +1,8 @@
 import React from "react";
 import StoryDetailContent from "./StoryDetailContent";
 import StoryDetailActions from "./StoryDetailActions";
-import type { Story } from "../../../types";
 import styles from './StoryDetailCard.module.css';
+import type { Story } from "../../../interfaces";
 
 interface StoryDetailCardProps {
   story: Story;

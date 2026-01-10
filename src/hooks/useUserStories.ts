@@ -1,7 +1,7 @@
 import { useCallback, useState } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { storyService } from "../services/storyService";
-import type { Story } from "../types";
+import type { Story } from "../interfaces";
 
 export interface UseUserStoriesReturn {
   stories: Story[];

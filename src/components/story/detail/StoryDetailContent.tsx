@@ -4,8 +4,8 @@ import PostTitle from "../../modals/post/PostTitle";
 import PostTags from "../../modals/post/PostTags";
 import PostBody from "../../modals/post/PostBody";
 import PostSummary from "../../modals/post/PostSummary";
-import type { Story } from "../../../types";
 import styles from './StoryDetailContent.module.css';
+import type { Story } from "../../../interfaces";
 
 interface StoryDetailContentProps {
   story: Story;

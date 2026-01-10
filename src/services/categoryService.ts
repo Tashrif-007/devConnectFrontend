@@ -1,11 +1,10 @@
 import { apiClient } from "./apiClient";
 import { API_ENDPOINTS, UI_MESSAGES } from "../constants";
 import type {
-  Category,
-  CreateCategoryPayload,
   CategoryResponse,
   CreateCategoryResponse,
 } from "../types";
+import type { Category, CreateCategoryPayload } from "../interfaces";
 
 export const categoryService = {
   fetchCategories: async (): Promise<Category[]> => {

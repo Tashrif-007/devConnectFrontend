@@ -9,9 +9,7 @@ export const useDeleteCommentMutation = (storyId?: string) => {
     error,
   } = useMutation({
     mutationFn: async (commentId: string) => {
-      // Note: Implement based on your storyService API
-      // const response = await storyService.deleteComment(commentId);
-      // return response;
+      // remains
       return commentId;
     },
     onSuccess: (commentId) => {
