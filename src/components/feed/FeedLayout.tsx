@@ -55,12 +55,12 @@ const FeedLayout: React.FC<FeedLayoutProps> = ({
             </Button>
           </div>
           {currentCategory && (
-            <Paragraph className="text-sm text-gray-600 mt-2">
+            <Paragraph className={styles.categoryFilter}>
               Filtered by:{currentCategory}
             </Paragraph>
           )}
         </div>
-        <div className="flex-1">
+        <div className={styles.postsContainer}>
           <PostsList
             stories={stories}
             pagination={pagination}

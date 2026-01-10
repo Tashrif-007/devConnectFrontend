@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { FiEdit, FiShare2 } from "react-icons/fi";
-import { Button } from "../ui";
-import ChangePasswordModal from "../auth/ChangePasswordModal";
+import { Button } from "../../ui";
+import ChangePasswordModal from "../../auth/modal/ChangePasswordModal";
+import styles from "./ActionButtons.module.css";
 
 interface ActionButtonsProps {
   isEditing: boolean;
@@ -24,7 +25,7 @@ const ActionButtons: React.FC<ActionButtonsProps> = ({
 
   if (isEditing) {
     return (
-      <div className="grid grid-flow-col gap-3 justify-end">
+      <div className={styles.container}>
         <Button onClick={onCancel} className="button button-secondary">
           Cancel
         </Button>

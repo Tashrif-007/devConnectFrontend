@@ -1,8 +1,8 @@
 import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import EditStoryForm from "../components/story/EditStoryForm";
-import StoryDetailSkeleton from "../components/story/StoryDetailSkeleton";
-import StoryError from "../components/story/StoryError";
+import EditStoryForm from "../components/story/form/EditStoryForm";
+import StoryDetailSkeleton from "../components/story/detail/StoryDetailSkeleton";
+import StoryError from "../components/story/shared/StoryError";
 import { useGetStoryDetail } from "../queries";
 import styles from "./EditPostPage.module.css";
 

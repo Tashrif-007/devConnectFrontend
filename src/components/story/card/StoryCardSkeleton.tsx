@@ -1,5 +1,4 @@
 import React from "react";
-import styles from "./StoryCardSkeleton.module.css";
 
 interface StoryCardSkeletonProps {
   count?: number;
@@ -7,12 +6,15 @@ interface StoryCardSkeletonProps {
 
 const StoryCardSkeleton: React.FC<StoryCardSkeletonProps> = ({ count = 3 }) => {
   return (
-    <div className={styles["container"]}>
+    <div className="space-y-4">
       {Array.from({ length: count }).map((_, i) => (
-        <div key={i} className={styles["skeleton-card"]}>
-          <div className={styles["skeleton-title"]}></div>
-          <div className={styles["skeleton-text"]}></div>
-          <div className={styles["skeleton-text-short"]}></div>
+        <div
+          key={i}
+          className="bg-white rounded-lg border border-gray-200 shadow-sm p-6 animate-pulse"
+        >
+          <div className="h-6 bg-gray-200 rounded w-3/4 mb-3"></div>
+          <div className="h-4 bg-gray-200 rounded w-full mb-3"></div>
+          <div className="h-4 bg-gray-200 rounded w-5/6"></div>
         </div>
       ))}
     </div>

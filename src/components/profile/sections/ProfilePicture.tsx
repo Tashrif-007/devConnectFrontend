@@ -1,5 +1,6 @@
 import React from "react";
-import { UI_CONFIG } from "../../constants";
+import { UI_CONFIG } from "../../../constants";
+import styles from "./ProfilePicture.module.css";
 
 interface ProfilePictureProps {
   name: string;
@@ -21,21 +22,21 @@ const ProfilePicture: React.FC<ProfilePictureProps> = ({
   onUploadClick,
 }) => {
   return (
-    <div className="relative group">
+    <div className={styles.container}>
       <img
         src={imageUrl || `${UI_CONFIG.AVATAR_URL}?seed=${name}`}
         alt={name}
-        className="w-32 h-32 rounded-full shadow-2xl object-contain"
+        className={styles.avatar}
       />
       {isEditing && (
         <>
           <button
             onClick={onUploadClick}
-            className="absolute bottom-0 right-0 bg-gray-900 text-white rounded-full p-2 shadow-lg hover:bg-gray-800 transition-colors"
+            className={styles.uploadButton}
             title="Upload profile picture"
           >
             <svg
-              className="w-5 h-5"
+              className={styles.uploadIcon}
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"

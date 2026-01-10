@@ -1,9 +1,7 @@
-@import "../../../styles.css";
+@reference '../../../styles.css';
 
-.container {
-  @apply space-y-4;
-}
-
-.skeleton-title {
-  @apply h-8 bg-gray-200 rounded w-1/4 animate-pulse;
-}
+/* Add your semantic CSS classes below */
+/* Example: */
+/* .container { */
+/*   @apply flex items-center justify-between gap-4; */
+/* } */

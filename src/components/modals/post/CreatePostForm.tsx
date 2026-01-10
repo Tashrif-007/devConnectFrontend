@@ -1,14 +1,15 @@
 import React, { useState } from "react";
-import { useCreatePostForm } from "../../hooks/useCreatePostForm";
-import InputField from "../ui/InputField";
-import ContentEditor from "./ContentEditor";
-import TagSelector from "./TagSelector";
-import SummaryToggle from "./SummaryToggle";
-import ErrorMessage from "./ErrorMessage";
-import FormActions from "./FormActions";
-import { Header } from "../ui";
-import type { Story } from "../../types";
-import { useGetCategories } from "../../queries";
+import { useCreatePostForm } from "../../../hooks/useCreatePostForm";
+import InputField from "../../ui/InputField";
+import ContentEditor from "../forms/ContentEditor";
+import TagSelector from "../forms/TagSelector";
+import SummaryToggle from "../shared/SummaryToggle";
+import ErrorMessage from "../forms/ErrorMessage";
+import FormActions from "../forms/FormActions";
+import { Header } from "../../ui";
+import type { Story } from "../../../types";
+import { useGetCategories } from "../../../queries";
+import styles from './CreatePostForm.module.css';
 
 interface CreatePostFormProps {
   onClose: () => void;

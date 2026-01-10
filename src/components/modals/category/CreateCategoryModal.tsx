@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FiX } from "react-icons/fi";
-import InputField from "../ui/InputField";
+import InputField from "../../ui/InputField";
+import styles from './CreateCategoryModal.module.css';
 
 interface CreateCategoryModalProps {
   isOpen: boolean;

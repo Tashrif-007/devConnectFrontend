@@ -22,19 +22,21 @@ const socialLinks: SocialLink[] = [
   },
 ];
 
-import styles from "./FooterSocialLinks.module.css";
-
 export default function FooterSocialLinks() {
   return (
-    <div className={styles.container}>
+    <div className="flex gap-4">
       {socialLinks.map((social) => (
         <a
           key={social.label}
           aria-label={social.label}
           href={social.href}
-          className={styles.link}
+          className="w-10 h-10 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-600 hover:bg-primary hover:text-white transition-all"
         >
-          <svg className={styles.icon} fill="currentColor" viewBox="0 0 24 24">
+          <svg
+            className="w-5 h-5"
+            fill="currentColor"
+            viewBox="0 0 24 24"
+          >
             <path d={social.icon} />
           </svg>
         </a>

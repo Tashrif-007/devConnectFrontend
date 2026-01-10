@@ -1,5 +1,6 @@
 import React from "react";
-import InputField from "../ui/InputField";
+import InputField from "../../ui/InputField";
+import styles from "./ProfileBasicInfo.module.css";
 
 interface ProfileBasicInfoProps {
   name: string;
@@ -27,9 +28,9 @@ const ProfileBasicInfo: React.FC<ProfileBasicInfoProps> = ({
           type="text"
         />
       ) : (
-        <h1 className="text-2xl font-bold text-gray-900">{name}</h1>
+        <h1 className={styles.name}>{name}</h1>
       )}
-      <p className="text-gray-600">@{username}</p>
+      <p className={styles.username}>@{username}</p>
     </div>
   );
 };

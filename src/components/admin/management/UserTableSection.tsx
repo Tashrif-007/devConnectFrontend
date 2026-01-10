@@ -1,11 +1,10 @@
 import React from "react";
-import AdminTable, { type ColumnDef } from "./AdminTable";
-import Pagination from "../feed/Pagination";
-import type { User } from "../../types/auth";
-import RoleBadge from "./RoleBadge";
+import AdminTable, { type ColumnDef } from "../table/AdminTable";
+import Pagination from "../../feed/Pagination";
 import UserActionCell from "./UserActionCell";
-import { USER_MANAGEMENT_CONFIG } from "../../constants";
-import { USER_ROLES } from "../../types";
+import { USER_MANAGEMENT_CONFIG } from "../../../constants";
+import { USER_ROLES, type User } from "../../../types";
+import RoleBadge from "./RoleBadge";
 
 interface UserTableSectionProps {
   users: User[];

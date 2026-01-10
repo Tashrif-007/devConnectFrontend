@@ -1,9 +1,9 @@
 import React from "react";
+import type { Story } from "../../../types";
 import StoryCard from "../../story/card/StoryCard";
 import StoryCardSkeleton from "../../story/card/StoryCardSkeleton";
 import EmptyStories from "../../story/shared/EmptyStories";
 import styles from "./UserStories.module.css";
-import type { Story } from "../../../interfaces";
 
 interface UserStoriesProps {
   stories: Story[];

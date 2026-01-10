@@ -6,4 +6,10 @@
 
 .icon {
   @apply w-5 h-5;
+
+  /* Add your semantic CSS classes below */
+  /* Example: */
+  /* .container { */
+  /*   @apply flex items-center justify-between gap-4; */
+  /* } */
 }

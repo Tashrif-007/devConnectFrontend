@@ -1,9 +1,7 @@
-@import "../../../styles.css";
+@reference '../../../styles.css';
 
-.container {
-  @apply space-y-6;
-}
-
-.divider {
-  @apply border-t border-gray-200;
-}
+/* Add your semantic CSS classes below */
+/* Example: */
+/* .container { */
+/*   @apply flex items-center justify-between gap-4; */
+/* } */

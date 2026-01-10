@@ -1,9 +1,9 @@
 import React from "react";
-import { useParams} from "react-router-dom";
-import StoryDetailHeader from "../components/story/StoryDetailHeader";
-import StoryDetailCard from "../components/story/StoryDetailCard";
-import StoryDetailSkeleton from "../components/story/StoryDetailSkeleton";
-import StoryError from "../components/story/StoryError";
+import { useParams } from "react-router-dom";
+import StoryDetailHeader from "../components/story/detail/StoryDetailHeader";
+import StoryDetailCard from "../components/story/detail/StoryDetailCard";
+import StoryDetailSkeleton from "../components/story/detail/StoryDetailSkeleton";
+import StoryError from "../components/story/shared/StoryError";
 import { CommentsSection } from "../components/comments";
 import { useGetStoryDetail } from "../queries";
 import styles from "./StoryDetailPage.module.css";
@@ -11,7 +11,6 @@ import styles from "./StoryDetailPage.module.css";
 const StoryDetailPage: React.FC = () => {
   const { storyId } = useParams<{ storyId: string }>();
   const { story, loading, error } = useGetStoryDetail(storyId);
-
 
   return (
     <div className={styles.container}>

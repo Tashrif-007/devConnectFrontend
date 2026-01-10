@@ -1,5 +1,5 @@
 import React from "react";
-import AdminSearchBar from "./AdminSearchBar";
+import AdminSearchBar from "../search/AdminSearchBar";
 import CategoryTableSection from "./CategoryTableSection";
 import DeleteCategoryConfirmation from "./DeleteCategoryConfirmation";
 import { useCategoryManagement } from "../../../hooks/useCategoryManagement";

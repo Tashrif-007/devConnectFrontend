@@ -1,49 +1,7 @@
 @reference '../../../styles.css';
 
-.root {
-  @apply relative;
-}
-
-.selectedTags {
-  @apply flex flex-wrap gap-2 mb-2;
-}
-
-.tag {
-  @apply bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm flex items-center gap-2;
-}
-
-.tagRemoveButton {
-  @apply hover:text-gray-900 transition-colors;
-}
-
-.dropdownContainer {
-  @apply relative;
-}
-
-.dropdownButton {
-  @apply w-full px-4 py-2 border border-gray-300 rounded-lg text-left flex items-center justify-between hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed;
-}
-
-.dropdownButtonText {
-  @apply text-gray-600;
-}
-
-.chevron {
-  @apply text-gray-400 transition-transform;
-}
-
-.chevronOpen {
-  @apply rotate-180;
-}
-
-.dropdownMenu {
-  @apply absolute top-full left-0 right-0 mt-1 bg-white border border-gray-300 rounded-lg shadow-lg z-10 max-h-48 overflow-y-auto;
-}
-
-.dropdownMenuItem {
-  @apply w-full text-left px-4 py-2 hover:bg-gray-50 transition-colors border-b border-gray-100;
-}
-
-.dropdownMenuItem:last-child {
-  @apply border-b-0;
-}
+/* Add your semantic CSS classes below */
+/* Example: */
+/* .container { */
+/*   @apply flex items-center justify-between gap-4; */
+/* } */

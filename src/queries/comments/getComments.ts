@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { storyService } from "../../services/storyService";
 import { QUERY_CONFIG } from "../../constants";
-import type { Comment } from "../../types";
+import type { Comment } from "../../interfaces/stories";
 
 export const useGetComments = (storyId?: string) => {
   const {

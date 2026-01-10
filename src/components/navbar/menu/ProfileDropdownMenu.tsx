@@ -1,8 +1,9 @@
 import React from "react";
 import { AiOutlineUser, AiOutlineLogout } from "react-icons/ai";
 import DropdownMenuButton from "./DropdownMenuButton";
-import { ROUTES, getPublicProfileRoute } from "../../constants";
-import { useAuth } from "../../hooks/useAuth";
+import { ROUTES, getPublicProfileRoute } from "../../../constants";
+import { useAuth } from "../../../hooks/useAuth";
+import styles from "./ProfileDropdownMenu.module.css";
 
 interface ProfileDropdownMenuProps {
   onLogout: () => void;
@@ -17,13 +18,13 @@ const ProfileDropdownMenu: React.FC<ProfileDropdownMenuProps> = ({
     : ROUTES.APP.PUBLIC_PROFILE;
 
   return (
-    <div className="py-1">
+    <div className={styles.container}>
       <DropdownMenuButton
         icon={<AiOutlineUser className="w-5 h-5" />}
         label="Profile"
         to={profileRoute}
       />
-      <div className="border-t border-slate-200 my-1"></div>
+      <div className={styles.divider}></div>
       <DropdownMenuButton
         icon={<AiOutlineLogout className="w-5 h-5" />}
         label="Logout"

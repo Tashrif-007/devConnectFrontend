@@ -1,17 +1,7 @@
 @reference '../../../styles.css';
 
-.label {
-  @apply block text-sm font-semibold text-gray-900 mb-2;
-}
-
-.container {
-  @apply border-2 border-gray-300 rounded-lg overflow-hidden;
-}
-
-.innerContainer {
-  @apply border-t border-gray-300;
-}
-
-.tabsHeader {
-  @apply flex border-b border-gray-200 bg-gray-100;
-}
+/* Add your semantic CSS classes below */
+/* Example: */
+/* .container { */
+/*   @apply flex items-center justify-between gap-4; */
+/* } */

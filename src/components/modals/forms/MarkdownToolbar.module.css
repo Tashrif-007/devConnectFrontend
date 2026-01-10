@@ -1,9 +1,7 @@
 @reference '../../../styles.css';
 
-.container {
-  @apply bg-gray-50 border-b border-gray-300 px-4 py-3 flex gap-2 rounded-t-lg;
-}
-
-.button {
-  @apply p-2 rounded hover:bg-gray-200 transition-colors text-gray-700 hover:text-gray-900;
-}
+/* Add your semantic CSS classes below */
+/* Example: */
+/* .container { */
+/*   @apply flex items-center justify-between gap-4; */
+/* } */
