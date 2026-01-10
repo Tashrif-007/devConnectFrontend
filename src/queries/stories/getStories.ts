@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { storyService } from "../../services/storyService";
 import { QUERY_CONFIG, UI_MESSAGES } from "../../constants";
+import type { Story } from "../../interfaces/stories";
 
 export const useGetStories = (
   currentPage: number,
@@ -28,7 +29,7 @@ export const useGetStories = (
     gcTime: QUERY_CONFIG.GC_TIMES.STORIES,
   });
 
-  const stories = data?.data || [];
+  const stories: Story[] = data?.data || [];
   const pagination = data?.pagination || null;
 
   return {

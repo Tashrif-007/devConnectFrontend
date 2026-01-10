@@ -10,12 +10,12 @@ import ProfileDetails from "./ProfileDetails";
 
 interface ProfileInfoProps {
   user: User;
-  isPublicProfile?: boolean;
+  isOwnProfile?: boolean;
 }
 
 const ProfileInfo: React.FC<ProfileInfoProps> = ({
   user: initialUser,
-  isPublicProfile = false,
+  isOwnProfile = false,
 }) => {
   const {
     user,
@@ -28,7 +28,6 @@ const ProfileInfo: React.FC<ProfileInfoProps> = ({
     handleCancel,
     fileInputRef,
   } = useProfileForm(initialUser);
-
   const handleShare = () => {
     const profileUrl = window.location.href;
     if (navigator.share) {
@@ -61,11 +60,11 @@ const ProfileInfo: React.FC<ProfileInfoProps> = ({
                 name={user.name}
                 username={user.username}
                 isEditing={isEditing}
-                nameValue={formData.name}
+                nameValue={formData.name!}
                 onNameChange={handleInputChange}
               />
             </div>
-            {!isPublicProfile && (
+            {isOwnProfile && (
               <ActionButtons
                 isEditing={isEditing}
                 onEdit={() => setIsEditing(true)}
@@ -78,7 +77,7 @@ const ProfileInfo: React.FC<ProfileInfoProps> = ({
           <ProfileBio
             bio={user.bio || ""}
             isEditing={isEditing}
-            bioValue={formData.bio}
+            bioValue={formData.bio!}
             onBioChange={handleInputChange}
           />
           <ProfileDetails email={user.email} joinDate={user.joinDate} />

@@ -29,7 +29,6 @@ export const VoteButtons: React.FC<VoteButtonsProps> = ({
     handleDownvote,
     clearError,
   } = useVoting(storyId, upvotes, downvotes, !!user, userVote);
-
   return (
     <>
       <div className="flex items-center gap-2">

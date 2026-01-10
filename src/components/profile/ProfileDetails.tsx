@@ -3,11 +3,10 @@ import { formatProfileDate } from "../../utils/dateFormatter";
 
 interface ProfileDetailsProps {
   email: string;
-  joinDate: string | Date;
+  joinDate: Date | string;
 }
 
 const ProfileDetails: React.FC<ProfileDetailsProps> = ({ email, joinDate }) => {
-  
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
       <div className="p-4 bg-gray-50 rounded-lg border border-gray-200">
@@ -46,7 +45,9 @@ const ProfileDetails: React.FC<ProfileDetailsProps> = ({ email, joinDate }) => {
           </svg>
           Joined
         </label>
-        <p className="text-gray-900 font-medium">{formatProfileDate(joinDate)}</p>
+        <p className="text-gray-900 font-medium">
+          {formatProfileDate(joinDate)}
+        </p>
       </div>
     </div>
   );
