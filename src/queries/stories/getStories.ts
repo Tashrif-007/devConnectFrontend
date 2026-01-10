@@ -1,25 +1,31 @@
 import { useQuery } from "@tanstack/react-query";
 import { storyService } from "../../services/storyService";
+import { QUERY_CONFIG, UI_MESSAGES } from "../../constants";
 
 export const useGetStories = (
   currentPage: number,
   currentCategory?: string
 ) => {
   const { data, isLoading, error } = useQuery({
-    queryKey: ["stories", { page: currentPage, category: currentCategory }],
+    queryKey: [
+      QUERY_CONFIG.QUERY_KEYS.STORIES,
+      { page: currentPage, category: currentCategory },
+    ],
     queryFn: async () => {
       const response = await storyService.fetchStories(
         currentPage,
-        5, // itemsPerPage
+        QUERY_CONFIG.PAGINATION.ITEMS_PER_PAGE,
         currentCategory
       );
       if (response.success && response.data) {
         return response.data;
       }
-      throw new Error(response.message || "Failed to fetch stories");
+      throw new Error(
+        response.message || UI_MESSAGES.ERROR.FAILED_TO_FETCH_STORIES
+      );
     },
-    staleTime: 2 * 60 * 1000, // 2 minutes
-    gcTime: 5 * 60 * 1000, // 5 minutes
+    staleTime: QUERY_CONFIG.STALE_TIMES.STORIES,
+    gcTime: QUERY_CONFIG.GC_TIMES.STORIES,
   });
 
   const stories = data?.data || [];

@@ -5,7 +5,7 @@ import { useAuth } from "../../hooks/useAuth";
 import { useNavigate, useParams } from "react-router-dom";
 import StoryCardOptions from "../story/StoryCardOptions";
 import { useCreateStory } from "../../hooks/useCreateStory";
-import { avatarUrl } from "../../constants";
+import { UI_CONFIG, getEditPostRoute, getPublicProfileRoute, ROUTES } from "../../constants";
 
 interface PostAuthorProps {
   user: User;
@@ -21,23 +21,23 @@ const PostAuthor: React.FC<PostAuthorProps> = ({ user, createdAt }) => {
   const { deleteStory } = useCreateStory();
 
   const handleEdit = () => {
-    navigate(`/stories/${storyId}/edit`);
+    navigate(getEditPostRoute(storyId!));
   };
 
   const handleClick = () => {
-    navigate(`/profile/${user.userId}`);
+    navigate(getPublicProfileRoute(user.userId));
   }
   const handleDelete = async () => {
     if (!storyId) return;
     await deleteStory(storyId);
-    navigate('/feed');
+    navigate(ROUTES.PUBLIC.FEED);
   };
 
   return (
-    <div className="flex items-start gap-3 mb-5" onClick={handleClick}>
-      <div className="w-12 h-12 rounded-full shrink-0 bg-gray-200 overflow-hidden">
+    <div className="flex items-start gap-3 mb-5">
+      <div className="w-12 h-12 rounded-full shrink-0 bg-gray-200 overflow-hidden" onClick={handleClick}>
         <img
-          src={user.profilePictureUrl || `${avatarUrl}?seed=${user.name}`}
+          src={user.profilePictureUrl || `${UI_CONFIG.AVATAR_URL}?seed=${user.name}`}
           alt={user.name}
           className="w-full h-full object-cover"
         />

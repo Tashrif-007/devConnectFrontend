@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
+import { ROUTES } from "../../constants";
 
 export default function HeroSection() {
   const { isAuthenticated } = useAuth();
@@ -25,7 +26,7 @@ export default function HeroSection() {
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
           {!isAuthenticated && (
             <Link
-              to="/signup"
+              to={ROUTES.AUTH.SIGNUP}
               className="w-full sm:w-auto px-8 py-4 border-2 border-slate-300 bg-black text-white hover:bg-black-hover font-bold text-lg rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-primary/40 flex items-center justify-center gap-2"
             >
               Get Started
@@ -45,7 +46,7 @@ export default function HeroSection() {
             </Link>
           )}
           <Link
-            to="/feed"
+            to={ROUTES.PUBLIC.FEED}
             className="w-full sm:w-auto px-8 py-4 bg-transparent border-2 border-slate-300 hover:border-primary text-slate-700 font-bold text-lg rounded-full transition-all duration-300 hover:bg-slate-50 flex items-center justify-center gap-2 group"
           >
             Posts

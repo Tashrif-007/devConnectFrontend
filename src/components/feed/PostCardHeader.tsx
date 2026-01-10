@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { formatDate } from "../../utils/dateFormatter";
 import type { User } from "../../types";
 import { Button, Paragraph } from "../ui";
-import { avatarUrl } from "../../constants/index";
+import { UI_CONFIG, getPublicProfileRoute } from "../../constants/index";
 
 interface PostCardHeaderProps {
   user: User;
@@ -20,7 +20,7 @@ const PostCardHeader: React.FC<PostCardHeaderProps> = ({
 
   const handleProfileClick = (e: React.MouseEvent) => {
     e.stopPropagation();
-    navigate(`/profile/${user.userId}`);
+    navigate(getPublicProfileRoute(user.userId));
     onUserClick?.();
   };
 
@@ -32,7 +32,10 @@ const PostCardHeader: React.FC<PostCardHeaderProps> = ({
       >
         <img
           className="h-12 rounded-full w-12 object-cover"
-          src={user.profilePictureUrl || `${avatarUrl}?seed=${user.name}`}
+          src={
+            user.profilePictureUrl ||
+            `${UI_CONFIG.AVATAR_URL}?seed=${user.name}`
+          }
           alt={user.username}
         />
       </Button>

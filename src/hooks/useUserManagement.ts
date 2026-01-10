@@ -2,7 +2,7 @@ import { useState, useCallback } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { useGetUsers } from "../queries/users/getUsers";
 import { useDeleteUserMutation } from "../queries/users/deleteUser";
-import { USER_MANAGEMENT_CONFIG } from "../constants/index";
+import { USER_MANAGEMENT_CONFIG } from "../constants";
 import { useUpdateUserRoleMutation } from "../queries";
 import { USER_ROLES } from "../types";
 

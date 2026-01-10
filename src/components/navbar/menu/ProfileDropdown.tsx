@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 import DropdownMenuAvatar from "./DropdownMenuAvatar";
 import ProfileDropdownMenu from "./ProfileDropdownMenu";
-import { avatarUrl } from "../../constants";
+import { UI_CONFIG } from "../../constants";
 
 interface ProfileDropdownProps {
   isOpen: boolean;
@@ -25,7 +25,10 @@ export default function ProfileDropdown({
   return (
     <div className="relative">
       <DropdownMenuAvatar
-        profilePictureUrl={user?.profilePictureUrl || `${avatarUrl}?seed=${user?.name}`}
+        profilePictureUrl={
+          user?.profilePictureUrl ||
+          `${UI_CONFIG.AVATAR_URL}?seed=${user?.name}`
+        }
         userName={user?.name || "User"}
         onClick={onToggle}
       />

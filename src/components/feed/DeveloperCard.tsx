@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import type { User } from "../../types";
-import { avatarUrl } from "../../constants";
+import { UI_CONFIG, getPublicProfileRoute } from "../../constants";
 
 interface DeveloperCardProps {
   developer: User;
@@ -11,7 +11,7 @@ const DeveloperCard: React.FC<DeveloperCardProps> = ({ developer }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(`/profile/${developer.userId}`);
+    navigate(getPublicProfileRoute(developer.userId));
   };
 
   return (
@@ -24,7 +24,7 @@ const DeveloperCard: React.FC<DeveloperCardProps> = ({ developer }) => {
           <img
             src={
               developer.profilePictureUrl ||
-              `${avatarUrl}?seed=${developer.name}`
+              `${UI_CONFIG.AVATAR_URL}?seed=${developer.name}`
             }
             alt={developer.name}
             className="w-full h-full object-cover"

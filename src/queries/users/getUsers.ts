@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { userService } from "../../services/userService";
+import { QUERY_CONFIG } from "../../constants";
 
 export const useGetUsers = (currentPage: number, searchQuery: string) => {
   const {
@@ -7,7 +8,10 @@ export const useGetUsers = (currentPage: number, searchQuery: string) => {
     isLoading: loading,
     error,
   } = useQuery({
-    queryKey: ["users", { page: currentPage, search: searchQuery }],
+    queryKey: [
+      QUERY_CONFIG.QUERY_KEYS.USERS,
+      { page: currentPage, search: searchQuery },
+    ],
     queryFn: async () => {
       const response = await userService.getUsers({
         page: currentPage,
@@ -15,8 +19,8 @@ export const useGetUsers = (currentPage: number, searchQuery: string) => {
       });
       return response.data?.data || [];
     },
-    staleTime: 2 * 60 * 1000, 
-    gcTime: 5 * 60 * 1000,
+    staleTime: QUERY_CONFIG.STALE_TIMES.USERS,
+    gcTime: QUERY_CONFIG.GC_TIMES.USERS,
   });
 
   return {
