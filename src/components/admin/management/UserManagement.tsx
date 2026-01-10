@@ -33,7 +33,7 @@ const UserManagement: React.FC = () => {
     hasPreviousPage: currentPage > 1,
     hasNextPage: currentPage < totalPages,
   };
-
+console.log(users)
   return (
     <div>
       <AdminSearchBar

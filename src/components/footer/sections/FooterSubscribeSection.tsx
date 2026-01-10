@@ -1,7 +1,6 @@
 import { useState } from "react";
 import InputField from "../../ui/InputField";
 import { Button } from "../../ui";
-import styles from './FooterSubscribeSection.module.css';
 
 export default function FooterSubscribeSection() {
   const [email, setEmail] = useState("");

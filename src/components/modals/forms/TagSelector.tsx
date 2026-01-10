@@ -1,7 +1,7 @@
 import React from "react";
 import { FiX, FiChevronDown } from "react-icons/fi";
-import type { Category } from "../../../types";
 import styles from './TagSelector.module.css';
+import type { Category } from "../../../interfaces";
 
 interface TagSelectorProps {
   selectedCategoryIds: string[];
