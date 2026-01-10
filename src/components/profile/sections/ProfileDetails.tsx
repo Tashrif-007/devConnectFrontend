@@ -1,6 +1,5 @@
 import React from "react";
-import { formatProfileDate } from "../../../utils/dateFormatter";
-import styles from "./ProfileDetails.module.css";
+import { formatProfileDate } from "../../utils/dateFormatter";
 
 interface ProfileDetailsProps {
   email: string;
@@ -9,11 +8,11 @@ interface ProfileDetailsProps {
 
 const ProfileDetails: React.FC<ProfileDetailsProps> = ({ email, joinDate }) => {
   return (
-    <div className={styles.container}>
-      <div className={styles.detailBox}>
-        <label className={styles.label}>
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+      <div className="p-4 bg-gray-50 rounded-lg border border-gray-200">
+        <label className="text-sm font-semibold text-gray-700 flex items-center gap-2 mb-2">
           <svg
-            className={styles.icon}
+            className="w-4 h-4"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -27,12 +26,12 @@ const ProfileDetails: React.FC<ProfileDetailsProps> = ({ email, joinDate }) => {
           </svg>
           Email
         </label>
-        <p className={styles.value}>{email}</p>
+        <p className="text-gray-900 font-medium break-all">{email}</p>
       </div>
-      <div className={styles.detailBox}>
-        <label className={styles.label}>
+      <div className="p-4 bg-gray-50 rounded-lg border border-gray-200">
+        <label className="text-sm font-semibold text-gray-700 flex items-center gap-2 mb-2">
           <svg
-            className={styles.icon}
+            className="w-4 h-4"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -46,7 +45,9 @@ const ProfileDetails: React.FC<ProfileDetailsProps> = ({ email, joinDate }) => {
           </svg>
           Joined
         </label>
-        <p className={styles.value}>{formatProfileDate(joinDate)}</p>
+        <p className="text-gray-900 font-medium">
+          {formatProfileDate(joinDate)}
+        </p>
       </div>
     </div>
   );

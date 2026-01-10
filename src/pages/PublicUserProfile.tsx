@@ -4,10 +4,12 @@ import ProfileInfo from "../components/profile/ProfileInfo";
 import PostCard from "../components/feed/PostCard";
 import { useGetUserProfile } from "../hooks/useGetUserProfile";
 import { useUserStories } from "../hooks/useUserStories";
+import { useAuth } from "../hooks/useAuth";
 import { UI_MESSAGES } from "../constants";
 
 const PublicUserProfile: React.FC = () => {
   const { userId } = useParams<{ userId: string }>();
+  const { user: loggedInUser } = useAuth();
   const {
     user,
     loading: userLoading,
@@ -19,6 +21,9 @@ const PublicUserProfile: React.FC = () => {
     error: storiesError,
     fetchUserStories,
   } = useUserStories();
+
+  // Check if the logged-in user is viewing their own profile
+  const isOwnProfile = loggedInUser?.userId === userId;
 
   useEffect(() => {
     if (userId) {
@@ -55,7 +60,7 @@ const PublicUserProfile: React.FC = () => {
   return (
     <div className="min-h-screen bg-white">
       <main className="max-w-4xl mx-auto px-4 py-8">
-        <ProfileInfo user={user} isPublicProfile={true} />
+        <ProfileInfo user={user} isOwnProfile={isOwnProfile} />
         {storiesError && (
           <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg text-red-700">
             {storiesError}
