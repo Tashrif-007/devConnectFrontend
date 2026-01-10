@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { useCreateStory } from "./useCreateStory";
-import type { Story } from "../types";
+import type { Story } from "../interfaces";
 
 interface CategoryFormData {
   title: string;

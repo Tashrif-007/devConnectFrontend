@@ -1,7 +1,5 @@
 import React, { type ReactNode } from "react";
 import { Header } from "./Header";
-import styles from "./Modal.module.css";
-import Button from "./Button";
 import styles from './Modal.module.css';
 
 export interface ModalButton {
@@ -26,7 +24,6 @@ const Modal: React.FC<GenericModalProps> = ({
   header,
   message,
   children,
-  buttons,
   showIcon = true,
   icon = "✓",
 }) => {
@@ -36,24 +33,13 @@ const Modal: React.FC<GenericModalProps> = ({
     <div className="modal-overlay">
       <div className="modal-content">
         {showIcon && <div className="modal-icon">{icon}</div>}
-        <Header level={2} value={header} className={styles["modal-header"]} />
+        <Header
+          level={2}
+          value={header}
+          className="text-xl font-bold text-gray-900 mb-2"
+        />
         {message && <p className="modal-message">{message}</p>}
         {children && <div className="modal-body">{children}</div>}
-        {buttons && buttons.length > 0 && (
-          <div className="modal-buttons">
-            {buttons.map((button, index) => (
-              <Button
-                key={index}
-                onClick={button.onClick}
-                className={`modal-button modal-button-${
-                  button.variant || "primary"
-                }`}
-              >
-                {button.label}
-              </Button>
-            ))}
-          </div>
-        )}
       </div>
     </div>
   );

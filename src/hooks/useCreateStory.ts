@@ -1,8 +1,9 @@
 import { useCreateStoryMutation } from "../queries/stories/createStory";
 import { useUpdateStoryMutation } from "../queries/stories/updateStory";
 import { useDeleteStoryMutation } from "../queries/stories/deleteStory";
-import type { CreateStoryPayload, CreateStoryResponse } from "../types";
+import type { CreateStoryResponse } from "../types";
 import type { UpdateStoryPayload } from "../types/story";
+import type { CreateStoryPayload } from "../interfaces";
 
 export const useCreateStory = (storyId?: string) => {
   const {

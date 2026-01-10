@@ -1,5 +1,4 @@
 import React from "react";
-import type { Story } from "../../../types";
 import ModalHeader from "../shared/ModalHeader";
 import PostAuthor from "./PostAuthor";
 import PostTitle from "./PostTitle";
@@ -8,6 +7,7 @@ import PostBody from "./PostBody";
 import PostSummary from "./PostSummary";
 import VoteButtons from "../../ui/VoteButtons";
 import styles from './PostDetailModal.module.css';
+import type { Story } from "../../../interfaces";
 
 interface PostDetailModalProps {
   isOpen: boolean;

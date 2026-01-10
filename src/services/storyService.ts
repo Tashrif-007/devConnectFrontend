@@ -2,7 +2,6 @@ import { apiClient } from "./apiClient";
 import { API_ENDPOINTS } from "../constants";
 import type {
   StoriesResponse,
-  CreateStoryPayload,
   CreateStoryResponse,
   StoryDetailResponse,
   CreateCommentPayload,
@@ -10,6 +9,7 @@ import type {
   GetCommentsResponse,
 } from "../types";
 import type { UpdateStoryPayload } from "../types/story";
+import type { CreateStoryPayload } from "../interfaces";
 
 export const storyService = {
   async fetchStories(

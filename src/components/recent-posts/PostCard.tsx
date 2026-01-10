@@ -1,7 +1,7 @@
 import { useState } from "react";
-import type { Story } from "../../types";
 import PostDetailModal from "../modals/post/PostDetailModal";
 import styles from './PostCard.module.css';
+import type { Story } from "../../interfaces";
 
 interface PostCardProps {
   tag: string;

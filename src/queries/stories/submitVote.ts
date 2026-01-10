@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { voteService } from "../../services/voteService";
 import type { UserVoteType } from "../../types";
-import type { Story } from "../../types";
+import type { Story } from "../../interfaces";
 
 export const useSubmitVoteMutation = (
   storyId: string,

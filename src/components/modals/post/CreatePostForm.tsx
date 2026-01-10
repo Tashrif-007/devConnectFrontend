@@ -7,9 +7,9 @@ import SummaryToggle from "../shared/SummaryToggle";
 import ErrorMessage from "../forms/ErrorMessage";
 import FormActions from "../forms/FormActions";
 import { Header } from "../../ui";
-import type { Story } from "../../../types";
 import { useGetCategories } from "../../../queries";
 import styles from './CreatePostForm.module.css';
+import type { Story } from "../../../interfaces";
 
 interface CreatePostFormProps {
   onClose: () => void;
