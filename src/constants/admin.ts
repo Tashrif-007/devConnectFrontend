@@ -1,3 +1,8 @@
+/**
+ * Admin and User Management Configuration
+ * Settings for user management, pagination, sorting, and date formatting
+ */
+
 export const USER_MANAGEMENT_CONFIG = {
   ITEMS_PER_PAGE: 5,
   DEFAULT_SORT_BY: "DESC",

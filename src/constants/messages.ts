@@ -1,4 +1,10 @@
+/**
+ * UI Messages
+ * All user-facing messages and error texts
+ */
+
 export const UI_MESSAGES = {
+  // Button labels
   BUTTONS: {
     CANCEL: "Cancel",
     PUBLISH_POST: "Publish Post",
@@ -11,12 +17,13 @@ export const UI_MESSAGES = {
     CLOSE: "Close",
   },
 
+  // Page titles
   PAGE_TITLES: {
     CREATE_POST: "Create Your Post",
     EDIT_POST: "Edit Post",
-    FEED: "Your Feed",
   },
 
+  // Success messages
   SUCCESS: {
     USER_DELETED: "User deleted successfully",
     CATEGORY_DELETED: "Category deleted successfully",
@@ -27,6 +34,7 @@ export const UI_MESSAGES = {
     CATEGORY_CREATED: "Category created successfully",
   },
 
+  // Error messages
   ERROR: {
     FAILED_TO_FETCH_STORIES: "Failed to fetch stories",
     FAILED_TO_FETCH_CATEGORIES: "Failed to fetch categories",
@@ -37,6 +45,7 @@ export const UI_MESSAGES = {
     FAILED_TO_FETCH_USERS: "Failed to fetch users",
   },
 
+  // Empty states
   EMPTY_STATE: {
     NO_STORIES: "No stories posted yet",
   },
