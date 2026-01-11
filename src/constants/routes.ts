@@ -4,13 +4,11 @@ export const ROUTES = {
     FEED: "/feed",
     STORY_DETAIL: "/stories/:storyId",
   },
-
   AUTH: {
     SIGNUP: "/signup",
     LOGIN: "/login",
     EMAIL_VERIFIED: "/email-verified",
   },
-
   APP: {
     SEARCH: "/search",
     SEARCH_USER_TAB: "?find=&tab=users",
@@ -19,7 +17,6 @@ export const ROUTES = {
     PROFILE: "/profile",
     PUBLIC_PROFILE: "/profile/:userId",
   },
-
   ADMIN: {
     DASHBOARD: "/admin",
   },
