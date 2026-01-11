@@ -12,12 +12,14 @@ export const API_ENDPOINTS = {
     BY_USER_ID: (userId: string) => `/stories/user/${userId}`,
     COMMENTS: (storyId: string) => `/stories/${storyId}/comments`,
     VOTES: (storyId: string) => `/stories/${storyId}/votes`,
+    COMMENT_DELETE: (commentId: string) => `/stories/comments/${commentId}`,
   },
 
   CATEGORIES: {
     BASE: "/categories",
     BY_ID: (categoryId: string) => `/categories/${categoryId}`,
   },
+
   USERS: {
     BASE: "/users",
     BY_ID: (userId: string) => `/users/${userId}`,
