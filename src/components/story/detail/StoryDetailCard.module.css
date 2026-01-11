@@ -1,7 +1,9 @@
-@reference '../../../styles.css';
+@import "../../../styles.css";
 
-/* Add your semantic CSS classes below */
-/* Example: */
-/* .container { */
-/*   @apply flex items-center justify-between gap-4; */
-/* } */
+.card {
+  @apply bg-white rounded-lg border border-gray-200 shadow-lg overflow-hidden;
+}
+
+.card-content {
+  @apply p-8;
+}

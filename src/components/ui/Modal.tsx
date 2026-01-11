@@ -36,7 +36,7 @@ const Modal: React.FC<GenericModalProps> = ({
         <Header
           level={2}
           value={header}
-          className="text-xl font-bold text-gray-900 mb-2"
+          className={styles['modal-header']}
         />
         {message && <p className="modal-message">{message}</p>}
         {children && <div className="modal-body">{children}</div>}
