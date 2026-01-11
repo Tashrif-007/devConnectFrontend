@@ -1,7 +1,45 @@
-@reference '../../styles.css';
+@import "../../styles.css";
 
-/* Add your semantic CSS classes below */
-/* Example: */
-/* .container { */
-/*   @apply flex items-center justify-between gap-4; */
-/* } */
+.section {
+  @apply w-full bg-background-light transition-colors duration-300 py-20;
+}
+
+.container {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+.header {
+  @apply flex items-center justify-between mb-12;
+}
+
+.header-content {
+  @apply flex flex-col;
+}
+
+.header-label {
+  @apply text-primary font-bold tracking-wide uppercase text-sm mb-2;
+}
+
+.header-title {
+  @apply text-3xl md:text-4xl font-bold text-slate-900;
+}
+
+.view-all-button-desktop {
+  @apply hidden md:flex items-center gap-2 text-primary hover:text-primary-hover font-semibold transition-colors;
+}
+
+.view-all-button-mobile {
+  @apply inline-flex items-center gap-2 px-6 py-3 bg-primary hover:bg-primary-hover text-white font-semibold rounded-full transition-all;
+}
+
+.grid {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8;
+}
+
+.mobile-button-container {
+  @apply md:hidden mt-8 text-center;
+}
+
+.icon {
+  @apply w-5 h-5;
+}
