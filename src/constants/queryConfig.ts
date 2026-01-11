@@ -1,5 +1,4 @@
 
-
 export const QUERY_CONFIG = {
   QUERIES: {
     STALE_TIME: 5 * 60 * 1000, 
