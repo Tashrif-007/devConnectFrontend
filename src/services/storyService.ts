@@ -90,6 +90,10 @@ export const storyService = {
     );
   },
 
+  async deleteComment(commentId: string): Promise<void> {
+    return apiClient.delete(API_ENDPOINTS.STORIES.COMMENT_DELETE(commentId));
+  },
+
   async getCommentsByStoryId(storyId: string): Promise<GetCommentsResponse> {
     return apiClient.get<GetCommentsResponse>(
       API_ENDPOINTS.STORIES.COMMENTS(storyId)
