@@ -20,20 +20,20 @@ const Spinner: React.FC<SpinnerProps> = ({
 
   const spinnerContent = (
     <div
-      className={`${sizeClasses[size]} ${color} border-solid border-t-transparent border-r-transparent rounded-full animate-spin`}
+      className={`${sizeClasses[size]} ${color} ${styles['spinner-content']}`}
     />
   );
 
   if (fullScreen) {
     return (
-      <div className="fixed inset-0 flex items-center justify-center bg-white/80 backdrop-blur-sm z-50">
+      <div className={styles['spinner-fullscreen']}>
         {spinnerContent}
       </div>
     );
   }
 
   return (
-    <div className="flex items-center justify-center p-4">{spinnerContent}</div>
+    <div className={styles['spinner']}>{spinnerContent}</div>
   );
 };
 

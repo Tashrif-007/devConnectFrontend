@@ -1,0 +1,14 @@
+@reference "../../styles.css";
+@config "../../../tailwind.config.ts";
+
+.snackbar-container {
+    @apply fixed bottom-4 right-4 z-50 animate-slideIn;
+}
+
+.snackbar-layout {
+    @apply bg-black text-white rounded-lg shadow-lg p-4 flex items-center gap-2;
+}
+
+.snackbar-paragraph {
+    @apply text-sm font-medium flex-1;
+}
