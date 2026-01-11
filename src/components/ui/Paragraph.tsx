@@ -1,5 +1,4 @@
 import type React from "react";
-import styles from './Paragraph.module.css';
 
 type ParagraphProps = {
   children: React.ReactNode;
