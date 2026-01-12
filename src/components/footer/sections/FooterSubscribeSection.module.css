@@ -1,7 +1,21 @@
 @reference '../../../styles.css';
 
-/* Add your semantic CSS classes below */
-/* Example: */
-/* .container { */
-/*   @apply flex items-center justify-between gap-4; */
-/* } */
+.container {
+  @apply w-full md:w-auto;
+}
+
+.title {
+  @apply font-semibold text-slate-900 mb-4 text-sm uppercase tracking-wide;
+}
+
+.description {
+  @apply text-slate-600 text-sm mb-4;
+}
+
+.form {
+  @apply flex flex-col gap-3;
+}
+
+.button {
+  @apply px-4 py-2 bg-[#1A1A1A] hover:bg-[#1A1A1A] text-white font-semibold rounded-lg transition-all text-sm;
+}
