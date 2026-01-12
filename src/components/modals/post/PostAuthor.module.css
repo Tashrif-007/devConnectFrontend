@@ -1,7 +1,29 @@
 @reference '../../../styles.css';
 
-/* Add your semantic CSS classes below */
-/* Example: */
-/* .container { */
-/*   @apply flex items-center justify-between gap-4; */
-/* } */
+.container {
+  @apply flex items-start gap-3 mb-5;
+}
+
+.avatar {
+  @apply w-12 h-12 rounded-full shrink-0 bg-gray-200 overflow-hidden cursor-pointer;
+}
+
+.avatarImage {
+  @apply w-full h-full object-cover;
+}
+
+.content {
+  @apply flex-1;
+}
+
+.name {
+  @apply font-semibold text-gray-900 text-base;
+}
+
+.username {
+  @apply text-xs text-gray-500;
+}
+
+.date {
+  @apply text-xs text-gray-500 mt-1;
+}

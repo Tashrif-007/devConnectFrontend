@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "../../ui";
 import { UI_MESSAGES } from "../../../constants";
-import styles from './FormActions.module.css';
+import styles from "./FormActions.module.css";
 
 interface FormActionsProps {
   loading: boolean;
@@ -15,12 +15,12 @@ const FormActions: React.FC<FormActionsProps> = ({
   onPublish,
 }) => {
   return (
-    <div className="flex justify-end gap-3 pt-4 border-t border-gray-200 mt-4">
+    <div className={styles.container}>
       <Button
         type="button"
         onClick={onCancel}
         disabled={loading}
-        className="px-6 py-2 text-gray-700 font-medium border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors disabled:opacity-50"
+        className={styles.cancelButton}
       >
         {UI_MESSAGES.BUTTONS.CANCEL}
       </Button>
@@ -28,7 +28,7 @@ const FormActions: React.FC<FormActionsProps> = ({
         type="button"
         onClick={onPublish}
         disabled={loading}
-        className="px-6 py-2 bg-black text-white font-medium rounded-lg hover:bg-gray-800 transition-colors disabled:opacity-50 flex items-center gap-2"
+        className={styles.publishButton}
       >
         {loading
           ? UI_MESSAGES.BUTTONS.PUBLISHING
