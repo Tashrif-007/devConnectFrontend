@@ -1,22 +1,26 @@
 import { useSearchUsers } from "../queries/users/searchUsers";
 import { useSearchStories } from "../queries/stories/searchStories";
-import { DEFAULT_SORT_BY } from "../constants/search";
 import type { UseSearchParams, UseSearchReturn } from "../interfaces";
+
+interface UseSearchWithTabParams extends UseSearchParams {
+  tab: "users" | "posts";
+}
 
 export const useSearch = ({
   searchQuery,
   page = 1,
   itemsPerPage = 5,
   category,
-  sortBy = DEFAULT_SORT_BY,
+  tab,
+  sortBy,
   orderBy,
-}: UseSearchParams): UseSearchReturn => {
+}: UseSearchWithTabParams): UseSearchReturn => {
   const usersData = useSearchUsers({
     searchQuery,
     page,
     itemsPerPage,
-    sortBy,
-    orderBy,
+    ...(tab === "users" && sortBy && { sortBy }),
+    ...(tab === "users" && orderBy && { orderBy }),
     enabled: true,
   });
 
@@ -25,8 +29,8 @@ export const useSearch = ({
     page,
     itemsPerPage,
     category,
-    sortBy,
-    orderBy,
+    ...(tab === "posts" && sortBy && { sortBy }),
+    ...(tab === "posts" && orderBy && { orderBy }),
     enabled: true,
   });
 
