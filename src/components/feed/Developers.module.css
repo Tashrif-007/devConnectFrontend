@@ -1,0 +1,21 @@
+@reference '../../styles.css';
+
+.container {
+  @apply bg-white rounded-lg border border-gray-200 p-5;
+}
+
+.developersList {
+  @apply space-y-4;
+}
+
+.loadingContainer {
+  @apply space-y-3;
+}
+
+.errorMessage {
+  @apply text-red-500 text-sm;
+}
+
+.emptyMessage {
+  @apply text-gray-500 text-sm;
+}

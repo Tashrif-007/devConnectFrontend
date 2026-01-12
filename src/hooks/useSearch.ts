@@ -1,33 +1,7 @@
 import { useSearchUsers } from "../queries/users/searchUsers";
 import { useSearchStories } from "../queries/stories/searchStories";
-import type { User } from "../types/auth";
-import type { Story } from "../types/story";
-import type { PaginationData } from "../types/pagination";
+import type { UseSearchParams, UseSearchReturn } from "../interfaces";
 
-interface UseSearchParams {
-  searchQuery: string;
-  page?: number;
-  itemsPerPage?: number;
-  category?: string;
-}
-
-interface UseSearchReturn {
-  usersData: {
-    users: User[];
-    pagination: PaginationData | null;
-    loading: boolean;
-    error: string | null;
-  };
-  storiesData: {
-    stories: Story[];
-    pagination: PaginationData | null;
-    loading: boolean;
-    error: string | null;
-  };
-  isLoading: boolean;
-  totalUsersCount: number;
-  totalStoriesCount: number;
-}
 
 export const useSearch = ({
   searchQuery,

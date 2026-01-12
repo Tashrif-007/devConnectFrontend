@@ -1,6 +1,5 @@
 import React from "react";
 import { useSearchParams } from "react-router-dom";
-import { Navbar } from "../components/navbar";
 import { SearchContent } from "../components/search";
 import Categories from "../components/feed/Categories";
 
@@ -41,8 +40,6 @@ const SearchResultsPage: React.FC = () => {
   };
 
   return (
-    <>
-      <Navbar />
       <div className="max-w-7xl mx-auto px-4 py-8 flex justify-between gap-6">
         <SearchContent
           find={find}
@@ -59,7 +56,6 @@ const SearchResultsPage: React.FC = () => {
           showClearButton={true}
         />
       </div>
-    </>
   );
 };
 

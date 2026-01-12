@@ -1,31 +1,37 @@
 import { apiClient } from "./apiClient";
+import { API_ENDPOINTS } from "../constants";
 import type {
   StoriesResponse,
-  CreateStoryPayload,
   CreateStoryResponse,
   StoryDetailResponse,
   CreateCommentPayload,
   CreateCommentResponse,
   GetCommentsResponse,
 } from "../types";
+import type { UpdateStoryPayload } from "../types/story";
+import type { CreateStoryPayload } from "../interfaces";
 
 export const storyService = {
   async fetchStories(
     page: number = 1,
     itemsPerPage: number = 10,
-    category?: string
+    category?: string,
+    find?: string
   ): Promise<StoriesResponse> {
-    return apiClient.get<StoriesResponse>("/stories", {
+    return apiClient.get<StoriesResponse>(API_ENDPOINTS.STORIES.BASE, {
       params: {
         page,
         itemsPerPage,
         ...(category && { category }),
+        ...(find && { find }),
       },
     });
   },
 
   async getStoryById(storyId: string): Promise<StoryDetailResponse> {
-    return apiClient.get<StoryDetailResponse>(`/stories/${storyId}`);
+    return apiClient.get<StoryDetailResponse>(
+      API_ENDPOINTS.STORIES.BY_ID(storyId)
+    );
   },
 
   async fetchStoriesByUserId(
@@ -34,22 +40,38 @@ export const storyService = {
     itemsPerPage: number = 10,
     category?: string
   ): Promise<StoriesResponse> {
-    return apiClient.get<StoriesResponse>(`/stories/user/${userId}`, {
-      params: {
-        page,
-        itemsPerPage,
-        ...(category && { category }),
-      },
-    });
+    return apiClient.get<StoriesResponse>(
+      API_ENDPOINTS.STORIES.BY_USER_ID(userId),
+      {
+        params: {
+          page,
+          itemsPerPage,
+          ...(category && { category }),
+        },
+      }
+    );
   },
 
   async createStory(payload: CreateStoryPayload): Promise<CreateStoryResponse> {
-    return apiClient.post<CreateStoryResponse>("/stories", {
+    return apiClient.post<CreateStoryResponse>(API_ENDPOINTS.STORIES.BASE, {
       title: payload.title,
       body: payload.body,
       categoryIds: payload.categoryIds,
       skip: payload.skip,
     });
+  },
+  async updateStory(
+    storyId: string,
+    payload: UpdateStoryPayload
+  ): Promise<CreateStoryResponse> {
+    return apiClient.put<CreateStoryResponse>(
+      API_ENDPOINTS.STORIES.BY_ID(storyId),
+      payload
+    );
+  },
+
+  async deleteStory(storyId: string): Promise<void> {
+    return apiClient.delete(API_ENDPOINTS.STORIES.BY_ID(storyId));
   },
 
   async createComment(
@@ -57,7 +79,7 @@ export const storyService = {
     payload: CreateCommentPayload
   ): Promise<CreateCommentResponse> {
     return apiClient.post<CreateCommentResponse>(
-      `/stories/${storyId}/comments`,
+      API_ENDPOINTS.STORIES.COMMENTS(storyId),
       {
         body: payload.body,
       }
@@ -65,6 +87,8 @@ export const storyService = {
   },
 
   async getCommentsByStoryId(storyId: string): Promise<GetCommentsResponse> {
-    return apiClient.get<GetCommentsResponse>(`/stories/${storyId}/comments`);
+    return apiClient.get<GetCommentsResponse>(
+      API_ENDPOINTS.STORIES.COMMENTS(storyId)
+    );
   },
 };

@@ -1,6 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 import { authService } from "../services/authService";
-import type { SignupPayload, SignupResponse } from "../types";
+import type { SignupResponse } from "../types";
+import type { SignupPayload } from "../interfaces";
 
 export const useSignup = () => {
   const {

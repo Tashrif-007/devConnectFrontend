@@ -1,0 +1,9 @@
+@reference '../../../styles.css';
+
+.container {
+  @apply hidden sm:flex items-center gap-6;
+}
+
+.link {
+  @apply text-sm font-medium text-slate-600 hover:text-[#111827] transition-colors;
+}

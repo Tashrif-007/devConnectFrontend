@@ -1,0 +1,13 @@
+@reference '../../../styles.css';
+
+.form {
+  @apply space-y-6 max-w-4xl mx-auto px-4 py-8;
+}
+
+.title {
+  @apply text-3xl font-bold text-gray-900;
+}
+
+.label {
+  @apply block text-sm font-semibold text-gray-900 mb-2;
+}

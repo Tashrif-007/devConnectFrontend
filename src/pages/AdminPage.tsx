@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import CategoryManagement from "../components/admin/CategoryManagement";
-import UserManagement from "../components/admin/UserManagement";
-import { Navbar } from "../components/navbar";
-import { Header, Paragraph, TabButton } from "../components/common";
+import CategoryManagement from "../components/admin/categories/CategoryManagement";
+import UserManagement from "../components/admin/management/UserManagement";
+import { Header, Paragraph, TabButton } from "../components/ui";
 
 const AdminPage: React.FC = () => {
   const [activeTab, setActiveTab] = useState<"categories" | "users">(
@@ -11,7 +10,6 @@ const AdminPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-slate-50">
-      <Navbar />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="mb-8">
           <Header

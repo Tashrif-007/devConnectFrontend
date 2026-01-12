@@ -1,0 +1,5 @@
+@reference '../../../styles.css';
+
+.container {
+  @apply grid grid-flow-col gap-3 justify-end;
+}

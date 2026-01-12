@@ -1,5 +1,5 @@
-export { default as Navbar } from "./Navbar";
-export { default as SearchBar } from "./SearchBar";
-export { default as NavLinks } from "./NavLinks";
-export { default as ThemeToggle } from "./ThemeToggle";
-export { default as ProfileDropdown } from "./ProfileDropdown";
+export { default as Navbar } from "./main/Navbar";
+export { default as SearchBar } from "./navigation/SearchBar";
+export { default as NavLinks } from "./navigation/NavLinks";
+export { default as ThemeToggle } from "./theme/ThemeToggle";
+export { default as ProfileDropdown } from "./menu/ProfileDropdown";

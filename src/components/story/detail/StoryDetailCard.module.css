@@ -1,0 +1,9 @@
+@import "../../../styles.css";
+
+.card {
+  @apply bg-white rounded-lg border border-gray-200 shadow-lg overflow-hidden;
+}
+
+.card-content {
+  @apply p-8;
+}

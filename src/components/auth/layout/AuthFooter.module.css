@@ -1,0 +1,13 @@
+@reference '../../../styles.css';
+
+.container {
+  @apply text-center border-t mt-4 pt-4 border-[#e5e7eb];
+}
+
+.text {
+  @apply text-sm text-[#4b5563];
+}
+
+.link {
+  @apply font-semibold text-[#4b5563] no-underline;
+}

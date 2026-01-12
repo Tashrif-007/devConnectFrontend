@@ -1,0 +1,17 @@
+@reference '../../../styles.css';
+
+.container {
+  @apply relative;
+}
+
+.avatar {
+  @apply w-32 h-32 rounded-full shadow-2xl object-contain;
+}
+
+.uploadButton {
+  @apply absolute bottom-0 right-0 bg-gray-900 text-white rounded-full p-2 shadow-lg hover:bg-gray-800 transition-colors;
+}
+
+.uploadIcon {
+  @apply w-5 h-5;
+}

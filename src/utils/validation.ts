@@ -1,6 +1,6 @@
-import type { FormData, FormErrors } from "../types/index";
+import type { FormErrors, SignupPayload } from "../types/index";
 
-export const validateForm = (formData: FormData): FormErrors => {
+export const validateForm = (formData: SignupPayload): FormErrors => {
   const newErrors: FormErrors = {};
 
   if (!formData.username.trim()) {

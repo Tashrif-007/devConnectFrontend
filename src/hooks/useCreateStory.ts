@@ -1,31 +1,42 @@
-import { useMutation } from "@tanstack/react-query";
-import type { CreateStoryPayload, CreateStoryResponse } from "../types";
-import { storyService } from "../services/storyService";
+import { useCreateStoryMutation } from "../queries/stories/createStory";
+import { useUpdateStoryMutation } from "../queries/stories/updateStory";
+import { useDeleteStoryMutation } from "../queries/stories/deleteStory";
+import type { CreateStoryResponse } from "../types";
+import type { UpdateStoryPayload } from "../types/story";
+import type { CreateStoryPayload } from "../interfaces";
 
-export const useCreateStory = () => {
+export const useCreateStory = (storyId?: string) => {
   const {
-    mutate: createStory,
-    isPending: loading,
-    error,
-  } = useMutation<CreateStoryResponse, Error, CreateStoryPayload>({
-    mutationFn: async (payload: CreateStoryPayload) => {
-      const response = await storyService.createStory(payload);
-      return response;
-    },
-  });
+    createStory: createStoryFn,
+    loading: createLoading,
+    error: createError,
+  } = useCreateStoryMutation();
+  const {
+    updateStory: updateStoryFn,
+    loading: updateLoading,
+    error: updateError,
+  } = useUpdateStoryMutation(storyId);
+  const {
+    deleteStory: deleteStoryFn,
+    loading: deleteLoading,
+    error: deleteError,
+  } = useDeleteStoryMutation();
 
   return {
     createStory: async (
       payload: CreateStoryPayload
     ): Promise<CreateStoryResponse> => {
-      return new Promise((resolve, reject) => {
-        createStory(payload, {
-          onSuccess: (response) => resolve(response),
-          onError: (error) => reject(error),
-        });
-      });
+      return await createStoryFn(payload);
     },
-    loading,
-    error: error?.message || null,
+    updateStory: async (
+      payload: UpdateStoryPayload
+    ): Promise<CreateStoryResponse> => {
+      return await updateStoryFn(payload);
+    },
+    deleteStory: async (storyId: string): Promise<void> => {
+      return await deleteStoryFn(storyId);
+    },
+    loading: createLoading || updateLoading || deleteLoading,
+    error: createError || updateError || deleteError || null,
   };
 };

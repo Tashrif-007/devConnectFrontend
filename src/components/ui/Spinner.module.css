@@ -1,0 +1,14 @@
+@reference "../../styles.css";
+@config "../../../tailwind.config.ts";
+
+.spinner {
+    @apply flex items-center justify-center p-4;
+}
+
+.spinner-fullscreen {
+    @apply fixed inset-0 flex items-center justify-center bg-white/80 backdrop-blur-sm z-50;
+}
+
+.spinner-content {
+    @apply border-solid border-t-transparent border-r-transparent rounded-full animate-spin;
+}

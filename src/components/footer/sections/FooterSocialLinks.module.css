@@ -1,0 +1,13 @@
+@reference '../../../styles.css';
+
+.container {
+  @apply flex gap-4;
+}
+
+.link {
+  @apply w-10 h-10 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-600 hover:bg-[#1A1A1A] hover:text-white transition-all;
+}
+
+.icon {
+  @apply w-5 h-5;
+}

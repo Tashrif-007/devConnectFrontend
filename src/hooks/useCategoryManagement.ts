@@ -1,20 +1,14 @@
 import { useState, useCallback } from "react";
-import { useAppDispatch, useAppSelector } from "./reduxHooks";
-import { adminService } from "../services/adminService";
+import { useQueryClient } from "@tanstack/react-query";
+import { useGetCategories } from "../queries/categories/getCategories";
+import { useDeleteCategoryMutation } from "../queries/categories/deleteCategory";
 import { categoryService } from "../services/categoryService";
-import { fetchCategories } from "../store/categorySlice";
-import { USER_MANAGEMENT_CONFIG } from "../constants/adminConstants";
-import type { Category } from "../types";
+import { USER_MANAGEMENT_CONFIG } from "../constants";
 
 export const useCategoryManagement = () => {
-  const dispatch = useAppDispatch();
-  const { items: allCategories } = useAppSelector((state) => state.categories);
-
+  const queryClient = useQueryClient();
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const [optimisticCategories, setOptimisticCategories] = useState<
-    Category[] | null
-  >(null);
   const [deleteLoading, setDeleteLoading] = useState<string | null>(null);
   const [deleteError, setDeleteError] = useState<string | null>(null);
   const [createLoading, setCreateLoading] = useState(false);
@@ -25,8 +19,10 @@ export const useCategoryManagement = () => {
   }>({ isOpen: false, categoryId: null });
   const [createModal, setCreateModal] = useState(false);
 
-  // Filter categories based on search query
-  const filteredCategories = (optimisticCategories || allCategories).filter(
+  const { categories: allCategories } = useGetCategories();
+  const { deleteCategoryMutation } = useDeleteCategoryMutation();
+
+  const filteredCategories = allCategories.filter(
     (category) =>
       category.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       (category.description
@@ -35,7 +31,6 @@ export const useCategoryManagement = () => {
         false)
   );
 
-  // Pagination
   const itemsPerPage = USER_MANAGEMENT_CONFIG.ITEMS_PER_PAGE;
   const totalPages = Math.ceil(filteredCategories.length / itemsPerPage);
   const paginatedCategories = filteredCategories.slice(
@@ -67,30 +62,18 @@ export const useCategoryManagement = () => {
   const handleConfirmDelete = useCallback(
     async (categoryId: string) => {
       setDeleteLoading(categoryId);
-      setDeleteError(null);
-
-      // Optimistic UI: remove category from list immediately
-      const updatedCategories = (optimisticCategories || allCategories).filter(
-        (category) => category.categoryId !== categoryId
-      );
-      setOptimisticCategories(updatedCategories);
-
       try {
-        await adminService.deleteCategory(categoryId);
-        // Refetch in background
-        dispatch(fetchCategories());
-      } catch (err) {
-        // Rollback on failure
-        setOptimisticCategories(null);
+        await deleteCategoryMutation.mutateAsync(categoryId);
+        setDeleteError(null);
+      } catch (error) {
         setDeleteError(
-          err instanceof Error ? err.message : "Failed to delete category"
+          error instanceof Error ? error.message : "Failed to delete category"
         );
       } finally {
         setDeleteLoading(null);
-        setDeleteConfirmModal({ isOpen: false, categoryId: null });
       }
     },
-    [allCategories, optimisticCategories, dispatch]
+    [deleteCategoryMutation]
   );
 
   const handleCancelDelete = useCallback(() => {
@@ -100,47 +83,35 @@ export const useCategoryManagement = () => {
   const handleCreateCategory = useCallback(
     async (payload: { name: string; description?: string }) => {
       setCreateLoading(true);
-      setCreateError(null);
-
       try {
         const newCategory = await categoryService.createCategory(payload);
-        // Add to optimistic list
-        const updatedCategories = [
-          ...(optimisticCategories || allCategories),
-          newCategory,
-        ];
-        setOptimisticCategories(updatedCategories);
-        // Refetch in background
-        dispatch(fetchCategories());
+        const updatedCategories = [...allCategories, newCategory];
+        queryClient.setQueryData(["categories"], updatedCategories);
         setCreateModal(false);
-      } catch (err) {
+        setCreateError(null);
+      } catch (error) {
         setCreateError(
-          err instanceof Error ? err.message : "Failed to create category"
+          error instanceof Error ? error.message : "Failed to create category"
         );
       } finally {
         setCreateLoading(false);
       }
     },
-    [allCategories, optimisticCategories, dispatch]
+    [allCategories, queryClient]
   );
 
   return {
-    // Data
     categories: paginatedCategories,
-    allCategories: optimisticCategories || allCategories,
+    allCategories,
     pagination,
     searchQuery,
     currentPage,
-
-    // States
     deleteLoading,
     deleteError,
     createLoading,
     createError,
     deleteConfirmModal,
     createModal,
-
-    // Handlers
     handleSearch,
     handlePageChange,
     handleDeleteCategory,

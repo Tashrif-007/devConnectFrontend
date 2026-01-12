@@ -3,22 +3,23 @@ interface FeatureCardProps {
   title: string;
   description: string;
 }
+import styles from './FeatureCard.module.css';
 
 export default function FeatureCard({ icon, title, description }: FeatureCardProps) {
   return (
-    <div className="group p-8 rounded-2xl bg-white border border-slate-200 hover:border-primary/30 transition-all duration-300 hover:shadow-xl hover:shadow-slate-200/50 relative overflow-hidden">
-      <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
-        <div className="text-8xl text-primary">{icon}</div>
+    <div className={styles['feature-card-container']}>
+      <div className={styles['feature-card-header']}>
+        <div className={styles['feature-card-icon']}>{icon}</div>
       </div>
 
       <div className="relative z-10">
-        <div className="w-14 h-14 rounded-xl bg-slate-50 flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-white transition-colors text-primary text-2xl">
+        <div className={styles['feature-card-content']}>
           {icon}
         </div>
-        <h4 className="text-xl font-bold text-slate-900 mb-3">
+        <h4 className={styles['feature-card-title']}>
           {title}
         </h4>
-        <p className="text-slate-600 leading-relaxed">
+        <p className={styles['feature-card-description']}>
           {description}
         </p>
       </div>

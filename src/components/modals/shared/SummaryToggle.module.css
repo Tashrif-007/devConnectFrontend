@@ -1,0 +1,29 @@
+@import "../../../styles.css";
+
+.container {
+  @apply border-t border-gray-200 pt-4;
+}
+
+.toggle-container {
+  @apply flex items-center gap-3;
+}
+
+.toggle-button-enabled {
+  @apply relative inline-flex h-6 w-11 items-center rounded-full transition-colors bg-gray-900;
+}
+
+.toggle-button-disabled {
+  @apply relative inline-flex h-6 w-11 items-center rounded-full transition-colors bg-gray-300;
+}
+
+.toggle-indicator-enabled {
+  @apply inline-block h-4 w-4 transform rounded-full bg-white transition-transform translate-x-6;
+}
+
+.toggle-indicator-disabled {
+  @apply inline-block h-4 w-4 transform rounded-full bg-white transition-transform translate-x-1;
+}
+
+.toggle-label {
+  @apply text-sm font-medium text-gray-900;
+}

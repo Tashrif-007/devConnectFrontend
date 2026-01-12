@@ -1,0 +1,29 @@
+@reference '../../../styles.css';
+
+.container {
+  @apply mt-8 pt-6 border-t border-gray-200;
+}
+
+.title {
+  @apply text-xl font-semibold text-gray-900 mb-4;
+}
+
+.stateContainer {
+  @apply text-center py-8;
+}
+
+.loadingText {
+  @apply text-gray-500;
+}
+
+.errorText {
+  @apply text-red-600 text-sm;
+}
+
+.emptyText {
+  @apply text-gray-500;
+}
+
+.commentsList {
+  @apply space-y-3;
+}

@@ -1,14 +1,15 @@
 import type React from "react";
-import { Header, InputField, Modal } from "../common";
-import { AuthInputs } from "../auth/AuthInputs";
-import ContentEditor from "../modals/ContentEditor";
-import TagSelector from "../modals/TagSelector";
-import SummaryToggle from "../modals/SummaryToggle";
-import ErrorMessage from "../modals/ErrorMessage";
-import FormActions from "../modals/FormActions";
+import { Header, InputField, Modal } from "../ui";
+import { AuthInputs } from "../../layouts/AuthInputs";
+import ContentEditor from "../modals/forms/ContentEditor";
+import TagSelector from "../modals/forms/TagSelector";
+import SummaryToggle from "../modals/shared/SummaryToggle";
+import ErrorMessage from "../modals/forms/ErrorMessage";
+import FormActions from "../modals/forms/FormActions";
 import { useState } from "react";
-import { useCategories } from "../../hooks/useCategories";
 import { useCreatePostForm } from "../../hooks/useCreatePostForm";
+import { useGetCategories } from "../../queries";
+import styles from "./CreatePostModal.module.css";
 
 type CreatePostModalProps = {
   isOpen: boolean;
@@ -18,23 +19,23 @@ const CreatePostModal: React.FC<CreatePostModalProps> = ({
   isOpen,
   onClose,
 }) => {
- const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-   const {
-     categories,
-     loading: categoriesLoading,
-     error: categoriesError,
-   } = useCategories();
-    const {
-       formData,
-       loading,
-       error,
-       textareaRef,
-       handleFieldChange,
-       handleCategoryChange,
-       handleToggleSummary,
-       handleInsertMarkdown,
-       handlePublish,
-     } = useCreatePostForm(onClose);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const {
+    categories,
+    loading: categoriesLoading,
+    error: categoriesError,
+  } = useGetCategories();
+  const {
+    formData,
+    loading,
+    error,
+    textareaRef,
+    handleFieldChange,
+    handleCategoryChange,
+    handleToggleSummary,
+    handleInsertMarkdown,
+    handlePublish,
+  } = useCreatePostForm(onClose);
 
   return (
     <Modal
@@ -59,12 +60,8 @@ const CreatePostModal: React.FC<CreatePostModalProps> = ({
           onInsertMarkdown={handleInsertMarkdown}
           textareaRef={textareaRef}
         />
-        <div className="mt-4">
-          <Header
-            level={2}
-            value="Tags"
-            className="block text-sm font-semibold text-gray-900 mb-2"
-          />
+        <div className={styles.tagsSection}>
+          <Header level={2} value="Tags" className={styles.tagsLabel} />
           <TagSelector
             selectedCategoryIds={formData.categoryIds}
             onChange={handleCategoryChange}
@@ -77,7 +74,11 @@ const CreatePostModal: React.FC<CreatePostModalProps> = ({
         </div>
         <SummaryToggle enabled={formData.skip} onToggle={handleToggleSummary} />
         <ErrorMessage message={error} />
-        <FormActions loading={loading} onCancel={onClose} onPublish={handlePublish} />
+        <FormActions
+          loading={loading}
+          onCancel={onClose}
+          onPublish={handlePublish}
+        />
       </form>
     </Modal>
   );

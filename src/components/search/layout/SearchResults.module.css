@@ -1,0 +1,17 @@
+@reference '../../../styles.css';
+
+.loadingContainer {
+  @apply flex justify-center py-12;
+}
+
+.emptyContainer {
+  @apply text-center py-12;
+}
+
+.emptyText {
+  @apply text-gray-600 text-lg;
+}
+
+.resultsList {
+  @apply space-y-4;
+}

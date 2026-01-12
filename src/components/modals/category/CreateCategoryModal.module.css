@@ -1,0 +1,57 @@
+@reference '../../../styles.css';
+
+.overlay {
+  @apply fixed inset-0 bg-gray-900/70 backdrop-blur flex items-center justify-center z-50;
+}
+
+.modal {
+  @apply bg-white rounded-lg shadow-lg p-6 max-w-md w-full mx-4;
+}
+
+.header {
+  @apply flex items-center justify-between mb-4;
+}
+
+.title {
+  @apply text-lg font-semibold text-gray-900;
+}
+
+.closeButton {
+  @apply p-1 hover:bg-gray-100 rounded transition-colors disabled:opacity-50;
+}
+
+.closeIcon {
+  @apply text-gray-500;
+}
+
+.error {
+  @apply mb-4 p-3 bg-red-50 border border-red-200 rounded text-red-700 text-sm;
+}
+
+.form {
+  @apply space-y-4;
+}
+
+.descriptionLabel {
+  @apply block text-sm font-medium text-gray-700 mb-1;
+}
+
+.textarea {
+  @apply w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-50 disabled:opacity-50;
+}
+
+.formActions {
+  @apply flex gap-3 justify-end pt-4;
+}
+
+.cancelButton {
+  @apply px-4 py-2 text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed;
+}
+
+.submitButton {
+  @apply px-4 py-2 text-white bg-black rounded-lg hover:bg-black/80 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2;
+}
+
+.loadingText {
+  @apply text-xs;
+}

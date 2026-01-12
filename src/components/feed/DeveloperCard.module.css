@@ -1,0 +1,29 @@
+@reference '../../styles.css';
+
+.container {
+  @apply flex items-center justify-between gap-3 pb-4 border-b border-gray-100 last:border-b-0;
+}
+
+.button {
+  @apply flex items-center gap-3 flex-1 hover:opacity-75 transition-opacity text-left;
+}
+
+.avatar {
+  @apply w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center text-white font-bold text-sm flex-shrink-0 overflow-hidden;
+}
+
+.avatarImage {
+  @apply w-full h-full object-cover;
+}
+
+.info {
+  @apply min-w-0;
+}
+
+.name {
+  @apply font-semibold text-gray-900 text-sm;
+}
+
+.username {
+  @apply text-gray-500 text-xs truncate;
+}

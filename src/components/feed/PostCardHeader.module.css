@@ -1,0 +1,33 @@
+@reference '../../styles.css';
+
+.container {
+  @apply flex items-start gap-4 mb-4;
+}
+
+.button {
+  @apply rounded-full shrink-0 hover:opacity-80 transition-opacity;
+}
+
+.avatar {
+  @apply h-12 rounded-full w-12 object-cover;
+}
+
+.info {
+  @apply flex-1 min-w-0;
+}
+
+.userName {
+  @apply font-semibold text-gray-900 text-lg hover:text-[#1A1A1A] transition-colors text-left;
+}
+
+.date {
+  @apply text-base text-gray-500;
+}
+
+.userHandle {
+  @apply text-xs text-gray-500;
+}
+
+.date {
+  @apply text-xs text-gray-500;
+}

@@ -1,5 +1,6 @@
 import type React from "react";
-import { USER_ROLES } from "../../constants/adminConstants";
+import { USER_ROLES } from "../../types";
+
 
 type OptionsProps = {
   value: string;

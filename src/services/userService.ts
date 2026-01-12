@@ -1,9 +1,10 @@
 import { apiClient } from "./apiClient";
+import { API_ENDPOINTS } from "../constants";
 import type {
-  GetUsersParams,
   GetUsersResponse,
   GetUserByIdResponse,
 } from "../types";
+import type { GetUsersParams } from "../interfaces";
 
 export const userService = {
   async getUsers(params: GetUsersParams): Promise<GetUsersResponse> {
@@ -16,14 +17,23 @@ export const userService = {
     if (params.orderBy) queryString.append("orderBy", params.orderBy);
     if (params.find) queryString.append("find", params.find);
 
-    const endpoint = `/users${
+    const endpoint = `${API_ENDPOINTS.USERS.BASE}${
       queryString.toString() ? `?${queryString.toString()}` : ""
     }`;
     return apiClient.get<GetUsersResponse>(endpoint);
   },
 
   async getUserById(userId: string): Promise<GetUserByIdResponse> {
-    const endpoint = `/users/${userId}`;
+    const endpoint = API_ENDPOINTS.USERS.BY_ID(userId);
     return apiClient.get<GetUserByIdResponse>(endpoint);
+  },
+
+  async updateUser(updatePayload: FormData): Promise<GetUserByIdResponse> {
+    const endpoint = `/users/profile`;
+    return apiClient.put<GetUserByIdResponse>(endpoint, updatePayload, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
   },
 };

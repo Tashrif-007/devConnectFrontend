@@ -1,0 +1,17 @@
+@import "../../../styles.css";
+
+.header {
+  @apply shrink-0 sticky top-0 bg-white border-b border-gray-200 rounded-t-lg px-6 py-4 flex items-center justify-between;
+}
+
+.title {
+  @apply text-xl font-bold text-gray-900;
+}
+
+.close-button {
+  @apply p-1 hover:bg-gray-100 rounded transition-colors;
+}
+
+.close-icon {
+  @apply text-gray-500;
+}

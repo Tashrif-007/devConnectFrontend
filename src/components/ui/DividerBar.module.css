@@ -1,0 +1,13 @@
+@reference "../../styles.css";
+
+.divider-bar-container {
+    @apply mt-4 max-w-md flex items-center gap-4;
+}
+
+.divider-bar-div {
+    @apply flex-1 h-px bg-gray-300;
+}
+
+.divider-bar-value {
+    @apply text-[#4b5563] text-xs font-semibold uppercase tracking-wider whitespace-nowrap;
+}

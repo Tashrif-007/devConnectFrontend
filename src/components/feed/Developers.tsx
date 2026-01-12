@@ -1,42 +1,40 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useMemo } from "react";
 import { FiUser } from "react-icons/fi";
-import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
-import { fetchUsers } from "../../store/userSlice";
+import { useGetUsers } from "../../queries/users/getUsers";
 import SectionHeader from "./SectionHeader";
 import DeveloperCard from "./DeveloperCard";
 import DeveloperSkeleton from "./DeveloperSkeleton";
+import { Button } from "../ui";
+import { useNavigate } from "react-router-dom";
+import { ROUTES } from "../../constants";
+import styles from "./Developers.module.css";
 
 const Developers: React.FC = () => {
-  const dispatch = useAppDispatch();
-  const {
-    items: users,
-    loading,
-    error,
-  } = useAppSelector((state) => state.users);
-
-  useEffect(() => {
-    dispatch(fetchUsers({ page: 1, itemsPerPage: 3 }));
-  }, [dispatch]);
-
+  const { users, loading, error } = useGetUsers(1, "");
+  const navigate = useNavigate();
   const displayedDevelopers = useMemo(() => {
     return users.slice(0, 3);
   }, [users]);
 
+  const handleClick = () => {
+    navigate(ROUTES.APP.SEARCH);
+  };
+
   return (
-    <div className="bg-white rounded-lg border border-gray-200 p-5">
+    <div className={styles.container}>
       <SectionHeader Icon={FiUser} title="Developers to Know" />
 
-      <div className="space-y-4">
+      <div className={styles.developersList}>
         {loading ? (
-          <div className="space-y-3">
+          <div className={styles.loadingContainer}>
             {[1, 2, 3].map((i) => (
               <DeveloperSkeleton key={i} />
             ))}
           </div>
         ) : error ? (
-          <div className="text-red-500 text-sm">{error}</div>
+          <div className={styles.errorMessage}>{error}</div>
         ) : displayedDevelopers.length === 0 ? (
-          <div className="text-gray-500 text-sm">No developers found</div>
+          <div className={styles.emptyMessage}>No developers found</div>
         ) : (
           displayedDevelopers.map((dev) => (
             <DeveloperCard key={dev.userId} developer={dev} />
@@ -44,9 +42,9 @@ const Developers: React.FC = () => {
         )}
       </div>
 
-      <button className="w-full mt-5 py-2.5 text-center text-gray-700 text-sm font-semibold hover:bg-gray-50 rounded transition-colors border border-gray-200">
+      <Button className="button button-secondary" onClick={handleClick}>
         Find More People
-      </button>
+      </Button>
     </div>
   );
 };

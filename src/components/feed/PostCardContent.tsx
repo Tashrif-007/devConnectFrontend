@@ -1,6 +1,7 @@
 import React from "react";
-import { Header } from "../common";
+import { Header } from "../ui";
 import ReactMarkdown from "react-markdown";
+import styles from "./PostCardContent.module.css";
 
 interface PostCardContentProps {
   title: string;
@@ -10,28 +11,17 @@ interface PostCardContentProps {
 const PostCardContent: React.FC<PostCardContentProps> = ({ title, body }) => {
   return (
     <>
-      <Header
-        level={2}
-        value={title}
-        className="text-2xl font-bold text-gray-900 mb-3 line-clamp-2"
-      />
-      <div className="text-gray-700 text-md line-clamp-3 mb-4">
+      <Header level={2} value={title} className={styles.title} />
+      <div className={styles.body}>
         <ReactMarkdown
           components={{
             strong: ({ ...props }) => (
-              <strong className="font-bold" {...props} />
+              <strong className={styles.strong} {...props} />
             ),
-            em: ({ ...props }) => <em className="italic" {...props} />,
-            code: ({ ...props }) => (
-              <code
-                className="bg-gray-100 px-2 py-1 rounded text-red-600 font-mono text-sm"
-                {...props}
-              />
-            ),
-            ul: ({ ...props }) => (
-              <ul className="list-disc list-inside mb-2" {...props} />
-            ),
-            li: ({ ...props }) => <li className="mb-1 ml-2" {...props} />,
+            em: ({ ...props }) => <em className={styles.em} {...props} />,
+            code: ({ ...props }) => <code className={styles.code} {...props} />,
+            ul: ({ ...props }) => <ul className={styles.ul} {...props} />,
+            li: ({ ...props }) => <li className={styles.li} {...props} />,
           }}
         >
           {body}

@@ -4,6 +4,7 @@ import { useAuth } from "../../hooks/useAuth";
 import { useVoting } from "../../hooks/useVoting";
 import Snackbar from "./Snackbar";
 import Button from "./Button";
+import styles from "./VoteButtons.module.css";
 
 interface VoteButtonsProps {
   storyId: string;
@@ -29,17 +30,16 @@ export const VoteButtons: React.FC<VoteButtonsProps> = ({
     handleDownvote,
     clearError,
   } = useVoting(storyId, upvotes, downvotes, !!user, userVote);
-
   return (
     <>
-      <div className="flex items-center gap-2">
+      <div className={styles["vote-button-container"]}>
         <Button
           onClick={handleUpvote}
           disabled={loading}
-          className={`flex items-center gap-1 transition-colors disabled:opacity-50 disabled:cursor-not-allowed ${
+          className={`${styles["vote-button"]} ${
             userVoteType === "UPVOTE"
-              ? "text-green-500 hover:text-green-600"
-              : "text-gray-500 hover:text-green-500"
+              ? styles["upvote-button-active"]
+              : styles["upvote-button-inactive"]
           }`}
         >
           {userVoteType === "UPVOTE" ? (
@@ -47,16 +47,16 @@ export const VoteButtons: React.FC<VoteButtonsProps> = ({
           ) : (
             <RxThickArrowUp size={14} />
           )}
-          <span className="text-xs">{localUpvotes}</span>
+          <span className={styles["vote-count"]}>{localUpvotes}</span>
         </Button>
 
         <Button
           onClick={handleDownvote}
           disabled={loading}
-          className={`flex items-center gap-1 transition-colors disabled:opacity-50 disabled:cursor-not-allowed ${
+          className={`${styles["vote-button"]} ${
             userVoteType === "DOWNVOTE"
-              ? "text-red-500 hover:text-red-600"
-              : "text-gray-500 hover:text-red-500"
+              ? styles["downvote-button-active"]
+              : styles["downvote-button-inactive"]
           }`}
         >
           {userVoteType === "DOWNVOTE" ? (
@@ -64,7 +64,7 @@ export const VoteButtons: React.FC<VoteButtonsProps> = ({
           ) : (
             <RxThickArrowDown size={14} />
           )}
-          <span className="text-xs">{localDownvotes}</span>
+          <span className={styles["vote-count"]}>{localDownvotes}</span>
         </Button>
       </div>
       <Snackbar message={error} onClose={clearError} />
