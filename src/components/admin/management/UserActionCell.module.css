@@ -1,23 +1,31 @@
 @reference '../../../styles.css';
 
 .container {
-  @apply flex items-center justify-end gap-2;
+  @apply flex flex-col sm:flex-row items-end sm:items-center justify-end gap-1 sm:gap-2;
 }
 
 .errorText {
-  @apply text-xs text-red-600 mr-2;
+  @apply text-xs text-red-600 mr-0 sm:mr-2 w-full sm:w-auto text-right;
 }
 
 .roleSelect {
-  @apply px-3 py-1.5 text-sm border border-gray-300 rounded bg-white hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors;
+  @apply w-full sm:w-auto px-2 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm border border-gray-300 rounded bg-white hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors;
+}
+
+.deleteOption {
+  @apply text-red-600 font-semibold;
 }
 
 .deleteButton {
-  @apply p-2 rounded transition-colors text-red-600 hover:bg-red-50;
+  @apply p-1.5 sm:p-2 rounded transition-colors text-red-600 hover:bg-red-50;
 }
 
 .deleteButtonLoading {
-  @apply p-2 rounded transition-colors text-red-400 bg-red-50 cursor-not-allowed;
+  @apply p-1.5 sm:p-2 rounded transition-colors text-red-400 bg-red-50 cursor-not-allowed;
+}
+
+.desktopOnly {
+  @apply hidden sm:inline-block;
 }
 
 .loadingIndicator {

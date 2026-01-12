@@ -5,7 +5,7 @@ import DeleteCategoryConfirmation from "./DeleteCategoryConfirmation";
 import { useCategoryManagement } from "../../../hooks/useCategoryManagement";
 import { Button } from "../../ui";
 import CreateCategoryModal from "../../modals/category/CreateCategoryModal";
-import styles from './CategoryManagemen.module.css';
+import styles from "./CategoryManagemen.module.css";
 
 const CategoryManagement: React.FC = () => {
   const {
@@ -29,7 +29,7 @@ const CategoryManagement: React.FC = () => {
 
   return (
     <div>
-      <div className={styles['category-searchbar']}>
+      <div className={styles["category-searchbar"]}>
         <AdminSearchBar
           searchQuery={searchQuery}
           onSearchChange={handleSearch}
@@ -37,9 +37,10 @@ const CategoryManagement: React.FC = () => {
         />
         <Button
           onClick={() => setCreateModal(true)}
-          className={styles['category-btn']}
+          className={styles["category-btn"]}
         >
-          + Create Category
+          <span className={styles["button-text"]}>+ Create Category</span>
+          <span className={styles["button-icon"]}>+</span>
         </Button>
       </div>
 

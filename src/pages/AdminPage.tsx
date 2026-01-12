@@ -30,7 +30,6 @@ const AdminPage: React.FC = () => {
           <Button
             className={styles.sidebarToggle}
             onClick={() => setIsSidebarOpen(true)}
-            aria-label="Open sidebar"
           >
             <RxHamburgerMenu size={24} />
           </Button>

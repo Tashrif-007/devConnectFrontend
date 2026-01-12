@@ -41,7 +41,7 @@ const ActionButtons: React.FC<ActionButtonsProps> = ({
   }
 
   return (
-    <div className="grid grid-flow-col grid-cols-2 gap-6 mt-6">
+    <div className="grid grid-flow-col grid-cols-2 gap-6 sm:mt-6 ">
       <div className="mt-4">
         <Button onClick={onEdit} className="button button-primary">
           <FiEdit />

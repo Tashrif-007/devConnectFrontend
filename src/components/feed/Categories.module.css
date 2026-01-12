@@ -5,7 +5,7 @@
 }
 
 .categoryList {
-  @apply h-76 overflow-y-auto space-y-2 pr-2;
+  @apply max-h-10/12 overflow-y-auto space-y-2 pr-2;
 }
 
 .clearButtonContainer {

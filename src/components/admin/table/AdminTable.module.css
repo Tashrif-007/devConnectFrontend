@@ -1,11 +1,11 @@
 @reference '../../../styles.css';
 
 .tableWrapper {
-  @apply bg-white rounded-lg shadow overflow-hidden;
+  @apply bg-white rounded-lg shadow overflow-x-auto;
 }
 
 .table {
-  @apply w-full;
+  @apply w-full min-w-full;
 }
 
 .tableHead {
@@ -13,7 +13,7 @@
 }
 
 .headerCell {
-  @apply px-6 py-3 text-sm font-semibold text-gray-900;
+  @apply px-3 sm:px-6 py-2 sm:py-3 text-xs sm:text-sm font-semibold text-gray-900 whitespace-nowrap;
 }
 
 .headerCellRight {
@@ -37,7 +37,7 @@
 }
 
 .tableCell {
-  @apply px-6 py-4 text-sm;
+  @apply px-3 sm:px-6 py-2 sm:py-4 text-xs sm:text-sm;
 }
 
 .tableCellRight {
@@ -53,5 +53,5 @@
 }
 
 .emptyCell {
-  @apply px-6 py-8 text-center text-gray-500;
+  @apply px-3 sm:px-6 py-6 sm:py-8 text-center text-gray-500;
 }
