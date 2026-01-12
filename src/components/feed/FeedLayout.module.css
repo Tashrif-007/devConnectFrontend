@@ -33,5 +33,5 @@
 }
 
 .desktopSidebar {
-  @apply hidden sm:block;
+  @apply hidden sm:block sticky top-24;
 }
