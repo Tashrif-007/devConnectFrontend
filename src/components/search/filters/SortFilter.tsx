@@ -3,16 +3,16 @@ import {
   SORT_BY_OPTIONS,
   USER_ORDER_BY_OPTIONS,
   STORY_ORDER_BY_OPTIONS,
-} from "../../../constants/search";
-import type { SortByValue, OrderByValue } from "../../../types/search";
+} from "../../../constants/searchFilters";
+import type { SortByValue, OrderByValue } from "../../../types";
 import styles from "./SortFilter.module.css";
 
 interface SortFilterProps {
   tab: "users" | "posts";
-  sortBy: SortByValue;
-  orderBy: OrderByValue;
-  onSortByChange: (value: SortByValue) => void;
-  onOrderByChange: (value: OrderByValue) => void;
+  sortBy?: SortByValue;
+  orderBy?: OrderByValue;
+  onSortByChange: (value: string) => void;
+  onOrderByChange: (value: string) => void;
 }
 
 const SortFilter: React.FC<SortFilterProps> = ({
@@ -33,13 +33,14 @@ const SortFilter: React.FC<SortFilterProps> = ({
         </label>
         <select
           id="sortBy"
-          value={sortBy}
-          onChange={(e) => onSortByChange(e.target.value as SortByValue)}
+          value={sortBy || ""}
+          onChange={(e) => onSortByChange(e.target.value)}
           className={styles.select}
         >
+          <option value="">Default</option>
           {SORT_BY_OPTIONS.map((option) => (
-            <option key={option} value={option}>
-              {option}
+            <option key={option.value} value={option.value}>
+              {option.label}
             </option>
           ))}
         </select>
@@ -51,10 +52,11 @@ const SortFilter: React.FC<SortFilterProps> = ({
         </label>
         <select
           id="orderBy"
-          value={orderBy}
-          onChange={(e) => onOrderByChange(e.target.value as OrderByValue)}
+          value={orderBy || ""}
+          onChange={(e) => onOrderByChange(e.target.value)}
           className={styles.select}
         >
+          <option value="">Default</option>
           {orderByOptions.map((option) => (
             <option key={option.value} value={option.value}>
               {option.label}

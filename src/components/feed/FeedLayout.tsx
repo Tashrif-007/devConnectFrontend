@@ -70,7 +70,7 @@ const FeedLayout: React.FC<FeedLayoutProps> = ({
         </div>
       </div>
       <div className={styles.desktopSidebar}>
-        <Sidebar />
+        <Sidebar /> 
       </div>
       {isSidebarOpen && (
         <>
