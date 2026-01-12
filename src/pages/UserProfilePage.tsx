@@ -6,6 +6,7 @@ import { useUserStories } from "../hooks/useUserStories";
 import { useGetUserProfile } from "../hooks/useGetUserProfile";
 import { Header, Paragraph } from "../components/ui";
 import Spinner from "../components/ui/Spinner";
+import { USER_PROFILE_PAGE } from "../constants";
 import styles from "./UserProfilePage.module.css";
 
 const UserProfilePage: React.FC = () => {
@@ -34,16 +35,12 @@ const UserProfilePage: React.FC = () => {
         ) : (
           <>
             <ProfileInfo user={user!} />
-            {error && (
-              <div className={styles.errorMessage}>
-                {error}
-              </div>
-            )}
+            {error && <div className={styles.errorMessage}>{error}</div>}
             <div>
               <Header
                 level={2}
                 className={styles.contentTitle}
-                value={`Posts (${stories.length.toString()})`}
+                value={`${USER_PROFILE_PAGE.POSTS_HEADER} (${stories.length})`}
               />
               {loading ? (
                 <Spinner color="border-black" size="lg" />
@@ -51,10 +48,10 @@ const UserProfilePage: React.FC = () => {
                 <div className={styles.contentCard}>
                   <div className="text-center">
                     <Paragraph className={styles.contentText}>
-                      No stories posted yet
+                      {USER_PROFILE_PAGE.NO_STORIES_MESSAGE}
                     </Paragraph>
                     <Paragraph className={styles.contentDate}>
-                      Start sharing your thoughts with the community!
+                      {USER_PROFILE_PAGE.NO_STORIES_HINT}
                     </Paragraph>
                   </div>
                 </div>

@@ -6,6 +6,7 @@ import { Header, Paragraph, TabButton, Button } from "../components/ui";
 import sidebarStyles from "../layouts/Sidebar.module.css";
 import styles from "./AdminPage.module.css";
 import Categories from "../components/feed/Categories";
+import { ADMIN_PAGE } from "../constants";
 
 const AdminPage: React.FC = () => {
   const [activeTab, setActiveTab] = useState<"categories" | "users">(
@@ -20,11 +21,11 @@ const AdminPage: React.FC = () => {
           <div className={styles.headerContent}>
             <Header
               level={2}
-              value="Dashboard"
+              value={ADMIN_PAGE.DASHBOARD_TITLE}
               className={styles.pageTitle}
             />
             <Paragraph className="text-gray-600">
-              Manage platform tags, users, and content moderation.
+              {ADMIN_PAGE.DASHBOARD_DESCRIPTION}
             </Paragraph>
           </div>
           <Button
@@ -37,13 +38,13 @@ const AdminPage: React.FC = () => {
 
         <div className={styles.tabsContainer}>
           <TabButton
-            label="Tags"
+            label={ADMIN_PAGE.TABS.CATEGORIES}
             isActive={activeTab === "categories"}
             onClick={() => setActiveTab("categories")}
             variant="admin"
           />
           <TabButton
-            label="User Management"
+            label={ADMIN_PAGE.TABS.USERS}
             isActive={activeTab === "users"}
             onClick={() => setActiveTab("users")}
             variant="admin"
