@@ -1,10 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
 import { userService } from "../../services/userService";
+import type { OrderByValue, SortByValue } from "../../types";
 
 interface UseSearchUsersParams {
   searchQuery: string;
   page?: number;
   itemsPerPage?: number;
+  sortBy?: SortByValue;
+  orderBy?: OrderByValue;
   enabled?: boolean;
 }
 
@@ -12,15 +15,22 @@ export const useSearchUsers = ({
   searchQuery,
   page = 1,
   itemsPerPage = 10,
+  sortBy,
+  orderBy,
   enabled = true,
 }: UseSearchUsersParams) => {
   const { data, isLoading, error } = useQuery({
-    queryKey: ["searchUsers", { search: searchQuery, page, itemsPerPage }],
+    queryKey: [
+      "searchUsers",
+      { search: searchQuery, page, itemsPerPage, sortBy, orderBy },
+    ],
     queryFn: async () => {
       const response = await userService.getUsers({
         find: searchQuery,
         page,
         itemsPerPage,
+        sortBy,
+        orderBy,
       });
       if (response.success && response.data) {
         return response.data;
