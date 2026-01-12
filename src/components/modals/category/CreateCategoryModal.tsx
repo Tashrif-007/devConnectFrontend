@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FiX } from "react-icons/fi";
 import InputField from "../../ui/InputField";
-import styles from './CreateCategoryModal.module.css';
+import styles from "./CreateCategoryModal.module.css";
 
 interface CreateCategoryModalProps {
   isOpen: boolean;
@@ -35,28 +35,22 @@ const CreateCategoryModal: React.FC<CreateCategoryModalProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-gray-900/70 backdrop-blur flex items-center justify-center z-50">
-      <div className="bg-white rounded-lg shadow-lg p-6 max-w-md w-full mx-4">
-        <div className="flex items-center justify-between mb-4">
-          <h2 className="text-lg font-semibold text-gray-900">
-            Create New Category
-          </h2>
+    <div className={styles.overlay}>
+      <div className={styles.modal}>
+        <div className={styles.header}>
+          <h2 className={styles.title}>Create New Category</h2>
           <button
             onClick={onClose}
             disabled={isLoading}
-            className="p-1 hover:bg-gray-100 rounded transition-colors disabled:opacity-50"
+            className={styles.closeButton}
           >
-            <FiX size={24} className="text-gray-500" />
+            <FiX size={24} className={styles.closeIcon} />
           </button>
         </div>
 
-        {error && (
-          <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded text-red-700 text-sm">
-            {error}
-          </div>
-        )}
+        {error && <div className={styles.error}>{error}</div>}
 
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className={styles.form}>
           <InputField
             label="Category Name *"
             name="name"
@@ -67,7 +61,7 @@ const CreateCategoryModal: React.FC<CreateCategoryModalProps> = ({
           />
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className={styles.descriptionLabel}>
               Description (Optional)
             </label>
             <textarea
@@ -78,25 +72,25 @@ const CreateCategoryModal: React.FC<CreateCategoryModalProps> = ({
               disabled={isLoading}
               placeholder="Brief description of this category"
               rows={3}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-50 disabled:opacity-50"
+              className={styles.textarea}
             />
           </div>
 
-          <div className="flex gap-3 justify-end pt-4">
+          <div className={styles.formActions}>
             <button
               type="button"
               onClick={onClose}
               disabled={isLoading}
-              className="px-4 py-2 text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className={styles.cancelButton}
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={isLoading || !formData.name.trim()}
-              className="px-4 py-2 text-white bg-black rounded-lg hover:bg-black/80 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+              className={styles.submitButton}
             >
-              {isLoading && <span className="text-xs">...</span>}
+              {isLoading && <span className={styles.loadingText}>...</span>}
               Create
             </button>
           </div>

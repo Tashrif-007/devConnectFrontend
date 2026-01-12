@@ -1,7 +1,9 @@
 @reference '../../../styles.css';
 
-/* Add your semantic CSS classes below */
-/* Example: */
-/* .container { */
-/*   @apply flex items-center justify-between gap-4; */
-/* } */
+.container {
+  @apply bg-red-50 border border-red-200 rounded-lg px-4 py-3;
+}
+
+.message {
+  @apply text-sm text-red-700;
+}
