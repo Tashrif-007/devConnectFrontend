@@ -8,21 +8,19 @@ interface FooterLinksSectionProps {
   links: Link[];
 }
 
+import styles from "./FooterLinksSection.module.css";
+
 export default function FooterLinksSection({
   title,
   links,
 }: FooterLinksSectionProps) {
   return (
     <div>
-      <h4 className="font-semibold text-slate-900 mb-4 text-sm uppercase tracking-wide">
-        {title}
-      </h4>
-      <ul className="space-y-3">
+      <h4 className={styles.title}>{title}</h4>
+      <ul className={styles.list}>
         {links.map((link, index) => (
           <li key={index}>
-            <a
-              href={link.href}
-              className="text-slate-600 hover:text-primary transition-colors text-sm">
+            <a href={link.href} className={styles.link}>
               {link.label}
             </a>
           </li>

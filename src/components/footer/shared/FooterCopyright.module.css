@@ -1,7 +1,5 @@
 @reference '../../../styles.css';
 
-/* Add your semantic CSS classes below */
-/* Example: */
-/* .container { */
-/*   @apply flex items-center justify-between gap-4; */
-/* } */
+.text {
+  @apply text-slate-600 text-sm;
+}
