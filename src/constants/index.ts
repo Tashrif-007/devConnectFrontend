@@ -8,3 +8,4 @@ export * from "./ui";
 export * from "./admin";
 export * from "./modals";
 export * from "./search";
+export * from "./pages";

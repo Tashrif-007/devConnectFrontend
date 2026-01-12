@@ -1,13 +1,14 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/ui/Button";
+import { EMAIL_VERIFIED_PAGE } from "../constants/pages";
 import styles from "./EmailVerifiedPage.module.css";
 
 const EmailVerifiedPage: React.FC = () => {
   const navigate = useNavigate();
 
   const handleGoToLogin = () => {
-    navigate("/login");
+    navigate(EMAIL_VERIFIED_PAGE.LOGIN_PATH);
   };
 
   return (
@@ -17,21 +18,18 @@ const EmailVerifiedPage: React.FC = () => {
           <div className={styles.banner}></div>
           <div className={styles.content}>
             <div className={styles.successIcon}>
-              ✓
+              {EMAIL_VERIFIED_PAGE.SUCCESS_ICON}
             </div>
-            <h1 className={styles.title}>
-              Email Verified!
-            </h1>
+            <h1 className={styles.title}>{EMAIL_VERIFIED_PAGE.TITLE}</h1>
             <p className={styles.description}>
-              Your email address has been successfully verified. You can now
-              access all features of devConnect.
+              {EMAIL_VERIFIED_PAGE.DESCRIPTION}
             </p>
             <Button
               variant="primary"
               onClick={handleGoToLogin}
               className={styles.button}
             >
-              Go to Login →
+              {EMAIL_VERIFIED_PAGE.BUTTON_TEXT}
             </Button>
           </div>
         </div>
