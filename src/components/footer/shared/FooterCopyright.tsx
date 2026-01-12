@@ -1,6 +1,8 @@
+import styles from "./FooterCopyright.module.css";
+
 export default function FooterCopyright() {
   return (
-    <p className="text-slate-600 text-sm">
+    <p className={styles.text}>
       © {new Date().getFullYear()} devConnect. All rights reserved.
     </p>
   );
