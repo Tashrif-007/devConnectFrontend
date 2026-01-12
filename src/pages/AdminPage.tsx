@@ -35,10 +35,6 @@ const AdminPage: React.FC = () => {
             <RxHamburgerMenu size={24} />
           </Button>
         </div>
-
-        <div className={styles.tabsContainer}>
-          <TabButton
-            label={ADMIN_PAGE.TABS.CATEGORIES}
             isActive={activeTab === "categories"}
             onClick={() => setActiveTab("categories")}
             variant="admin"
