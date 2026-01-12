@@ -1,8 +1,10 @@
 import React, { useState, type ForwardedRef } from "react";
+import { CONTENT_TABS } from "../../../constants/modals";
 import MarkdownToolbar from "./MarkdownToolbar";
 import ContentTabs from "./ContentTabs";
 import TabButton from "../../ui/TabButton";
-import styles from './ContentEditor.module.css';
+import styles from "./ContentEditor.module.css";
+import type { ContentTabType } from "../../../types/story";
 
 interface ContentEditorProps {
   content: string;
@@ -17,28 +19,28 @@ const ContentEditor: React.FC<ContentEditorProps> = ({
   onInsertMarkdown,
   textareaRef,
 }) => {
-  const [activeTab, setActiveTab] = useState<"write" | "preview">("write");
+  const [activeTab, setActiveTab] = useState<ContentTabType>(
+    CONTENT_TABS.WRITE
+  );
 
   return (
     <div>
-      <label className="block text-sm font-semibold text-gray-900 mb-2">
-        Content
-      </label>
-      <div className="border-2 border-gray-300 rounded-lg overflow-hidden">
+      <label className={styles.label}>Content</label>
+      <div className={styles.container}>
         <MarkdownToolbar onInsert={onInsertMarkdown} />
 
-        <div className="border-t border-gray-300">
-          <div className="flex border-b border-gray-200 bg-gray-100">
+        <div className={styles.innerContainer}>
+          <div className={styles.tabsHeader}>
             <TabButton
               label="Write"
-              isActive={activeTab === "write"}
-              onClick={() => setActiveTab("write")}
+              isActive={activeTab === CONTENT_TABS.WRITE}
+              onClick={() => setActiveTab(CONTENT_TABS.WRITE)}
               variant="content"
             />
             <TabButton
               label="Preview"
-              isActive={activeTab === "preview"}
-              onClick={() => setActiveTab("preview")}
+              isActive={activeTab === CONTENT_TABS.PREVIEW}
+              onClick={() => setActiveTab(CONTENT_TABS.PREVIEW)}
               variant="content"
             />
           </div>

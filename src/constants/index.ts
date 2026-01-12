@@ -7,3 +7,4 @@ export * from "./timing";
 export * from "./featureCard";
 export * from "./ui";
 export * from "./admin";
+export * from "./modals";
