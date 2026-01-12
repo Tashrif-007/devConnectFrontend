@@ -9,6 +9,7 @@ import FormActions from "../modals/forms/FormActions";
 import { useState } from "react";
 import { useCreatePostForm } from "../../hooks/useCreatePostForm";
 import { useGetCategories } from "../../queries";
+import styles from "./CreatePostModal.module.css";
 
 type CreatePostModalProps = {
   isOpen: boolean;
@@ -59,12 +60,8 @@ const CreatePostModal: React.FC<CreatePostModalProps> = ({
           onInsertMarkdown={handleInsertMarkdown}
           textareaRef={textareaRef}
         />
-        <div className="mt-4">
-          <Header
-            level={2}
-            value="Tags"
-            className="block text-sm font-semibold text-gray-900 mb-2"
-          />
+        <div className={styles.tagsSection}>
+          <Header level={2} value="Tags" className={styles.tagsLabel} />
           <TagSelector
             selectedCategoryIds={formData.categoryIds}
             onChange={handleCategoryChange}

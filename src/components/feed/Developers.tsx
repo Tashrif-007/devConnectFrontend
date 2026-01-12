@@ -21,20 +21,20 @@ const Developers: React.FC = () => {
   };
 
   return (
-    <div className="bg-white rounded-lg border border-gray-200 p-5">
+    <div className={styles.container}>
       <SectionHeader Icon={FiUser} title="Developers to Know" />
 
       <div className={styles.developersList}>
         {loading ? (
-          <div className="space-y-3">
+          <div className={styles.loadingContainer}>
             {[1, 2, 3].map((i) => (
               <DeveloperSkeleton key={i} />
             ))}
           </div>
         ) : error ? (
-          <div className="text-red-500 text-sm">{error}</div>
+          <div className={styles.errorMessage}>{error}</div>
         ) : displayedDevelopers.length === 0 ? (
-          <div className="text-gray-500 text-sm">No developers found</div>
+          <div className={styles.emptyMessage}>No developers found</div>
         ) : (
           displayedDevelopers.map((dev) => (
             <DeveloperCard key={dev.userId} developer={dev} />
