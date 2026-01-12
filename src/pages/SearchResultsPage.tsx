@@ -12,25 +12,33 @@ import type { OrderByValue, SortByValue } from "../types";
 const SearchResultsPage: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-
   const find = searchParams.get("find") || "";
   const tab = (searchParams.get("tab") || "users") as "users" | "posts";
   const page = parseInt(searchParams.get("page") || "1", 10);
   const category = searchParams.get("category") || undefined;
-  const sortBy = searchParams.get("sortBy") || "ASC";
-  const orderBy =
-    searchParams.get("orderBy") ||
-    (tab === "users" ? "user.joinDate" : "story.createdAt");
+  const usersSortBy = searchParams.get("usersSortBy") || undefined;
+  const usersOrderBy = searchParams.get("usersOrderBy") || undefined;
+  const postsSortBy = searchParams.get("postsSortBy") || undefined;
+  const postsOrderBy = searchParams.get("postsOrderBy") || undefined;
+  const sortBy = tab === "users" ? usersSortBy : postsSortBy;
+  const orderBy = tab === "users" ? usersOrderBy : postsOrderBy;
 
   const itemsPerPage = 5;
 
   const handleTabChange = (newTab: "users" | "posts") => {
+    const newSortBy = newTab === "users" ? usersSortBy : postsSortBy;
+    const newOrderBy = newTab === "users" ? usersOrderBy : postsOrderBy;
+
     setSearchParams({
       find,
       tab: newTab,
       page: "1",
-      sortBy,
-      orderBy: newTab === "users" ? "user.joinDate" : "story.createdAt",
+      ...(newSortBy && {
+        [newTab === "users" ? "usersSortBy" : "postsSortBy"]: newSortBy,
+      }),
+      ...(newOrderBy && {
+        [newTab === "users" ? "usersOrderBy" : "postsOrderBy"]: newOrderBy,
+      }),
       ...(category && { category }),
     });
   };
@@ -40,8 +48,12 @@ const SearchResultsPage: React.FC = () => {
       find,
       tab,
       page: String(newPage),
-      sortBy,
-      orderBy,
+      ...(sortBy && {
+        [tab === "users" ? "usersSortBy" : "postsSortBy"]: sortBy,
+      }),
+      ...(orderBy && {
+        [tab === "users" ? "usersOrderBy" : "postsOrderBy"]: orderBy,
+      }),
       ...(category && { category }),
     });
   };
@@ -52,33 +64,53 @@ const SearchResultsPage: React.FC = () => {
         find,
         tab,
         page: "1",
-        sortBy,
-        orderBy,
+        ...(sortBy && {
+          [tab === "users" ? "usersSortBy" : "postsSortBy"]: sortBy,
+        }),
+        ...(orderBy && {
+          [tab === "users" ? "usersOrderBy" : "postsOrderBy"]: orderBy,
+        }),
         category: categoryName,
       });
     } else {
-      setSearchParams({ find, tab, page: "1", sortBy, orderBy });
+      setSearchParams({
+        find,
+        tab,
+        page: "1",
+        ...(sortBy && {
+          [tab === "users" ? "usersSortBy" : "postsSortBy"]: sortBy,
+        }),
+        ...(orderBy && {
+          [tab === "users" ? "usersOrderBy" : "postsOrderBy"]: orderBy,
+        }),
+      });
     }
   };
 
   const handleSortByChange = (value: string) => {
+    const paramKey = tab === "users" ? "usersSortBy" : "postsSortBy";
+    const orderParamKey = tab === "users" ? "usersOrderBy" : "postsOrderBy";
+
     setSearchParams({
       find,
       tab,
       page: "1",
-      sortBy: value,
-      orderBy,
+      ...(value && { [paramKey]: value }),
+      ...(orderBy && { [orderParamKey]: orderBy }),
       ...(category && { category }),
     });
   };
 
   const handleOrderByChange = (value: string) => {
+    const sortParamKey = tab === "users" ? "usersSortBy" : "postsSortBy";
+    const orderParamKey = tab === "users" ? "usersOrderBy" : "postsOrderBy";
+
     setSearchParams({
       find,
       tab,
       page: "1",
-      sortBy,
-      orderBy: value,
+      ...(sortBy && { [sortParamKey]: sortBy }),
+      ...(value && { [orderParamKey]: value }),
       ...(category && { category }),
     });
   };
