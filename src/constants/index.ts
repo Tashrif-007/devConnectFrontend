@@ -1,4 +1,3 @@
-// Import and re-export all constants
 export * from "./api";
 export * from "./messages";
 export * from "./queryConfig";
