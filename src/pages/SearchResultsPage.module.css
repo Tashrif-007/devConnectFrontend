@@ -1,0 +1,17 @@
+@reference '../styles.css';
+
+.container {
+  @apply max-w-7xl mx-auto px-4 py-8 flex justify-between gap-6;
+}
+
+.mainContent {
+  @apply flex-1 relative;
+}
+
+.sidebarToggle {
+  @apply sm:hidden mb-4 bg-transparent border-none cursor-pointer p-0;
+}
+
+.desktopSidebar {
+  @apply hidden sm:block;
+}

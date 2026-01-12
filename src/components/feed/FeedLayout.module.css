@@ -1,15 +1,19 @@
 @reference '../../styles.css';
 
 .container {
-  @apply mt-6 flex gap-8 px-10 justify-center;
+  @apply mt-6 flex gap-8 px-10 justify-center overflow-hidden;
 }
 
 .mainContent {
-  @apply flex flex-col w-8/15;
+  @apply flex flex-col w-full sm:w-8/15;
 }
 
 .feedHeader {
   @apply mb-6;
+}
+
+.headerTop {
+  @apply flex items-center justify-between gap-4 sm:gap-0;
 }
 
 .title {
@@ -22,4 +26,12 @@
 
 .postsContainer {
   @apply flex-1;
+}
+
+.sidebarToggle {
+  @apply sm:hidden bg-transparent border-none cursor-pointer p-0;
+}
+
+.desktopSidebar {
+  @apply hidden sm:block;
 }
