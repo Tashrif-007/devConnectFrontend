@@ -7,3 +7,23 @@
 .body {
   @apply text-gray-700 text-base line-clamp-3 mb-4;
 }
+
+.strong {
+  @apply font-bold;
+}
+
+.em {
+  @apply italic;
+}
+
+.code {
+  @apply bg-gray-100 px-2 py-1 rounded text-red-600 font-mono text-sm;
+}
+
+.ul {
+  @apply list-disc list-inside mb-2;
+}
+
+.li {
+  @apply mb-1 ml-2;
+}
