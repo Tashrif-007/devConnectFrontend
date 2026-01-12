@@ -14,6 +14,7 @@ export const UI_MESSAGES = {
   PAGE_TITLES: {
     CREATE_POST: "Create Your Post",
     EDIT_POST: "Edit Post",
+    FEED: "Your Feed",
   },
 
   SUCCESS: {
