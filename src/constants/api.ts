@@ -1,10 +1,4 @@
-/**
- * API Endpoints
- * All API endpoint paths used throughout the application
- */
-
 export const API_ENDPOINTS = {
-  // Auth endpoints
   AUTH: {
     SIGNUP: "/auth/signup",
     LOGIN: "/auth/login",
@@ -12,7 +6,6 @@ export const API_ENDPOINTS = {
     RESEND_CONFIRMATION_EMAIL: "/auth/resend-confirmation-email",
   },
 
-  // Stories endpoints
   STORIES: {
     BASE: "/stories",
     BY_ID: (storyId: string) => `/stories/${storyId}`,
@@ -21,19 +14,15 @@ export const API_ENDPOINTS = {
     VOTES: (storyId: string) => `/stories/${storyId}/votes`,
   },
 
-  // Categories endpoints
   CATEGORIES: {
     BASE: "/categories",
     BY_ID: (categoryId: string) => `/categories/${categoryId}`,
   },
-
-  // Users endpoints
   USERS: {
     BASE: "/users",
     BY_ID: (userId: string) => `/users/${userId}`,
   },
 
-  // Admin endpoints
   ADMIN: {
     UPDATE_USER_ROLE: (userId: string) => `/admin/role/${userId}`,
   },

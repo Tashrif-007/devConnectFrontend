@@ -1,10 +1,4 @@
-/**
- * Timing Constants
- * Time-related constants used throughout the application
- */
-
 export const TIMING = {
-  // Milliseconds
   MS: {
     ONE_MINUTE: 60 * 1000,
     TWO_MINUTES: 2 * 60 * 1000,
@@ -13,7 +7,6 @@ export const TIMING = {
     FIFTEEN_MINUTES: 15 * 60 * 1000,
   },
 
-  // Seconds
   SECONDS: {
     ONE: 1,
     TWO: 2,
@@ -22,8 +15,7 @@ export const TIMING = {
     THIRTY: 30,
   },
 
-  // Specific use cases
-  DEBOUNCE_DELAY: 300, // ms
-  TOAST_DURATION: 3000, // ms
-  MODAL_TRANSITION_DURATION: 300, // ms
+  DEBOUNCE_DELAY: 300, 
+  TOAST_DURATION: 3000,
+  MODAL_TRANSITION_DURATION: 300, 
 } as const;
