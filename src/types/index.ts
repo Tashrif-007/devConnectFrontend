@@ -41,3 +41,11 @@ export type {
   DeleteCategoryResponse,
   CategoryResponse,
 } from "./categories";
+
+export type {
+  SortByValue,
+  UserOrderByValue,
+  StoryOrderByValue,
+  OrderByValue,
+  OrderByOption,
+} from "./search";

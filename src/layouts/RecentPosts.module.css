@@ -1,0 +1,46 @@
+@reference '../styles.css';
+@config "../../tailwind.config.ts";
+
+.section {
+  @apply w-full bg-[#ffffff] transition-colors duration-300 py-20;
+}
+
+.container {
+  @apply max-w-7xl mx-auto px-4;
+}
+
+.header {
+  @apply mb-16;
+}
+
+.badge {
+  @apply text-primary font-bold tracking-wide uppercase text-sm mb-2;
+}
+
+.title {
+  @apply text-3xl md:text-4xl font-bold text-slate-900;
+}
+
+.linkContainer {
+  @apply hidden md:flex items-center gap-2 text-primary hover:text-primary-hover font-semibold transition-colors;
+}
+
+.linkIcon {
+  @apply w-5 h-5;
+}
+
+.grid {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8;
+}
+
+.mobileButtonContainer {
+  @apply md:hidden mt-8 text-center;
+}
+
+.mobileButton {
+  @apply inline-flex items-center gap-2 px-6 py-3 bg-[#1A1A1A] hover:bg-[#1A1A1A] text-white font-semibold rounded-full transition-all;
+}
+
+.mobileButtonIcon {
+  @apply w-5 h-5;
+}

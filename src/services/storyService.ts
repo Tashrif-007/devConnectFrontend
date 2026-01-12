@@ -16,7 +16,9 @@ export const storyService = {
     page: number = 1,
     itemsPerPage: number = 10,
     category?: string,
-    find?: string
+    find?: string,
+    sortBy?: string,
+    orderBy?: string
   ): Promise<StoriesResponse> {
     return apiClient.get<StoriesResponse>(API_ENDPOINTS.STORIES.BASE, {
       params: {
@@ -24,6 +26,8 @@ export const storyService = {
         itemsPerPage,
         ...(category && { category }),
         ...(find && { find }),
+        ...(sortBy && { sortBy }),
+        ...(orderBy && { orderBy }),
       },
     });
   },

@@ -6,6 +6,7 @@ import { useUserStories } from "../hooks/useUserStories";
 import { useGetUserProfile } from "../hooks/useGetUserProfile";
 import { Header, Paragraph } from "../components/ui";
 import Spinner from "../components/ui/Spinner";
+import styles from "./UserProfilePage.module.css";
 
 const UserProfilePage: React.FC = () => {
   const { user: authUser } = useAuth();
@@ -22,37 +23,37 @@ const UserProfilePage: React.FC = () => {
   }, [authUser?.userId, fetchUserStories]);
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className={styles.container}>
       <main className="max-w-4xl mx-auto px-4 py-8">
         {profileLoading ? (
           <div className="animate-pulse">
-            <div className="h-48 bg-gray-200 rounded-lg mb-6"></div>
-            <div className="h-6 bg-gray-200 rounded w-1/3 mb-3"></div>
-            <div className="h-4 bg-gray-200 rounded w-full mb-6"></div>
+            <div className={styles.skeletonBanner}></div>
+            <div className={styles.skeletonTitle}></div>
+            <div className={styles.skeletonContent}></div>
           </div>
         ) : (
           <>
             <ProfileInfo user={user!} />
             {error && (
-              <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg text-red-700">
+              <div className={styles.errorMessage}>
                 {error}
               </div>
             )}
             <div>
               <Header
                 level={2}
-                className="text-xl font-bold text-gray-900 mb-6"
+                className={styles.contentTitle}
                 value={`Posts (${stories.length.toString()})`}
               />
               {loading ? (
                 <Spinner color="border-black" size="lg" />
               ) : stories.length === 0 ? (
-                <div className="bg-white rounded-lg border border-gray-200 shadow-md p-12">
+                <div className={styles.contentCard}>
                   <div className="text-center">
-                    <Paragraph className="text-gray-600 text-lg">
+                    <Paragraph className={styles.contentText}>
                       No stories posted yet
                     </Paragraph>
-                    <Paragraph className="text-gray-400 text-sm mt-2">
+                    <Paragraph className={styles.contentDate}>
                       Start sharing your thoughts with the community!
                     </Paragraph>
                   </div>

@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import CreatePostForm from "../components/modals/post/CreatePostForm";
 import { ROUTES, UI_MESSAGES } from "../constants";
+import styles from "./CreatePostPage.module.css";
 
 const CreatePostPage: React.FC = () => {
   const navigate = useNavigate();
@@ -11,7 +12,7 @@ const CreatePostPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className={styles.container}>
       <CreatePostForm
         onClose={handleClose}
         title={UI_MESSAGES.PAGE_TITLES.CREATE_POST}

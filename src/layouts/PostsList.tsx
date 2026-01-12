@@ -4,6 +4,7 @@ import { PostCardSkeletonLoader } from "../components/feed/PostCardSkeleton";
 import Pagination from "../components/feed/Pagination";
 import type { PaginationData } from "../types";
 import type { Story } from "../interfaces";
+import styles from "./PostsList.module.css";
 
 interface PostsListProps {
   stories: Story[];
@@ -28,15 +29,15 @@ const PostsList: React.FC<PostsListProps> = ({
 
   if (stories.length === 0) {
     return (
-      <div className="bg-white rounded-lg border border-gray-200 p-8 text-center">
-        <p className="text-gray-500 text-lg">No posts yet. Check back soon!</p>
+      <div className={styles.emptyState}>
+        <p className={styles.emptyStateText}>No posts yet. Check back soon!</p>
       </div>
     );
   }
 
   return (
-    <div className="flex flex-col">
-      <div className="flex flex-col gap-4">
+    <div className={styles.list}>
+      <div className={styles.listContainer}>
         {stories.map((story) => (
           <PostCard key={story.storyId} story={story} />
         ))}

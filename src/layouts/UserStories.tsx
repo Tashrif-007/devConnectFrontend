@@ -3,6 +3,7 @@ import StoryCard from "../components/story/card/StoryCard";
 import StoryCardSkeleton from "../components/story/card/StoryCardSkeleton";
 import EmptyStories from "../components/story/shared/EmptyStories";
 import type { Story } from "../interfaces";
+import styles from "./UserStories.module.css";
 
 interface UserStoriesProps {
   stories: Story[];
@@ -16,7 +17,7 @@ const UserStories: React.FC<UserStoriesProps> = ({
   if (loading) {
     return (
       <div>
-        <h2 className="text-xl font-bold text-gray-900 mb-6">Posted Stories</h2>
+        <h2 className={styles.title}>Posted Stories</h2>
         <StoryCardSkeleton count={3} />
       </div>
     );
@@ -24,7 +25,7 @@ const UserStories: React.FC<UserStoriesProps> = ({
 
   return (
     <div>
-      <h2 className="text-xl font-bold text-gray-900 mb-6">
+      <h2 className={styles.title}>
         Posted Stories ({stories.length})
       </h2>
 
