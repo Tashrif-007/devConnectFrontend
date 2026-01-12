@@ -2,27 +2,31 @@ import { useNavigate } from "react-router-dom";
 import PostCard from "../components/feed/PostCard";
 import { useGetStories } from "../queries/stories/getStories";
 import { PostCardSkeletonLoader } from "../components/feed/PostCardSkeleton";
-import { ROUTES, RECENT_POSTS } from "../constants";
+import { ROUTES } from "../constants";
 import styles from "./RecentPosts.module.css";
 
 export default function RecentPosts() {
   const navigate = useNavigate();
   const { stories, loading } = useGetStories(1, undefined);
 
-  const recentPosts = stories.slice(0, RECENT_POSTS.ITEMS_TO_SHOW);
+  const recentPosts = stories.slice(0, 3);
   return (
     <section className={styles.section}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className={styles.header}>
           <div>
-            <p className={styles.badge}>{RECENT_POSTS.BADGE}</p>
-            <h2 className={styles.title}>{RECENT_POSTS.TITLE}</h2>
+            <p className={styles.badge}>
+              Community Feed
+            </p>
+            <h2 className={styles.title}>
+              Fresh from the community
+            </h2>
           </div>
           <button
             onClick={() => navigate(ROUTES.PUBLIC.FEED)}
             className={styles.linkContainer}
           >
-            {RECENT_POSTS.BUTTON_TEXT}
+            View all posts
             <svg
               className={styles.linkIcon}
               fill="none"
@@ -58,7 +62,7 @@ export default function RecentPosts() {
             onClick={() => navigate("/feed")}
             className={styles.mobileButton}
           >
-            {RECENT_POSTS.BUTTON_TEXT}
+            View all posts
             <svg
               className={styles.mobileButtonIcon}
               fill="none"

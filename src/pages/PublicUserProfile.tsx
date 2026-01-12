@@ -5,7 +5,7 @@ import PostCard from "../components/feed/PostCard";
 import { useGetUserProfile } from "../hooks/useGetUserProfile";
 import { useUserStories } from "../hooks/useUserStories";
 import { useAuth } from "../hooks/useAuth";
-import { UI_MESSAGES, PUBLIC_USER_PROFILE } from "../constants";
+import { UI_MESSAGES } from "../constants";
 import styles from "./PublicUserProfile.module.css";
 
 const PublicUserProfile: React.FC = () => {
@@ -23,6 +23,7 @@ const PublicUserProfile: React.FC = () => {
     fetchUserStories,
   } = useUserStories();
 
+  // Check if the logged-in user is viewing their own profile
   const isOwnProfile = loggedInUser?.userId === userId;
 
   useEffect(() => {
@@ -62,7 +63,9 @@ const PublicUserProfile: React.FC = () => {
       <main className="max-w-4xl mx-auto px-4 py-8">
         <ProfileInfo user={user} isOwnProfile={isOwnProfile} />
         {storiesError && (
-          <div className={styles.errorMessage}>{storiesError}</div>
+          <div className={styles.errorMessage}>
+            {storiesError}
+          </div>
         )}
         <div>
           <h2 className={styles.storyTitle}>
@@ -71,7 +74,10 @@ const PublicUserProfile: React.FC = () => {
           {storiesLoading ? (
             <div className="space-y-4">
               {[1, 2, 3].map((i) => (
-                <div key={i} className={styles.skeletonCard}>
+                <div
+                  key={i}
+                  className={styles.skeletonCard}
+                >
                   <div className={styles.skeletonCardTitle}></div>
                   <div className={styles.skeletonCardText}></div>
                   <div className={styles.skeletonCardTextEnd}></div>
@@ -85,7 +91,7 @@ const PublicUserProfile: React.FC = () => {
                   {UI_MESSAGES.EMPTY_STATE.NO_STORIES}
                 </p>
                 <p className={styles.contentDate}>
-                  {PUBLIC_USER_PROFILE.NO_STORIES_MESSAGE}
+                  This user hasn't shared any thoughts yet.
                 </p>
               </div>
             </div>
