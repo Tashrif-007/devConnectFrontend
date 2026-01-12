@@ -11,3 +11,15 @@
 .clearButtonContainer {
   @apply w-full mb-3;
 }
+
+.clearButton {
+  @apply w-full py-2 px-3 text-sm font-semibold text-white rounded-lg bg-black hover:bg-black/80 transition-colors;
+}
+
+.errorMessage {
+  @apply text-red-500 text-sm;
+}
+
+.emptyMessage {
+  @apply text-gray-500 text-sm;
+}

@@ -16,19 +16,12 @@ const PostCardContent: React.FC<PostCardContentProps> = ({ title, body }) => {
         <ReactMarkdown
           components={{
             strong: ({ ...props }) => (
-              <strong className="font-bold" {...props} />
+              <strong className={styles.strong} {...props} />
             ),
-            em: ({ ...props }) => <em className="italic" {...props} />,
-            code: ({ ...props }) => (
-              <code
-                className="bg-gray-100 px-2 py-1 rounded text-red-600 font-mono text-sm"
-                {...props}
-              />
-            ),
-            ul: ({ ...props }) => (
-              <ul className="list-disc list-inside mb-2" {...props} />
-            ),
-            li: ({ ...props }) => <li className="mb-1 ml-2" {...props} />,
+            em: ({ ...props }) => <em className={styles.em} {...props} />,
+            code: ({ ...props }) => <code className={styles.code} {...props} />,
+            ul: ({ ...props }) => <ul className={styles.ul} {...props} />,
+            li: ({ ...props }) => <li className={styles.li} {...props} />,
           }}
         >
           {body}

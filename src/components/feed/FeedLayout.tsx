@@ -5,6 +5,7 @@ import { Header, Paragraph } from "../ui";
 import type { PaginationData } from "../../types";
 import styles from "./FeedLayout.module.css";
 import type { Story } from "../../interfaces";
+import { UI_MESSAGES } from "../../constants";
 
 type FeedLayoutProps = {
   stories: Story[];
@@ -36,7 +37,7 @@ const FeedLayout: React.FC<FeedLayoutProps> = ({
     <div ref={feedRef} className={styles.container}>
       <div className={styles.mainContent}>
         <div className={styles.feedHeader}>
-          <Header level={1} value="Your Feed" className={styles.title} />
+          <Header level={1} value={UI_MESSAGES.PAGE_TITLES.FEED} className={styles.title} />
           {currentCategory && (
             <Paragraph className={styles.categoryFilter}>
               Filtered by:{currentCategory}
