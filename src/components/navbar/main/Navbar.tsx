@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../../hooks/useAuth";
 import SearchBar from "../navigation/SearchBar";
 import NavLinks from "../navigation/NavLinks";
-import ThemeToggle from "../theme/ThemeToggle";
+// import ThemeToggle from "../theme/ThemeToggle";
 import ProfileDropdown from "../menu/ProfileDropdown";
 import CreatePostModal from "../../feed/CreatePostModal";
 import { ROUTES } from "../../../constants";
@@ -42,8 +42,8 @@ export default function Navbar() {
               )}
               <NavLinks />
               {isAuthenticated && <div className={styles.divider}></div>}
-              <ThemeToggle />
-              <div className={styles.divider}></div>
+              {/* <ThemeToggle /> */}
+              {/* <div className={styles.divider}></div> */}
               {isAuthenticated ? (
                 <ProfileDropdown
                   isOpen={isDropdownOpen}

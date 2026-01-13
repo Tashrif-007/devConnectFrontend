@@ -11,8 +11,8 @@ interface SearchContentProps {
   tab: "users" | "posts";
   page: number;
   category: string | undefined;
-  sortBy: SortByValue;
-  orderBy: OrderByValue;
+  sortBy?: SortByValue;
+  orderBy?: OrderByValue;
   itemsPerPage: number;
   onTabChange: (newTab: "users" | "posts") => void;
   onPageChange: (newPage: number) => void;
@@ -35,6 +35,7 @@ const SearchContent: React.FC<SearchContentProps> = ({
       page,
       itemsPerPage,
       category,
+      tab,
       sortBy,
       orderBy,
     });

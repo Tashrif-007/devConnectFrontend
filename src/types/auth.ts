@@ -1,5 +1,5 @@
+import type { ApiResponse } from "../interfaces";
 import type { LoginResponseData, SignupResponseData } from "../interfaces/auth";
-import type { ApiResponse } from "./common";
 
 export type LoginResponse = ApiResponse<LoginResponseData>;
 

@@ -1,6 +1,10 @@
 @reference '../styles.css';
 @config "../../tailwind.config.ts";
 
+.container {
+  @apply flex flex-col gap-6;
+}
+
 .backdrop {
   @apply fixed inset-0 top-16 z-40 bg-black/30 backdrop-blur-sm sm:hidden;
 }

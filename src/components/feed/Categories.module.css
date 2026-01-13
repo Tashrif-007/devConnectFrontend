@@ -1,11 +1,11 @@
 @reference '../../styles.css';
 
 .container {
-  @apply bg-white rounded-lg border border-gray-200 p-5 w-sm h-10/12 sticky;
+  @apply bg-white rounded-lg border border-gray-200 p-5 w-14/12 sticky max-h-8/12 overflow-y-auto;
 }
 
 .categoryList {
-  @apply max-h-10/12 overflow-y-auto space-y-2 pr-2;
+  @apply space-y-2;
 }
 
 .clearButtonContainer {

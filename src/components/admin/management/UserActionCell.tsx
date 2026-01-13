@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Button from "../../ui/Button";
 import { FiTrash2 } from "react-icons/fi";
-import Options from "../../ui/Options";
 import { USER_ROLES, type User } from "../../../types";
 import styles from "./UserActionCell.module.css";
 
@@ -62,7 +61,6 @@ const UserActionCell: React.FC<UserActionCellProps> = ({
         onClick={() => onDeleteUser(user.userId)}
         disabled={isDeleting || isUpdating}
         className={`${styles.deleteButton} ${styles.desktopOnly}`}
-        title="Delete user"
       >
         {isDeleting ? (
           <span className={styles.loadingIndicator}>...</span>

@@ -3,17 +3,12 @@ import AdminTable, { type ColumnDef } from "../table/AdminTable";
 import { FiTrash2 } from "react-icons/fi";
 import { Button } from "../../ui";
 import styles from "./CategoryTableSection.module.css";
-import type { Category } from "../../../interfaces";
+import type { Category, PaginationData } from "../../../interfaces";
 import Pagination from "../../feed/Pagination";
 
 interface CategoryTableSectionProps {
   categories: Category[];
-  pagination: {
-    currentPage: number;
-    totalPages: number;
-    hasPreviousPage: boolean;
-    hasNextPage: boolean;
-  };
+  pagination: PaginationData;
   deleteLoading: string | null;
   deleteError: string | null;
   onPageChange: (page: number) => void;
@@ -84,6 +79,8 @@ const CategoryTableSection: React.FC<CategoryTableSectionProps> = ({
             totalPages: pagination.totalPages,
             hasPreviousPage: pagination.hasPreviousPage,
             hasNextPage: pagination.hasNextPage,
+            itemsPerPage: pagination.itemsPerPage,
+            totalItems: pagination.totalItems,
           }}
           onPageChange={onPageChange}
         />

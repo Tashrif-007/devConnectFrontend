@@ -1,5 +1,5 @@
+import type { ApiResponse } from "../interfaces";
 import type { Category } from "../interfaces/categories";
-import type { ApiResponse } from "./common";
 
 export type CategoryResponse = ApiResponse<Category[]>;
 
