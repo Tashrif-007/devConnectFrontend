@@ -1,5 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { storyService } from "../../services/storyService";
+import type { CreateCommentPayload, Comment } from "../../types";
 
 export const useCreateCommentMutation = (storyId?: string) => {
   const queryClient = useQueryClient();
@@ -10,7 +11,6 @@ export const useCreateCommentMutation = (storyId?: string) => {
     error,
   } = useMutation({
     mutationFn: async (body: string): Promise<Comment> => {
-      console.log(storyId)
       if (!storyId) throw new Error("Story ID is required");
       const payload: CreateCommentPayload = { body };
       const response = await storyService.createComment(storyId, payload);

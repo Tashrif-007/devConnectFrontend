@@ -1,4 +1,4 @@
-import type { LoginResponse, PaginationData, SignupResponse, Story, UserVoteType } from "../types";
+import type { Comment, LoginResponse, PaginationData, SignupResponse, Story, UserVoteType } from "../types";
 import type { LoginPayload, SignupPayload } from "./auth";
 
 export interface UseSignupReturn {

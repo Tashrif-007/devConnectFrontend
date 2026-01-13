@@ -4,7 +4,6 @@ import { useGetStories } from "../../queries/stories/getStories";
 import { PostCardSkeletonLoader } from "../feed/PostCardSkeleton";
 import { ROUTES } from "../../constants";
 import styles from "./RecentPosts.module.css";
-import type { Story } from "../../interfaces";
 
 export default function RecentPosts() {
   const navigate = useNavigate();

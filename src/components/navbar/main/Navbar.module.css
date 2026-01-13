@@ -41,7 +41,7 @@
 }
 
 .loginLink {
-  @apply text-sm font-medium rounded-lg hover:bg-[#1A1A1A]/90 transition-colors;
+  @apply text-sm font-medium rounded-lg transition-colors;
 }
 
 .signupLink {

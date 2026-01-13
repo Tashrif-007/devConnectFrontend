@@ -3,7 +3,7 @@ export type { FormErrors } from "../interfaces/common";
 
 export type { PaginationData } from "../interfaces/pagination";
 
-export type { User } from "../interfaces/auth";
+export type { User, SignupPayload, LoginPayload } from "../interfaces/auth";
 export type {
   SignupResponse,
   LoginResponse,
@@ -17,6 +17,11 @@ export type {
   GetCommentsResponse,
   StoriesResponse,
 } from "./story";
+export type {
+  Story,
+  Comment,
+  CreateCommentPayload,
+} from "../interfaces/stories";
 
 export type { UserVoteType, VoteResponse } from "./vote";
 
@@ -47,5 +52,4 @@ export type {
   UserOrderByValue,
   StoryOrderByValue,
   OrderByValue,
-  OrderByOption,
 } from "./search";

@@ -40,6 +40,7 @@ export const useCategoryManagement = () => {
 
   const pagination = {
     currentPage,
+    itemsPerPage: itemsPerPage,
     totalPages,
     hasPreviousPage: currentPage > 1,
     hasNextPage: currentPage < totalPages,

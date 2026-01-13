@@ -4,6 +4,7 @@ import { useAuth } from "../../hooks/useAuth";
 import { useVoting } from "../../hooks/useVoting";
 import Button from "./Button";
 import styles from "./VoteButtons.module.css";
+import Snackbar from "./Snackbar";
 
 interface VoteButtonsProps {
   storyId: string;
@@ -66,7 +67,7 @@ export const VoteButtons: React.FC<VoteButtonsProps> = ({
           <span className={styles["vote-count"]}>{localDownvotes}</span>
         </Button>
       </div>
-      {/* <Snackbar message={error} onClose={clearError} /> */}
+      <Snackbar message={error} onClose={clearError} />
     </>
   );
 };

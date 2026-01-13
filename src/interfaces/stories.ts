@@ -1,6 +1,6 @@
-import type { VoteType } from "../types";
 import type { User } from "./auth";
 import type { PaginationData } from "./pagination";
+import type { VoteType } from "./vote";
 
 export interface Story {
   storyId: string;
@@ -31,6 +31,9 @@ export interface CreateStoryPayload {
   skip: boolean;
 }
 
+export interface CreateCommentPayload {
+  body: string;
+}
 
 export interface CreateStoryData {
   storyId: string;
