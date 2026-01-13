@@ -6,6 +6,8 @@ interface UseSearchStoriesParams {
   page?: number;
   itemsPerPage?: number;
   category?: string;
+  sortBy?: string;
+  orderBy?: string;
   enabled?: boolean;
 }
 
@@ -14,27 +16,31 @@ export const useSearchStories = ({
   page = 1,
   itemsPerPage = 10,
   category,
+  sortBy,
+  orderBy,
   enabled = true,
 }: UseSearchStoriesParams) => {
   const { data, isLoading, error } = useQuery({
     queryKey: [
       "searchStories",
-      { search: searchQuery, page, itemsPerPage, category },
+      { search: searchQuery, page, itemsPerPage, category, sortBy, orderBy },
     ],
     queryFn: async () => {
       const response = await storyService.fetchStories(
         page,
         itemsPerPage,
         category,
-        searchQuery
+        searchQuery,
+        sortBy,
+        orderBy
       );
       if (response.success && response.data) {
         return response.data;
       }
       throw new Error(response.message || "Failed to search stories");
     },
-    staleTime: 2 * 60 * 1000, // 2 minutes
-    gcTime: 5 * 60 * 1000, // 5 minutes
+    staleTime: 2 * 60 * 1000,
+    gcTime: 5 * 60 * 1000,
     enabled: enabled,
   });
 

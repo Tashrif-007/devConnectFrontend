@@ -11,6 +11,7 @@ export const ROUTES = {
   },
   APP: {
     SEARCH: "/search",
+    SEARCH_USER_TAB: "?find=&tab=users",
     CREATE_POST: "/create",
     EDIT_POST: "/stories/:storyId/edit",
     PROFILE: "/profile",

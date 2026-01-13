@@ -4,12 +4,15 @@ import SearchHeader from "../layout/SearchHeader";
 import SearchTab from "./SearchTab";
 import SearchResults from "../layout/SearchResults";
 import styles from "./SearchContent.module.css";
+import type { OrderByValue, SortByValue } from "../../../types";
 
 interface SearchContentProps {
   find: string;
   tab: "users" | "posts";
   page: number;
   category: string | undefined;
+  sortBy: SortByValue;
+  orderBy: OrderByValue;
   itemsPerPage: number;
   onTabChange: (newTab: "users" | "posts") => void;
   onPageChange: (newPage: number) => void;
@@ -20,6 +23,8 @@ const SearchContent: React.FC<SearchContentProps> = ({
   tab,
   page,
   category,
+  sortBy,
+  orderBy,
   itemsPerPage,
   onTabChange,
   onPageChange,
@@ -30,6 +35,8 @@ const SearchContent: React.FC<SearchContentProps> = ({
       page,
       itemsPerPage,
       category,
+      sortBy,
+      orderBy,
     });
 
   return (

@@ -1,0 +1,21 @@
+@reference '../styles.css';
+
+.title {
+  @apply text-xl font-bold text-gray-900 mb-6;
+}
+
+.emptyState {
+  @apply bg-white rounded-lg border border-gray-200 p-8 text-center;
+}
+
+.emptyStateText {
+  @apply text-gray-500 text-lg;
+}
+
+.list {
+  @apply flex flex-col;
+}
+
+.listContainer {
+  @apply flex flex-col gap-4;
+}

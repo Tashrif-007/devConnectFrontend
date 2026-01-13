@@ -1,0 +1,5 @@
+@reference '../styles.css';
+
+.container {
+  @apply min-h-screen bg-gray-50;
+}

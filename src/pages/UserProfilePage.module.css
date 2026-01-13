@@ -1,0 +1,37 @@
+@reference '../styles.css';
+
+.container {
+  @apply min-h-screen bg-white;
+}
+
+.skeletonBanner {
+  @apply h-48 bg-gray-200 rounded-lg mb-6;
+}
+
+.skeletonTitle {
+  @apply h-6 bg-gray-200 rounded w-1/3 mb-3;
+}
+
+.skeletonContent {
+  @apply h-4 bg-gray-200 rounded w-full mb-6;
+}
+
+.errorMessage {
+  @apply mb-6 p-4 bg-red-50 border border-red-200 rounded-lg text-red-700;
+}
+
+.contentTitle {
+  @apply text-xl font-bold text-gray-900 mb-6;
+}
+
+.contentCard {
+  @apply bg-white rounded-lg border border-gray-200 shadow-md p-12;
+}
+
+.contentText {
+  @apply text-gray-600 text-lg;
+}
+
+.contentDate {
+  @apply text-gray-400 text-sm mt-2;
+}

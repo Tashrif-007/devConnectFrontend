@@ -1,11 +1,13 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { RxHamburgerMenu, RxCross2 } from "react-icons/rx";
 import PostsList from "../../layouts/PostsList";
 import Sidebar from "../../layouts/Sidebar";
-import { Header, Paragraph } from "../ui";
+import { Header, Paragraph, Button } from "../ui";
 import type { PaginationData } from "../../types";
 import styles from "./FeedLayout.module.css";
 import type { Story } from "../../interfaces";
 import { UI_MESSAGES } from "../../constants";
+import sidebarStyles from "../../layouts/Sidebar.module.css";
 
 type FeedLayoutProps = {
   stories: Story[];
@@ -22,6 +24,7 @@ const FeedLayout: React.FC<FeedLayoutProps> = ({
   fetchStories,
   currentCategory,
 }) => {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const handlePageChange = (page: number) => {
     fetchStories(page, currentCategory);
   };
@@ -37,7 +40,20 @@ const FeedLayout: React.FC<FeedLayoutProps> = ({
     <div ref={feedRef} className={styles.container}>
       <div className={styles.mainContent}>
         <div className={styles.feedHeader}>
-          <Header level={1} value={UI_MESSAGES.PAGE_TITLES.FEED} className={styles.title} />
+          <div className={styles.headerTop}>
+            <Header
+              level={1}
+              value={UI_MESSAGES.PAGE_TITLES.FEED}
+              className={styles.title}
+            />
+            <Button
+              className={styles.sidebarToggle}
+              onClick={() => setIsSidebarOpen(true)}
+              aria-label="Open sidebar"
+            >
+              <RxHamburgerMenu size={24} />
+            </Button>
+          </div>
           {currentCategory && (
             <Paragraph className={styles.categoryFilter}>
               Filtered by:{currentCategory}
@@ -53,7 +69,29 @@ const FeedLayout: React.FC<FeedLayoutProps> = ({
           />
         </div>
       </div>
-      <Sidebar />
+      <div className={styles.desktopSidebar}>
+        <Sidebar />
+      </div>
+      {isSidebarOpen && (
+        <>
+          <div
+            className={sidebarStyles.backdrop}
+            onClick={() => setIsSidebarOpen(false)}
+          ></div>
+          <div className={sidebarStyles.drawer}>
+            <button
+              className={sidebarStyles.closeButton}
+              onClick={() => setIsSidebarOpen(false)}
+              aria-label="Close sidebar"
+            >
+              <RxCross2 size={24} />
+            </button>
+            <div className="p-4">
+              <Sidebar showDevelopers={false} />
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 };

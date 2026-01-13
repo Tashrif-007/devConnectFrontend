@@ -1,0 +1,5 @@
+@reference '../styles.css';
+
+.title {
+  @apply text-xl font-bold text-gray-900 mb-6;
+}

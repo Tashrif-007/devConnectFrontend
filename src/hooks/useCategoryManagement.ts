@@ -65,6 +65,7 @@ export const useCategoryManagement = () => {
       try {
         await deleteCategoryMutation.mutateAsync(categoryId);
         setDeleteError(null);
+        setDeleteConfirmModal({ isOpen: false, categoryId: null });
       } catch (error) {
         setDeleteError(
           error instanceof Error ? error.message : "Failed to delete category"

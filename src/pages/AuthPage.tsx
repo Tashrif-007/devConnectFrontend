@@ -4,6 +4,7 @@ import { AuthHeader } from "../components/auth/layout/AuthHeader";
 import SignupForm from "../components/auth/forms/SignupForm";
 import { useLocation } from "react-router-dom";
 import { LoginForm } from "../components/auth";
+import styles from "./AuthPage.module.css";
 
 const SignupPage: React.FC = () => {
   const location = useLocation();
@@ -13,12 +14,12 @@ const SignupPage: React.FC = () => {
     ? "New to devConnect?"
     : "Already have an account?";
   return (
-    <div className="flex rounded w-full flex-col min-h-screen justify-center items-center bg-[#f3f4f6]">
-      <div className="w-full max-w-md rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
+    <div className={styles.container}>
+      <div className={styles.formWrapper}>
         <AuthHeader
           hValue="Join devConnect"
           pValue="Start sharing your code journey today."
-          className="text-center flex flex-col gap-2"
+          className={styles.header}
         />
         {isLogin ? <LoginForm /> : <SignupForm />}
         <AuthFooter value={footerValue} link={footerLink} />

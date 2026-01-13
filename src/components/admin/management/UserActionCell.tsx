@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "../../ui/Button";
 import { FiTrash2 } from "react-icons/fi";
 import Options from "../../ui/Options";
@@ -22,26 +22,47 @@ const UserActionCell: React.FC<UserActionCellProps> = ({
   isDeleting,
   error,
 }) => {
+  const [selectValue, setSelectValue] = useState(user.role);
+
+  const handleSelectChange = async (
+    e: React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    const value = e.target.value;
+
+    if (value === "DELETE") {
+      await onDeleteUser(user.userId);
+      setSelectValue(user.role);
+    } else {
+      setSelectValue(value);
+      await onRoleChange(user.userId, value as USER_ROLES);
+    }
+  };
+
   return (
     <div className={styles.container}>
       {error && <span className={styles.errorText}>{error}</span>}
 
-      <Options
-        value={user.role}
-        onChange={(e) =>
-          onRoleChange(user.userId, e.target.value as USER_ROLES)
-        }
-        disabled={isUpdating}
+      <select
+        value={selectValue}
+        onChange={handleSelectChange}
+        disabled={isUpdating || isDeleting}
         className={styles.roleSelect}
-      />
+      >
+        {Object.entries(USER_ROLES).map(([key, value]) => (
+          <option key={key} value={value}>
+            {key.charAt(0) + key.slice(1).toLowerCase()}
+          </option>
+        ))}
+        <option value="DELETE" className={styles.deleteOption}>
+          Delete User
+        </option>
+      </select>
+
       <Button
         onClick={() => onDeleteUser(user.userId)}
         disabled={isDeleting || isUpdating}
-        className={
-          isDeleting || isUpdating
-            ? styles.deleteButtonLoading
-            : styles.deleteButton
-        }
+        className={`${styles.deleteButton} ${styles.desktopOnly}`}
+        title="Delete user"
       >
         {isDeleting ? (
           <span className={styles.loadingIndicator}>...</span>
