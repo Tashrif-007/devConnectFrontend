@@ -1,0 +1,33 @@
+@reference '../../../styles.css';
+
+.container {
+  @apply w-full max-w-md mt-6;
+}
+
+.form {
+  @apply w-full;
+}
+
+.button {
+  @apply px-3 py-3 text-base font-semibold rounded-[1rem] border-none cursor-pointer transition-all duration-200 font-[inherit] flex items-center justify-center gap-2 w-full;
+}
+
+.button:disabled {
+  @apply opacity-50 cursor-not-allowed;
+}
+
+.submitButton {
+  @apply px-3 py-3 text-base font-semibold rounded-[1rem] border-none cursor-pointer transition-all duration-200 font-[inherit] flex items-center justify-center gap-2 w-full bg-gray-900 text-white;
+}
+
+.submitButton:hover:not(:disabled) {
+  @apply bg-[#1f2937];
+}
+
+.submitButton:active:not(:disabled) {
+  @apply scale-[0.98];
+}
+
+.submitButton:disabled {
+  @apply opacity-50 cursor-not-allowed;
+}

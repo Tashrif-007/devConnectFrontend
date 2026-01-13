@@ -1,0 +1,13 @@
+@reference '../../../styles.css';
+
+.container {
+  @apply flex flex-col;
+}
+
+.title {
+  @apply text-2xl font-bold text-[#111827];
+}
+
+.subtitle {
+  @apply text-sm text-[#4b5563];
+}

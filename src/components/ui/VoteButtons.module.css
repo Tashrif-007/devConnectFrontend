@@ -1,0 +1,29 @@
+@import "../../styles.css";
+
+.vote-button-container {
+  @apply flex items-center gap-2;
+}
+
+.vote-button {
+  @apply flex items-center gap-1 transition-colors disabled:opacity-50 disabled:cursor-not-allowed;
+}
+
+.upvote-button-active {
+  @apply text-green-500 hover:text-green-600;
+}
+
+.upvote-button-inactive {
+  @apply text-gray-500 hover:text-green-500;
+}
+
+.downvote-button-active {
+  @apply text-red-500 hover:text-red-600;
+}
+
+.downvote-button-inactive {
+  @apply text-gray-500 hover:text-red-500;
+}
+
+.vote-count {
+  @apply text-xs;
+}

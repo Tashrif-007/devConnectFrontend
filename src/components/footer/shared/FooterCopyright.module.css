@@ -1,0 +1,5 @@
+@reference '../../../styles.css';
+
+.text {
+  @apply text-slate-600 text-sm;
+}

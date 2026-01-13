@@ -1,0 +1,13 @@
+@reference '../styles.css';
+
+.headerContainer {
+  @apply mb-8 flex items-start justify-between gap-4;
+}
+
+.headerContent {
+  @apply flex-1;
+}
+
+.sidebarToggle {
+  @apply sm:hidden bg-transparent border-none cursor-pointer p-0 shrink-0;
+}

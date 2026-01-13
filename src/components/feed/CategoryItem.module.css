@@ -1,0 +1,29 @@
+@reference '../../styles.css';
+
+.container {
+  @apply flex items-center justify-between py-2.5 px-3 rounded cursor-pointer transition-colors;
+}
+
+.containerSelected {
+  @apply bg-gray-100 border border-gray-300 rounded-lg;
+}
+
+.containerUnselected {
+  @apply hover:bg-gray-50;
+}
+
+.name {
+  @apply text-sm;
+}
+
+.nameSelected {
+  @apply text-gray-900 font-semibold;
+}
+
+.nameUnselected {
+  @apply text-gray-700;
+}
+
+.arrowIcon {
+  @apply text-gray-500 flex-shrink-0;
+}

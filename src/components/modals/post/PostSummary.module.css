@@ -1,0 +1,25 @@
+@reference '../../../styles.css';
+
+.container {
+  @apply mt-6 border-t border-gray-200 pt-6;
+}
+
+.header {
+  @apply flex items-center justify-between mb-3;
+}
+
+.title {
+  @apply font-semibold text-gray-900;
+}
+
+.toggleButton {
+  @apply text-xs font-medium text-blue-600 hover:text-blue-800 transition-colors px-2 py-1 hover:bg-blue-50 rounded;
+}
+
+.content {
+  @apply bg-blue-50 border border-blue-200 rounded p-4;
+}
+
+.text {
+  @apply text-sm text-gray-700 leading-relaxed;
+}

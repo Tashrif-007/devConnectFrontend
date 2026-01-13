@@ -1,0 +1,17 @@
+@reference "../../../styles.css";
+
+.category-searchbar {
+  @apply flex items-center justify-between mb-4;
+}
+
+.category-btn {
+  @apply px-4 py-2 bg-black text-white rounded-lg hover:bg-gray-800/80 transition-colors;
+}
+
+.button-text {
+  @apply hidden sm:inline;
+}
+
+.button-icon {
+  @apply sm:hidden;
+}

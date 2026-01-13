@@ -1,0 +1,9 @@
+@reference '../../../styles.css';
+
+.name {
+  @apply text-2xl font-bold text-gray-900;
+}
+
+.username {
+  @apply text-gray-600;
+}

@@ -1,0 +1,13 @@
+@reference '../../styles.css';
+
+.container {
+  @apply flex items-center gap-2 mb-4;
+}
+
+.icon {
+  @apply text-gray-700;
+}
+
+.title {
+  @apply text-lg font-bold text-gray-900;
+}

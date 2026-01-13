@@ -1,0 +1,21 @@
+@reference '../../../styles.css';
+
+.actionContainer {
+  @apply flex items-center justify-end gap-2;
+}
+
+.errorText {
+  @apply text-xs text-red-600 mr-2;
+}
+
+.deleteButton {
+  @apply p-2 rounded transition-colors text-red-600 hover:bg-red-50;
+}
+
+.deleteButtonLoading {
+  @apply p-2 rounded transition-colors text-red-400 bg-red-50 cursor-not-allowed;
+}
+
+.loadingIndicator {
+  @apply text-xs;
+}

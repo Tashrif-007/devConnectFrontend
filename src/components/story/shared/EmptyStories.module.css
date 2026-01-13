@@ -1,0 +1,17 @@
+@reference '../../../styles.css';
+
+.container {
+  @apply bg-white rounded-lg border border-gray-200 shadow-md p-12;
+}
+
+.textCenter {
+  @apply text-center;
+}
+
+.mainText {
+  @apply text-gray-600 text-lg;
+}
+
+.secondaryText {
+  @apply text-gray-400 text-sm mt-2;
+}

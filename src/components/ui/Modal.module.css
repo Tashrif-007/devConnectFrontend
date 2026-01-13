@@ -1,0 +1,5 @@
+@reference "../../styles.css";
+
+.modal-header {
+    @apply text-xl font-bold text-gray-900 mb-2;
+}

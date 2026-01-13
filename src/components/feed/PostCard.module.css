@@ -1,0 +1,9 @@
+@reference '../../styles.css';
+
+.card {
+  @apply bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg transition-shadow cursor-pointer hover:border-gray-300;
+}
+
+.footer {
+  @apply flex justify-between pt-4 border-t border-gray-100;
+}

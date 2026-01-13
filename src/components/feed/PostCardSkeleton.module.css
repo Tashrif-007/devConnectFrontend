@@ -1,0 +1,57 @@
+@reference '../../styles.css';
+
+.skeletonCard {
+  @apply bg-white rounded-lg border border-gray-200 p-5 mb-4 animate-pulse;
+}
+
+.skeletonLine {
+  @apply h-4 bg-gray-200 rounded animate-pulse;
+}
+
+.headerContainer {
+  @apply flex items-start gap-3;
+}
+
+.skeletonAvatarLarge {
+  @apply w-12 h-12 rounded-full bg-gray-300 flex-shrink-0;
+}
+
+.content {
+  @apply flex-1;
+}
+
+.skeletonName {
+  @apply h-4 bg-gray-300 rounded w-24 mb-2;
+}
+
+.skeletonTime {
+  @apply h-3 bg-gray-200 rounded w-16 mb-3;
+}
+
+.contentLines {
+  @apply space-y-2 mb-3;
+}
+
+.shortLine {
+  @apply w-4/5;
+}
+
+.tagsContainer {
+  @apply flex flex-wrap gap-2 mb-4;
+}
+
+.skeletonTag {
+  @apply h-6 bg-gray-300 rounded w-16;
+}
+
+.skeletonTagLarge {
+  @apply h-6 bg-gray-300 rounded w-20;
+}
+
+.actions {
+  @apply flex items-center gap-4 pt-3 border-t border-gray-100;
+}
+
+.skeletonAction {
+  @apply h-4 bg-gray-300 rounded w-12;
+}
