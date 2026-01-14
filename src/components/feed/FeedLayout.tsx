@@ -6,8 +6,9 @@ import { Header, Paragraph, Button } from "../ui";
 import type { PaginationData } from "../../types";
 import styles from "./FeedLayout.module.css";
 import type { Story } from "../../interfaces";
-import { UI_MESSAGES } from "../../constants";
+import { ROUTES, UI_MESSAGES } from "../../constants";
 import sidebarStyles from "../../layouts/Sidebar.module.css";
+import { useNavigate } from "react-router-dom";
 
 type FeedLayoutProps = {
   stories: Story[];
@@ -29,6 +30,7 @@ const FeedLayout: React.FC<FeedLayoutProps> = ({
     fetchStories(page, currentCategory);
   };
   const feedRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (feedRef?.current) {
@@ -46,13 +48,20 @@ const FeedLayout: React.FC<FeedLayoutProps> = ({
               value={UI_MESSAGES.PAGE_TITLES.FEED}
               className={styles.title}
             />
-            <Button
-              className={styles.sidebarToggle}
-              onClick={() => setIsSidebarOpen(true)}
-              aria-label="Open sidebar"
-            >
-              <RxHamburgerMenu size={24} />
-            </Button>
+            <div className={styles.buttonsContainer}>
+              <Button
+                onClick={() => navigate(ROUTES.APP.CREATE_POST)}
+                className={styles.createPostButton}
+              >
+                +
+              </Button>
+              <Button
+                className={styles.sidebarToggle}
+                onClick={() => setIsSidebarOpen(true)}
+              >
+                <RxHamburgerMenu size={24} />
+              </Button>
+            </div>
           </div>
           {currentCategory && (
             <Paragraph className={styles.categoryFilter}>

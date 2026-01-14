@@ -36,3 +36,10 @@
   @apply hidden sm:block sticky top-24;
 }
 
+.createPostButton {
+  @apply sm:hidden px-4 py-2 bg-black text-white rounded-lg font-semibold hover:bg-black hover:opacity-80 transition-opacity ease-in-out duration-300;
+}
+
+.buttonsContainer {
+  @apply flex justify-between gap-4;
+}
