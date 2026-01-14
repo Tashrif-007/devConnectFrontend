@@ -5,6 +5,7 @@ import { AuthInputs } from "../../../layouts/AuthInputs";
 import { useLogin } from "../../../hooks/useLogin";
 import { useNavigate } from "react-router-dom";
 import styles from "./LoginForm.module.css";
+import { UI_MESSAGES } from "../../../constants";
 
 const LoginForm = () => {
   const {
@@ -52,7 +53,7 @@ const LoginForm = () => {
             error={errors.password || ""}
           />
           <Button className={styles.submitButton} type="submit">
-            {loading ? "Loggin in..." : "Login"}
+            {loading ? UI_MESSAGES.BUTTONS.LOGGING_IN : UI_MESSAGES.BUTTONS.LOGIN}
           </Button>
         </AuthInputs>
       </form>
