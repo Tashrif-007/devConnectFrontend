@@ -70,6 +70,20 @@ export default function NavLinks() {
                 Admin
               </Link>
             )}
+            <Link
+              to={ROUTES.AUTH.LOGIN}
+              className={styles.mobileLink}
+              onClick={handleLinkClick}
+            >
+              Login
+            </Link>
+            <Link
+              to={ROUTES.AUTH.SIGNUP}
+              className={styles.mobileLink}
+              onClick={handleLinkClick}
+            >
+              Signup
+            </Link>
           </div>
         </>
       )}
