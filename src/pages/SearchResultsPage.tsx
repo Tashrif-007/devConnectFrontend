@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { RxHamburgerMenu, RxCross2 } from "react-icons/rx";
 import { SearchContent } from "../components/search";
 import Categories from "../components/feed/Categories";
 import SortFilter from "../components/search/filters/SortFilter";
-import { Button } from "../components/ui";
 import sidebarStyles from "../layouts/Sidebar.module.css";
 import styles from "./SearchResultsPage.module.css";
 import type { OrderByValue, SortByValue } from "../types";
@@ -114,13 +112,6 @@ const SearchResultsPage: React.FC = () => {
   return (
     <div className={styles.container}>
       <div className={styles.mainContent}>
-        <Button
-          className={styles.sidebarToggle}
-          onClick={() => setIsSidebarOpen(true)}
-          aria-label="Open sidebar"
-        >
-          <RxHamburgerMenu size={24} />
-        </Button>
         <SearchContent
           find={find}
           tab={tab}
@@ -131,6 +122,7 @@ const SearchResultsPage: React.FC = () => {
           itemsPerPage={itemsPerPage}
           onTabChange={handleTabChange}
           onPageChange={handlePageChange}
+          onSidebarToggle={() => setIsSidebarOpen(true)}
         />
       </div>
 
@@ -156,12 +148,6 @@ const SearchResultsPage: React.FC = () => {
             onClick={() => setIsSidebarOpen(false)}
           ></div>
           <div className={sidebarStyles.drawer}>
-            <Button
-              className={sidebarStyles.closeButton}
-              onClick={() => setIsSidebarOpen(false)}
-            >
-              <RxCross2 size={24} />
-            </Button>
             <div className="p-4">
               <SortFilter
                 tab={tab}

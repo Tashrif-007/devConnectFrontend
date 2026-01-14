@@ -13,5 +13,5 @@
 }
 
 .desktopSidebar {
-  @apply hidden md:flex md:flex-col md:gap-6 w-80 shrink-0 h-fit;
+  @apply hidden md:flex md:flex-col md:gap-6 sm:w-2/10 shrink-0 h-fit;
 }

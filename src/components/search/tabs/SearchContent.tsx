@@ -1,8 +1,10 @@
 import React from "react";
+import { RxHamburgerMenu } from "react-icons/rx";
 import { useSearch } from "../../../hooks/useSearch";
 import SearchHeader from "../layout/SearchHeader";
 import SearchTab from "./SearchTab";
 import SearchResults from "../layout/SearchResults";
+import { Button } from "../../ui";
 import styles from "./SearchContent.module.css";
 import type { OrderByValue, SortByValue } from "../../../types";
 
@@ -16,6 +18,7 @@ interface SearchContentProps {
   itemsPerPage: number;
   onTabChange: (newTab: "users" | "posts") => void;
   onPageChange: (newPage: number) => void;
+  onSidebarToggle: () => void;
 }
 
 const SearchContent: React.FC<SearchContentProps> = ({
@@ -28,6 +31,7 @@ const SearchContent: React.FC<SearchContentProps> = ({
   itemsPerPage,
   onTabChange,
   onPageChange,
+  onSidebarToggle,
 }) => {
   const { usersData, storiesData, totalUsersCount, totalStoriesCount } =
     useSearch({
@@ -42,7 +46,12 @@ const SearchContent: React.FC<SearchContentProps> = ({
 
   return (
     <div className={styles.container}>
-      <SearchHeader query={find} />
+      <div className={styles.header}>
+        <SearchHeader query={find} />
+        <Button onClick={onSidebarToggle} className="md:hidden">
+          <RxHamburgerMenu size={24} />
+        </Button>
+      </div>
       <div className={styles.tabsContainer}>
         <SearchTab
           name="Users"

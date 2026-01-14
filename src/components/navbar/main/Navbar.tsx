@@ -42,8 +42,6 @@ export default function Navbar() {
               )}
               <NavLinks />
               {isAuthenticated && <div className={styles.divider}></div>}
-              {/* <ThemeToggle /> */}
-              {/* <div className={styles.divider}></div> */}
               {isAuthenticated ? (
                 <ProfileDropdown
                   isOpen={isDropdownOpen}
