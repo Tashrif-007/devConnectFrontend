@@ -21,7 +21,7 @@
 }
 
 .logoText {
-  @apply text-[#111827] text-3xl font-bold;
+  @apply hidden sm:block text-[#111827] text-3xl font-bold;
 }
 
 .navActions {
