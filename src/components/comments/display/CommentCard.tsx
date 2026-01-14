@@ -3,7 +3,9 @@ import { FiTrash2 } from "react-icons/fi";
 import styles from "./CommentCard.module.css";
 import type { Comment } from "../../../interfaces";
 import { useDeleteCommentMutation } from "../../../queries/comments/deleteComment";
+import { useAuth } from "../../../hooks/useAuth";
 import ConfirmModal from "../../modals/confirm/ConfirmModal";
+import { Button } from "../../ui";
 
 interface CommentCardProps {
   comment: Comment;
@@ -12,6 +14,7 @@ interface CommentCardProps {
 const CommentCard: React.FC<CommentCardProps> = ({ comment }) => {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const { deleteComment, loading } = useDeleteCommentMutation();
+  const { user } = useAuth();
 
   const handleDeleteClick = () => {
     setIsDeleteModalOpen(true);
@@ -56,15 +59,15 @@ const CommentCard: React.FC<CommentCardProps> = ({ comment }) => {
         </div>
         <div className={styles.headerActions}>
           <span className={styles.date}>{formattedDate}</span>
-          <button
-            onClick={handleDeleteClick}
-            disabled={loading}
-            className={styles.deleteButton}
-            title="Delete comment"
-            aria-label="Delete comment"
-          >
-            <FiTrash2 size={16} />
-          </button>
+          {user && user.userId === comment.user.userId && (
+            <Button
+              onClick={handleDeleteClick}
+              disabled={loading}
+              className={styles.deleteButton}
+            >
+              <FiTrash2 size={16} />
+            </Button>
+          )}
         </div>
       </div>
 
