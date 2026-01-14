@@ -9,6 +9,8 @@ export const UI_MESSAGES = {
     CREATE: "Create",
     CONFIRM: "Confirm",
     CLOSE: "Close",
+    LOGIN: "Login",
+    LOGGING_IN: "Logging in...",
   },
 
   PAGE_TITLES: {

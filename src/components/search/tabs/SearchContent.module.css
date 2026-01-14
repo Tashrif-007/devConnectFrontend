@@ -7,3 +7,7 @@
 .tabsContainer {
   @apply flex gap-4 border-b border-gray-200 mb-6;
 }
+
+.header {
+  @apply flex justify-between;
+}

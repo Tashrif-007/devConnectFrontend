@@ -4,10 +4,18 @@
   @apply mb-8 flex items-start justify-between gap-4;
 }
 
+.pageTitle {
+  @apply text-2xl sm:text-3xl font-bold;
+}
+
 .headerContent {
   @apply flex-1;
 }
 
 .sidebarToggle {
   @apply sm:hidden bg-transparent border-none cursor-pointer p-0 shrink-0;
+}
+
+.tabsContainer {
+  @apply flex gap-8 border-b border-gray-200 mb-8;
 }

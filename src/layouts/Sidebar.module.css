@@ -10,7 +10,7 @@
 }
 
 .drawer {
-  @apply fixed top-16 right-0 bottom-0 z-50 w-80 max-w-full bg-white shadow-lg overflow-y-auto sm:hidden animate-slideInRight;
+  @apply fixed top-16 right-0 bottom-0 z-50 w-80 max-w-full bg-white shadow-lg overflow-y-auto sm:hidden animate-slideInRight p-4;
 }
 
 .closeButton {

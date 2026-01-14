@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import { RxHamburgerMenu, RxCross2 } from "react-icons/rx";
 import CategoryManagement from "../components/admin/categories/CategoryManagement";
 import UserManagement from "../components/admin/management/UserManagement";
-import { Header, Paragraph, TabButton, Button } from "../components/ui";
+import { Header, Paragraph, TabButton } from "../components/ui";
 import sidebarStyles from "../layouts/Sidebar.module.css";
 import styles from "./AdminPage.module.css";
 import Categories from "../components/feed/Categories";
@@ -28,14 +27,7 @@ const AdminPage: React.FC = () => {
               {ADMIN_PAGE.DASHBOARD_DESCRIPTION}
             </Paragraph>
           </div>
-          <Button
-            className={styles.sidebarToggle}
-            onClick={() => setIsSidebarOpen(true)}
-          >
-            <RxHamburgerMenu size={24} />
-          </Button>
         </div>
-
         <div className={styles.tabsContainer}>
           <TabButton
             label={ADMIN_PAGE.TABS.CATEGORIES}
@@ -63,16 +55,7 @@ const AdminPage: React.FC = () => {
             onClick={() => setIsSidebarOpen(false)}
           ></div>
           <div className={sidebarStyles.drawer}>
-            <button
-              className={sidebarStyles.closeButton}
-              onClick={() => setIsSidebarOpen(false)}
-              aria-label="Close sidebar"
-            >
-              <RxCross2 size={24} />
-            </button>
-            <div className="p-4">
-              <Categories onCategoryChange={() => setIsSidebarOpen(false)} />
-            </div>
+            <Categories onCategoryChange={() => setIsSidebarOpen(false)} />
           </div>
         </>
       )}

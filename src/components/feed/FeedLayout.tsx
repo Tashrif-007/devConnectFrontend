@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { RxHamburgerMenu, RxCross2 } from "react-icons/rx";
+import { RxHamburgerMenu } from "react-icons/rx";
 import PostsList from "../../layouts/PostsList";
 import Sidebar from "../../layouts/Sidebar";
 import { Header, Paragraph, Button } from "../ui";
@@ -70,7 +70,7 @@ const FeedLayout: React.FC<FeedLayoutProps> = ({
         </div>
       </div>
       <div className={styles.desktopSidebar}>
-        <Sidebar /> 
+        <Sidebar />
       </div>
       {isSidebarOpen && (
         <>
@@ -79,16 +79,7 @@ const FeedLayout: React.FC<FeedLayoutProps> = ({
             onClick={() => setIsSidebarOpen(false)}
           ></div>
           <div className={sidebarStyles.drawer}>
-            <button
-              className={sidebarStyles.closeButton}
-              onClick={() => setIsSidebarOpen(false)}
-              aria-label="Close sidebar"
-            >
-              <RxCross2 size={24} />
-            </button>
-            <div className="p-4">
-              <Sidebar showDevelopers={false} />
-            </div>
+            <Sidebar showDevelopers={false} />
           </div>
         </>
       )}
