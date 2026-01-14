@@ -9,7 +9,7 @@ import { Button } from "../../ui";
 
 export default function NavLinks() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { user } = useAuth();
+  const { user, isAuthenticated } = useAuth();
   const isAdmin = user?.role === USER_ROLES.ADMIN;
 
   const handleLinkClick = () => {
@@ -70,20 +70,24 @@ export default function NavLinks() {
                 Admin
               </Link>
             )}
-            <Link
-              to={ROUTES.AUTH.LOGIN}
-              className={styles.mobileLink}
-              onClick={handleLinkClick}
-            >
-              Login
-            </Link>
-            <Link
-              to={ROUTES.AUTH.SIGNUP}
-              className={styles.mobileLink}
-              onClick={handleLinkClick}
-            >
-              Signup
-            </Link>
+            {!isAuthenticated && (
+              <Link
+                to={ROUTES.AUTH.LOGIN}
+                className={styles.mobileLink}
+                onClick={handleLinkClick}
+              >
+                Login
+              </Link>
+            )}
+            {!isAuthenticated && (
+              <Link
+                to={ROUTES.AUTH.SIGNUP}
+                className={styles.mobileLink}
+                onClick={handleLinkClick}
+              >
+                Signup
+              </Link>
+            )}
           </div>
         </>
       )}
