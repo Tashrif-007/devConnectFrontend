@@ -13,7 +13,7 @@
 }
 
 .deleteOption {
-  @apply text-red-600 font-semibold;
+  @apply text-red-600 font-semibold sm:hidden;
 }
 
 .deleteButton {
