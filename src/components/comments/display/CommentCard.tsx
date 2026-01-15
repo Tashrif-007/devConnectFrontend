@@ -7,6 +7,7 @@ import { useAuth } from "../../../hooks/useAuth";
 import ConfirmModal from "../../modals/confirm/ConfirmModal";
 import { Button, Paragraph } from "../../ui";
 import { UI_CONFIG } from "../../../constants";
+import { useNavigate } from "react-router-dom";
 
 interface CommentCardProps {
   comment: Comment;
@@ -15,6 +16,7 @@ interface CommentCardProps {
 const CommentCard: React.FC<CommentCardProps> = ({ comment }) => {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const { deleteComment, loading } = useDeleteCommentMutation();
+  const navigate = useNavigate();
   const { user } = useAuth();
 
   const handleDeleteClick = () => {
@@ -33,6 +35,9 @@ const CommentCard: React.FC<CommentCardProps> = ({ comment }) => {
   const handleCancelDelete = () => {
     setIsDeleteModalOpen(false);
   };
+  const handleProfileClick = () => {
+    navigate(`/profile/${comment.user.userId}`)
+  }
   const formattedDate = new Date(comment.createdAt).toLocaleDateString(
     "en-US",
     {
@@ -45,9 +50,9 @@ const CommentCard: React.FC<CommentCardProps> = ({ comment }) => {
   return (
     <div className={styles.card}>
       <div className={styles.header}>
-        <div className={styles.userInfo}>
+        <div className={styles.userInfo} onClick={handleProfileClick}>
             <img
-              src={comment.user.profilePictureUrl || UI_CONFIG.AVATAR_URL}
+              src={comment.user.profilePictureUrl ||`${UI_CONFIG.AVATAR_URL}?seed=${comment.user.name}`}
               alt={comment.user.name}
               className={styles.avatar}
             />
