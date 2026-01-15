@@ -4,6 +4,7 @@ import { useGetUsers } from "../queries/users/getUsers";
 import { useDeleteUserMutation } from "../queries/users/deleteUser";
 import { useUpdateUserRoleMutation } from "../queries";
 import { USER_ROLES } from "../types";
+import { useDebounce } from "./useDebounce";
 
 export const useUserManagement = () => {
   const queryClient = useQueryClient();
@@ -14,6 +15,7 @@ export const useUserManagement = () => {
   } = useUpdateUserRoleMutation();
 
   const [searchQuery, setSearchQuery] = useState("");
+  const debouncedSearchQuery = useDebounce(searchQuery, 500);
   const [currentPage, setCurrentPage] = useState(1);
   const [updatingUserId, setUpdatingUserId] = useState<string | null>(null);
   const [deleteLoading, setDeleteLoading] = useState<string | null>(null);
@@ -23,10 +25,10 @@ export const useUserManagement = () => {
     userId: string | null;
   }>({ isOpen: false, userId: null });
 
-  const { users, pagination, loading } = useGetUsers(currentPage, searchQuery);
+  const { users, pagination, loading } = useGetUsers(currentPage, debouncedSearchQuery);
   const { deleteUserMutation } = useDeleteUserMutation(
     currentPage,
-    searchQuery
+    debouncedSearchQuery
   );
 
   const filteredUsers = users;
