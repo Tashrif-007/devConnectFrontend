@@ -5,7 +5,8 @@ import type { Comment } from "../../../interfaces";
 import { useDeleteCommentMutation } from "../../../queries/comments/deleteComment";
 import { useAuth } from "../../../hooks/useAuth";
 import ConfirmModal from "../../modals/confirm/ConfirmModal";
-import { Button } from "../../ui";
+import { Button, Paragraph } from "../../ui";
+import { UI_CONFIG } from "../../../constants";
 
 interface CommentCardProps {
   comment: Comment;
@@ -45,13 +46,11 @@ const CommentCard: React.FC<CommentCardProps> = ({ comment }) => {
     <div className={styles.card}>
       <div className={styles.header}>
         <div className={styles.userInfo}>
-          {comment.user.profilePictureUrl && (
             <img
-              src={comment.user.profilePictureUrl}
+              src={comment.user.profilePictureUrl || UI_CONFIG.AVATAR_URL}
               alt={comment.user.name}
               className={styles.avatar}
             />
-          )}
           <div>
             <p className={styles.userName}>{comment.user.name}</p>
             <p className={styles.userHandle}>@{comment.user.username}</p>
@@ -71,7 +70,7 @@ const CommentCard: React.FC<CommentCardProps> = ({ comment }) => {
         </div>
       </div>
 
-      <p className={styles.body}>{comment.body}</p>
+      <Paragraph className={styles.body}>{comment.body}</Paragraph>
 
       <ConfirmModal
         isOpen={isDeleteModalOpen}
